@@ -227,6 +227,125 @@
             text-align: center;
             margin: 15px 0;
             font-size: 1.1em;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+        
+        .countdown-banner {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .scarcity-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+        
+        .social-proof-ticker {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .social-proof-ticker::before {
+            content: "🔴 LIVE";
+            position: absolute;
+            left: 10px;
+            animation: pulse 1s infinite;
+        }
+        
+        .ticker-content {
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .exit-intent-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .exit-intent-popup {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            animation: popupAppear 0.5s ease-out;
+        }
+        
+        @keyframes popupAppear {
+            0% { opacity: 0; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .popup-cta {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 15px 10px;
+            transition: all 0.3s ease;
+            animation: buttonPulse 2s infinite;
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .popup-cta:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .decline-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
@@ -266,6 +385,10 @@
     <div class="container">
         <div class="urgent-banner">
             ⚡ LIMITED TIME: Special Pricing Available - See Below ⚡
+        </div>
+        
+        <div class="countdown-banner" id="countdownBanner" style="background: #dc3545; color: white; text-align: center; padding: 15px; font-weight: bold; animation: pulse 2s infinite;">
+            🔥 SPECIAL OFFER ENDS IN: <span id="countdown" style="font-size: 1.2em; margin-left: 10px;"></span>
         </div>
         
         <div class="header">
@@ -373,7 +496,19 @@
             </div>
             
             <div class="urgency">
-                ⏰ Special Pricing Ends Soon - Don't Miss Out!
+                ⏰ Only 47 Bottles Left in Stock - Order Now!
+            </div>
+            
+            <div class="scarcity-box">
+                <h3 style="color: #d4910f; margin-bottom: 15px;">⚠️ INVENTORY ALERT</h3>
+                <p style="margin-bottom: 10px;"><strong>Current Stock Level: 47 bottles remaining</strong></p>
+                <p style="color: #666; font-size: 0.9em;">Due to high demand and limited production capacity, we can only guarantee today's pricing for the next few hours.</p>
+            </div>
+            
+            <div class="social-proof-ticker">
+                <div class="ticker-content">
+                    <span style="margin-left: 30px;">John M. from Texas just ordered 3 bottles • Sarah L. from California purchased the 6-bottle package • Mike R. from Florida just bought 1 bottle • Jennifer K. from New York ordered 3 bottles</span>
+                </div>
             </div>
             
             <div class="price-highlight">
@@ -383,26 +518,132 @@
         
         <div class="cta-section">
             <h2>Ready to Feel 20 Years Younger?</h2>
-            <p style="font-size: 1.1em; margin-bottom: 30px;">Click below to see the special pricing and secure your Advanced Mitochondrial Formula today!</p>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Join 43,891+ customers who have transformed their energy levels!</p>
             
-            <button onclick="redirectToOffer()" class="cta-button">
-                🚀 Get My Energy Back Now!
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>What happens when you click below:</strong></p>
+                <p style="font-size: 0.95em; opacity: 0.9;">✓ Secure checkout in 2 minutes<br>
+                ✓ Immediate access to special pricing<br>
+                ✓ 90-day money-back guarantee<br>
+                ✓ Free shipping on multi-bottle orders</p>
+            </div>
+            
+            <button onclick="redirectToOffer()" class="cta-button" id="mainCTA">
+                🚀 YES! Give Me More Energy Now!
             </button>
             
             <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
                 ✅ 90-Day Money Back Guarantee<br>
                 ✅ Free Shipping on Multi-Bottle Orders<br>
-                ✅ Secure Checkout
+                ✅ Secure 256-bit SSL Checkout<br>
+                ✅ No Auto-billing or Hidden Fees
             </p>
+            
+            <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                <p style="font-size: 0.85em; opacity: 0.8;">
+                    <strong>Still not sure?</strong> Remember: Dr. Shallenberger is 77 years old with the energy of a 40-year-old. 
+                    His patients report feeling decades younger within weeks. What do you have to lose except your fatigue?
+                </p>
+            </div>
+        </div>
+        
+        <!-- Exit Intent Popup -->
+        <div class="exit-intent-overlay" id="exitIntentPopup">
+            <div class="exit-intent-popup">
+                <button class="close-popup" onclick="closeExitIntent()">&times;</button>
+                <h2 style="color: #ff6b35; margin-bottom: 20px;">⚠️ Wait! Don't Leave Empty-Handed!</h2>
+                <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>You're about to miss the 77-year-old doctor's energy breakthrough!</strong></p>
+                <p style="margin-bottom: 20px; color: #666;">Over 43,000 people have already transformed their energy levels. Don't let fatigue control your life for another day.</p>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="color: #856404; font-weight: bold; margin-bottom: 10px;">🔥 LAST CHANCE OFFER:</p>
+                    <p style="color: #856404;">Lock in today's special pricing before it expires!</p>
+                </div>
+                
+                <button onclick="redirectToOffer(); closeExitIntent();" class="popup-cta">
+                    💪 YES! Give Me My Energy Back
+                </button>
+                <br>
+                <button onclick="closeExitIntent()" class="decline-btn">
+                    No thanks, I'll stay tired and frustrated
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Countdown Timer
+        function initCountdown() {
+            let timeLeft = 23 * 3600 + 45 * 60 + 33; // 23:45:33
+            
+            function updateCountdown() {
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                const countdownElement = document.getElementById('countdown');
+                if (countdownElement) {
+                    countdownElement.innerHTML = 
+                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+                
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    // Reset countdown when it reaches 0
+                    timeLeft = 23 * 3600 + 45 * 60 + 33;
+                }
+            }
+            
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+        
+        // Exit Intent Detection
+        let exitIntentShown = false;
+        let mouseLeaveTimer;
+        
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                mouseLeaveTimer = setTimeout(function() {
+                    showExitIntent();
+                }, 1000); // 1 second delay
+            }
+        });
+        
+        document.addEventListener('mouseenter', function() {
+            if (mouseLeaveTimer) {
+                clearTimeout(mouseLeaveTimer);
+            }
+        });
+        
+        function showExitIntent() {
+            if (!exitIntentShown) {
+                exitIntentShown = true;
+                document.getElementById('exitIntentPopup').style.display = 'flex';
+                
+                // Track exit intent event
+                gtag('event', 'exit_intent', {
+                    'event_category': 'engagement',
+                    'event_label': 'popup_shown'
+                });
+            }
+        }
+        
+        function closeExitIntent() {
+            document.getElementById('exitIntentPopup').style.display = 'none';
+        }
+        
+        // Enhanced redirect function with more detailed tracking
         function redirectToOffer() {
-            // Track the click
-            gtag('event', 'affiliate_click', {
-                'event_category': 'conversion',
-                'event_label': 'mitochondrial_cta'
+            // Determine which CTA was clicked
+            const clickSource = event.target.id === 'mainCTA' ? 'main_cta' : 'exit_intent_cta';
+            
+            // Track the conversion
+            gtag('event', 'conversion_click', {
+                'event_category': 'affiliate',
+                'event_label': clickSource,
+                'value': 1
             });
             
             // Get UTM parameters from current URL
@@ -411,29 +652,94 @@
             const medium = urlParams.get('utm_medium') || 'landing';
             const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
             
-            // Redirect to DigiStore24 with tracking
-            const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}`;
+            // Add click source to tracking
+            const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}`;
             
             window.location.href = targetUrl;
         }
         
-        // Track page view
-        gtag('event', 'page_view', {
-            'page_title': 'Mitochondrial Landing Page',
-            'page_location': window.location.href
-        });
+        // Track page engagement
+        let engagementTracked = false;
+        let scrollDepthTracked = 0;
         
-        // Track scroll depth
-        let maxScroll = 0;
         window.addEventListener('scroll', function() {
             const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-            if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
-                maxScroll = scrollPercent;
-                gtag('event', 'scroll', {
+            
+            // Track 25%, 50%, 75%, 100% scroll depths
+            if (scrollPercent >= 25 && scrollDepthTracked < 25) {
+                scrollDepthTracked = 25;
+                gtag('event', 'scroll_depth', {
                     'event_category': 'engagement',
-                    'value': scrollPercent
+                    'value': 25
+                });
+            } else if (scrollPercent >= 50 && scrollDepthTracked < 50) {
+                scrollDepthTracked = 50;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'value': 50
+                });
+            } else if (scrollPercent >= 75 && scrollDepthTracked < 75) {
+                scrollDepthTracked = 75;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'value': 75
+                });
+            } else if (scrollPercent >= 90 && scrollDepthTracked < 90) {
+                scrollDepthTracked = 90;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'value': 90
                 });
             }
+        });
+        
+        // Track time spent on page
+        let timeOnPage = 0;
+        setInterval(function() {
+            timeOnPage += 10;
+            
+            // Track milestone times
+            if (timeOnPage === 30 && !engagementTracked) {
+                engagementTracked = true;
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '30_seconds',
+                    'value': 30
+                });
+            } else if (timeOnPage === 60) {
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '1_minute',
+                    'value': 60
+                });
+            } else if (timeOnPage === 120) {
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '2_minutes',
+                    'value': 120
+                });
+            }
+        }, 10000); // Check every 10 seconds
+        
+        // Initialize countdown when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initCountdown();
+            
+            // Track page view with enhanced data
+            gtag('event', 'page_view', {
+                'page_title': 'Mitochondrial Landing Page - Enhanced',
+                'page_location': window.location.href,
+                'custom_parameter': 'conversion_optimized'
+            });
+        });
+        
+        // Prevent right-click and text selection (optional - for protection)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
         });
     </script>
 </body>
