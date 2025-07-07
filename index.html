@@ -630,33 +630,31 @@
             }
         }
         
-        function closeExitIntent() {
-            document.getElementById('exitIntentPopup').style.display = 'none';
-        }
-        
-        // Enhanced redirect function with more detailed tracking
-        function redirectToOffer() {
-            // Determine which CTA was clicked
-            const clickSource = event.target.id === 'mainCTA' ? 'main_cta' : 'exit_intent_cta';
-            
-            // Track the conversion
-            gtag('event', 'conversion_click', {
-                'event_category': 'affiliate',
-                'event_label': clickSource,
-                'value': 1
-            });
-            
-            // Get UTM parameters from current URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const source = urlParams.get('utm_source') || 'direct';
-            const medium = urlParams.get('utm_medium') || 'landing';
-            const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
-            
-            // Add click source to tracking
-            const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}`;
-            
-            window.location.href = targetUrl;
-        }
+function redirectToOffer() {
+    // Определяем источник клика
+    const clickSource = event.target.closest('button').id || 'unknown_cta';
+    const timestamp = new Date().toISOString();
+    
+    // Отслеживаем клик
+    gtag('event', 'conversion_click', {
+        'event_category': 'affiliate',
+        'event_label': clickSource,
+        'custom_parameter_1': timestamp
+    });
+    
+    // Создаем детальную UTM строку
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source') || 'organic';
+    const medium = urlParams.get('utm_medium') || 'website';
+    const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
+    
+    // Добавляем уникальный ID для каждого клика
+    const clickId = Math.random().toString(36).substr(2, 9);
+    
+    const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}&utm_term=${clickId}`;
+    
+    window.location.href = targetUrl;
+}
         
         // Track page engagement
         let engagementTracked = false;
