@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>This is Like Rocket Fuel for Your Mitochondria!</title>
     <meta name="description" content="Studies show it can boost energy, improve mobility, and help you feel younger than you've felt in years!">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Ahrefs Web Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="U41Gh05Onzp/ZeG31xRrgg" async></script>
+    
     <style>
         * {
             margin: 0;
@@ -371,15 +384,6 @@
             }
         }
     </style>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
 </head>
 <body>
     <div class="container">
@@ -630,31 +634,35 @@
             }
         }
         
-function redirectToOffer() {
-    // Определяем источник клика
-    const clickSource = event.target.closest('button').id || 'unknown_cta';
-    const timestamp = new Date().toISOString();
-    
-    // Отслеживаем клик
-    gtag('event', 'conversion_click', {
-        'event_category': 'affiliate',
-        'event_label': clickSource,
-        'custom_parameter_1': timestamp
-    });
-    
-    // Создаем детальную UTM строку
-    const urlParams = new URLSearchParams(window.location.search);
-    const source = urlParams.get('utm_source') || 'organic';
-    const medium = urlParams.get('utm_medium') || 'website';
-    const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
-    
-    // Добавляем уникальный ID для каждого клика
-    const clickId = Math.random().toString(36).substr(2, 9);
-    
-    const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}&utm_term=${clickId}`;
-    
-    window.location.href = targetUrl;
-}
+        function closeExitIntent() {
+            document.getElementById('exitIntentPopup').style.display = 'none';
+        }
+        
+        function redirectToOffer() {
+            // Определяем источник клика
+            const clickSource = event.target.closest('button').id || 'unknown_cta';
+            const timestamp = new Date().toISOString();
+            
+            // Отслеживаем клик
+            gtag('event', 'conversion_click', {
+                'event_category': 'affiliate',
+                'event_label': clickSource,
+                'custom_parameter_1': timestamp
+            });
+            
+            // Создаем детальную UTM строку
+            const urlParams = new URLSearchParams(window.location.search);
+            const source = urlParams.get('utm_source') || 'organic';
+            const medium = urlParams.get('utm_medium') || 'website';
+            const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
+            
+            // Добавляем уникальный ID для каждого клика
+            const clickId = Math.random().toString(36).substr(2, 9);
+            
+            const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}&utm_term=${clickId}`;
+            
+            window.location.href = targetUrl;
+        }
         
         // Track page engagement
         let engagementTracked = false;
