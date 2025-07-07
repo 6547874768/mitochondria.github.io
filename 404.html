@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Health Supplements</title>
+    
+    <!-- Instant redirect script -->
+    <script>
+        // Instant redirect to homepage after 2 seconds
+        setTimeout(function() {
+            window.location.href = '/?utm_source=404_redirect&utm_medium=auto&utm_campaign=recovery';
+        }, 2000);
+        
+        // Track 404 events
+        if (typeof gtag !== 'undefined') {
+            gtag('event', '404_redirect', {
+                'event_category': 'navigation',
+                'event_label': window.location.pathname
+            });
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+        }
+        
+        h1 { font-size: 2.5em; margin-bottom: 20px; }
+        p { font-size: 1.2em; margin-bottom: 30px; }
+        
+        .redirect-button {
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .redirect-button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Page Not Found</h1>
+        <p>The page you're looking for has been moved to our new improved health supplements section.</p>
+        <p><strong>Redirecting you automatically in <span id="countdown">2</span> seconds...</strong></p>
+        
+        <a href="/?utm_source=404_manual&utm_medium=click&utm_campaign=recovery" class="redirect-button">
+            🚀 Go to Health Supplements Now
+        </a>
+        
+        <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
+            ✅ Revolutionary Energy Formula<br>
+            ✅ 77-Year-Old Doctor's Secret<br>
+            ✅ 3000% NAD Boost
+        </p>
+    </div>
+
+    <script>
+        // Countdown timer
+        let timeLeft = 2;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(function() {
+            timeLeft--;
+            if (countdownElement) {
+                countdownElement.textContent = timeLeft;
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = '/?utm_source=404_redirect&utm_medium=auto&utm_campaign=recovery';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
