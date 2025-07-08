@@ -33,6 +33,41 @@
             min-height: 100vh;
         }
         
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb-nav .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .breadcrumb-nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb-nav a:hover {
+            color: #ff6b35;
+            text-decoration: underline;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -361,7 +396,47 @@
             text-decoration: underline;
         }
         
+        .related-products {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .related-products h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .related-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .related-link:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
         @media (max-width: 768px) {
+            .breadcrumb-nav .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
             .header h1 {
                 font-size: 2em;
             }
@@ -386,6 +461,21 @@
     </style>
 </head>
 <body>
+    <nav class="breadcrumb-nav">
+        <div class="nav-container">
+            <a href="/?utm_source=product&utm_medium=breadcrumb&utm_campaign=navigation">
+                ← Health Supplements Hub
+            </a>
+            <div class="nav-links">
+                <a href="/mitochondrial-energy-guide/?utm_source=product&utm_medium=nav&utm_campaign=education">
+                    📚 Science Guide
+                </a>
+                <span style="color: #999;">|</span>
+                <span style="color: #666; font-size: 0.9em;">Advanced Formula</span>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="urgent-banner">
             ⚡ LIMITED TIME: Special Pricing Available - See Below ⚡
@@ -518,6 +608,17 @@
             <div class="price-highlight">
                 🔥 SPECIAL OFFER: Save Up To $199.80 Today Only!
             </div>
+            
+            <div class="related-products">
+                <h3>🔬 Want to Learn More About the Science?</h3>
+                <p style="margin-bottom: 20px; color: #666;">Discover the research behind mitochondrial energy and cellular health</p>
+                <a href="/mitochondrial-energy-guide/?utm_source=product&utm_medium=related&utm_campaign=education" class="related-link">
+                    📚 Complete Energy Guide
+                </a>
+                <a href="/?utm_source=product&utm_medium=related&utm_campaign=hub" class="related-link">
+                    🏠 Health Supplements Hub
+                </a>
+            </div>
         </div>
         
         <div class="cta-section">
@@ -560,193 +661,4 @@
                 <p style="margin-bottom: 20px; color: #666;">Over 43,000 people have already transformed their energy levels. Don't let fatigue control your life for another day.</p>
                 
                 <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p style="color: #856404; font-weight: bold; margin-bottom: 10px;">🔥 LAST CHANCE OFFER:</p>
-                    <p style="color: #856404;">Lock in today's special pricing before it expires!</p>
-                </div>
-                
-                <button onclick="redirectToOffer(); closeExitIntent();" class="popup-cta">
-                    💪 YES! Give Me My Energy Back
-                </button>
-                <br>
-                <button onclick="closeExitIntent()" class="decline-btn">
-                    No thanks, I'll stay tired and frustrated
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Countdown Timer
-        function initCountdown() {
-            let timeLeft = 23 * 3600 + 45 * 60 + 33; // 23:45:33
-            
-            function updateCountdown() {
-                const hours = Math.floor(timeLeft / 3600);
-                const minutes = Math.floor((timeLeft % 3600) / 60);
-                const seconds = timeLeft % 60;
-                
-                const countdownElement = document.getElementById('countdown');
-                if (countdownElement) {
-                    countdownElement.innerHTML = 
-                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }
-                
-                if (timeLeft > 0) {
-                    timeLeft--;
-                } else {
-                    // Reset countdown when it reaches 0
-                    timeLeft = 23 * 3600 + 45 * 60 + 33;
-                }
-            }
-            
-            setInterval(updateCountdown, 1000);
-            updateCountdown();
-        }
-        
-        // Exit Intent Detection
-        let exitIntentShown = false;
-        let mouseLeaveTimer;
-        
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0 && !exitIntentShown) {
-                mouseLeaveTimer = setTimeout(function() {
-                    showExitIntent();
-                }, 1000); // 1 second delay
-            }
-        });
-        
-        document.addEventListener('mouseenter', function() {
-            if (mouseLeaveTimer) {
-                clearTimeout(mouseLeaveTimer);
-            }
-        });
-        
-        function showExitIntent() {
-            if (!exitIntentShown) {
-                exitIntentShown = true;
-                document.getElementById('exitIntentPopup').style.display = 'flex';
-                
-                // Track exit intent event
-                gtag('event', 'exit_intent', {
-                    'event_category': 'engagement',
-                    'event_label': 'popup_shown'
-                });
-            }
-        }
-        
-        function closeExitIntent() {
-            document.getElementById('exitIntentPopup').style.display = 'none';
-        }
-        
-        function redirectToOffer() {
-            // Определяем источник клика
-            const clickSource = event.target.closest('button').id || 'unknown_cta';
-            const timestamp = new Date().toISOString();
-            
-            // Отслеживаем клик
-            gtag('event', 'conversion_click', {
-                'event_category': 'affiliate',
-                'event_label': clickSource,
-                'custom_parameter_1': timestamp
-            });
-            
-            // Создаем детальную UTM строку
-            const urlParams = new URLSearchParams(window.location.search);
-            const source = urlParams.get('utm_source') || 'organic';
-            const medium = urlParams.get('utm_medium') || 'website';
-            const campaign = urlParams.get('utm_campaign') || 'mitochondrial';
-            
-            // Добавляем уникальный ID для каждого клика
-            const clickId = Math.random().toString(36).substr(2, 9);
-            
-            const targetUrl = `https://www.digistore24.com/redir/576637/danilichev/?utm_source=${source}&utm_medium=${medium}&utm_campaign=${campaign}&utm_content=${clickSource}&utm_term=${clickId}`;
-            
-            window.location.href = targetUrl;
-        }
-        
-        // Track page engagement
-        let engagementTracked = false;
-        let scrollDepthTracked = 0;
-        
-        window.addEventListener('scroll', function() {
-            const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-            
-            // Track 25%, 50%, 75%, 100% scroll depths
-            if (scrollPercent >= 25 && scrollDepthTracked < 25) {
-                scrollDepthTracked = 25;
-                gtag('event', 'scroll_depth', {
-                    'event_category': 'engagement',
-                    'value': 25
-                });
-            } else if (scrollPercent >= 50 && scrollDepthTracked < 50) {
-                scrollDepthTracked = 50;
-                gtag('event', 'scroll_depth', {
-                    'event_category': 'engagement',
-                    'value': 50
-                });
-            } else if (scrollPercent >= 75 && scrollDepthTracked < 75) {
-                scrollDepthTracked = 75;
-                gtag('event', 'scroll_depth', {
-                    'event_category': 'engagement',
-                    'value': 75
-                });
-            } else if (scrollPercent >= 90 && scrollDepthTracked < 90) {
-                scrollDepthTracked = 90;
-                gtag('event', 'scroll_depth', {
-                    'event_category': 'engagement',
-                    'value': 90
-                });
-            }
-        });
-        
-        // Track time spent on page
-        let timeOnPage = 0;
-        setInterval(function() {
-            timeOnPage += 10;
-            
-            // Track milestone times
-            if (timeOnPage === 30 && !engagementTracked) {
-                engagementTracked = true;
-                gtag('event', 'time_on_page', {
-                    'event_category': 'engagement',
-                    'event_label': '30_seconds',
-                    'value': 30
-                });
-            } else if (timeOnPage === 60) {
-                gtag('event', 'time_on_page', {
-                    'event_category': 'engagement',
-                    'event_label': '1_minute',
-                    'value': 60
-                });
-            } else if (timeOnPage === 120) {
-                gtag('event', 'time_on_page', {
-                    'event_category': 'engagement',
-                    'event_label': '2_minutes',
-                    'value': 120
-                });
-            }
-        }, 10000); // Check every 10 seconds
-        
-        // Initialize countdown when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initCountdown();
-            
-            // Track page view with enhanced data
-            gtag('event', 'page_view', {
-                'page_title': 'Mitochondrial Landing Page - Enhanced',
-                'page_location': window.location.href,
-                'custom_parameter': 'conversion_optimized'
-            });
-        });
-        
-        // Prevent right-click and text selection (optional - for protection)
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-    </script>
-</body>
-</html>
+                    <p style="
