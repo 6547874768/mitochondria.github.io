@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why Am I Always Tired After 40? The Hidden Cellular Cause</title>
     <meta name="description" content="Discover the real reason you're always tired after 40. It's not normal aging - it's cellular energy decline. Learn the science-backed solution.">
-    <meta name="keywords" content="always tired after 40, chronic fatigue over 40, tired all the time, fatigue after 40, cellular energy decline">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -33,31 +32,6 @@
             background: #fff;
         }
         
-        .breadcrumb-nav {
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-            padding: 15px 0;
-        }
-        
-        .breadcrumb-nav .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .breadcrumb-nav a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .breadcrumb-nav a:hover {
-            color: #ff6b35;
-            text-decoration: underline;
-        }
-        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -72,7 +46,7 @@
         }
         
         h1 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             color: #2c3e50;
             margin-bottom: 20px;
             line-height: 1.2;
@@ -112,6 +86,14 @@
             border-radius: 5px;
         }
         
+        .scientific-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
         .personal-story {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -146,15 +128,7 @@
             left: 0;
         }
         
-        .scientific-box {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-        
-        .stats-grid {
+        .stats-box {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
@@ -243,20 +217,24 @@
             color: #ff6b35;
         }
         
-        .related-articles {
+        blockquote {
             background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
+            border-left: 5px solid #ff6b35;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.1em;
         }
         
-        .related-articles h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .back-links {
             text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
         
-        .related-link {
+        .back-link {
             display: inline-block;
             background: #667eea;
             color: white;
@@ -268,46 +246,8 @@
             transition: all 0.3s ease;
         }
         
-        .related-link:hover {
+        .back-link:hover {
             background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-        
-        .navigation-footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
-            margin: 50px -20px -40px -20px;
-            text-align: center;
-        }
-        
-        .nav-footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .nav-footer-links a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-footer-links a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        
-        blockquote {
-            background: #f8f9fa;
-            border-left: 5px solid #ff6b35;
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 1.1em;
         }
         
         @media (max-width: 768px) {
@@ -316,7 +256,7 @@
             }
             
             h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
             
             h2 {
@@ -332,25 +272,10 @@
                 margin: 10px auto;
                 max-width: 300px;
             }
-            
-            .nav-footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
         }
     </style>
 </head>
 <body>
-    <nav class="breadcrumb-nav">
-        <div class="container">
-            <a href="/?utm_source=tired40&utm_medium=breadcrumb&utm_campaign=navigation">
-                ← Health Supplements Hub
-            </a>
-            <span style="color: #999; margin: 0 10px;">|</span>
-            <span style="color: #666;">Why Always Tired After 40</span>
-        </div>
-    </nav>
-
     <div class="container">
         <div class="header">
             <h1>Why Am I Always Tired After 40?</h1>
@@ -396,7 +321,7 @@
             <p>When your mitochondria can't produce energy efficiently, every system in your body suffers. Your brain feels foggy. Your muscles feel weak. Your metabolism slows down.</p>
         </div>
 
-        <div class="stats-grid">
+        <div class="stats-box">
             <div class="stat">
                 <span class="stat-number">10%</span>
                 <span class="stat-label">Energy decline per decade after 40</span>
@@ -476,46 +401,29 @@
 
         <p>Your cells want to produce abundant energy—they just need the right support to do their job. When you address cellular energy at its source, the transformation can be remarkable.</p>
 
-        <div class="related-articles">
-            <h3>🔍 Continue Your Energy Education</h3>
-            <a href="/mitochondrial-energy-guide/?utm_source=tired40&utm_medium=related&utm_campaign=education" class="related-link">
-                Complete Energy Guide
-            </a>
-            <a href="/?utm_source=tired40&utm_medium=related&utm_campaign=hub" class="related-link">
-                Health Supplements Hub
-            </a>
+        <div class="back-links">
+            <h3>Continue Your Health Journey</h3>
+            <a href="/?utm_source=tired40&utm_medium=footer&utm_campaign=navigation" class="back-link">← Health Supplements Hub</a>
+            <a href="/mitochondrial-energy-guide/?utm_source=tired40&utm_medium=footer&utm_campaign=education" class="back-link">Complete Energy Guide</a>
         </div>
 
-        <div style="margin-top: 50px; text-align: center; color: #666; font-style: italic;">
-            <p>This article represents research-based information. Results may vary. Always consult with your healthcare provider before starting any new supplement regimen.</p>
-        </div>
-    </div>
-
-    <div class="navigation-footer">
-        <div class="container">
-            <h3>Explore More Health Solutions</h3>
-            <div class="nav-footer-links">
-                <a href="/?utm_source=tired40&utm_medium=footer&utm_campaign=navigation">Health Supplements Hub</a>
-                <a href="/mitochondrial-energy-guide/?utm_source=tired40&utm_medium=footer&utm_campaign=education">Complete Energy Guide</a>
-                <a href="/advanced-mitochondrial-formula/?utm_source=tired40&utm_medium=footer&utm_campaign=product">Advanced Formula</a>
-            </div>
-        </div>
+        <p style="margin-top: 50px; text-align: center; color: #666; font-style: italic;">
+            This article represents research-based information. Results may vary. Always consult with your healthcare provider before starting any new supplement regimen.
+        </p>
     </div>
 
     <script>
         function trackProductClick() {
             gtag('event', 'product_click', {
                 'event_category': 'conversion',
-                'event_label': 'tired40_to_product',
-                'page_title': 'Why Always Tired After 40'
+                'event_label': 'tired40_to_product'
             });
         }
         
         function trackLearnMoreClick() {
             gtag('event', 'learn_more_click', {
                 'event_category': 'engagement',
-                'event_label': 'tired40_to_guide',
-                'page_title': 'Why Always Tired After 40'
+                'event_label': 'tired40_to_guide'
             });
         }
         
@@ -535,8 +443,7 @@
                     scrollDepthTracked[depth] = true;
                     gtag('event', 'scroll_depth', {
                         'event_category': 'engagement',
-                        'event_label': `tired40_${depth}_percent`,
-                        'value': parseInt(depth)
+                        'event_label': `tired40_${depth}_percent`
                     });
                 }
             });
