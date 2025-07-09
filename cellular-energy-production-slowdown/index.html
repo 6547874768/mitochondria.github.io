@@ -103,150 +103,46 @@
             text-align: center;
         }
         
-        .energy-production-flow {
-            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-        
-        .energy-production-flow h3 {
-            color: #234e52;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .production-step {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            border-left: 4px solid #38b2ac;
-            transition: all 0.3s ease;
-        }
-        
-        .production-step:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .step-icon {
-            font-size: 2.5em;
-            margin-right: 20px;
-            min-width: 60px;
-            text-align: center;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-title {
-            font-weight: bold;
-            color: #234e52;
-            font-size: 1.2em;
-            margin-bottom: 8px;
-        }
-        
-        .step-description {
-            color: #4a5568;
-            line-height: 1.6;
-        }
-        
-        .flow-arrow {
-            text-align: center;
-            font-size: 2em;
-            color: #38b2ac;
-            margin: 10px 0;
-        }
-        
-        .atp-explanation {
-            background: #fff8e1;
-            border: 2px solid #ffcc02;
+        .energy-steps {
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
             padding: 25px;
             margin: 30px 0;
             border-radius: 10px;
         }
         
-        .atp-explanation h3 {
-            color: #f57c00;
-            margin-bottom: 20px;
-        }
-        
-        .atp-molecule {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            padding: 20px;
+        .step-item {
+            margin: 15px 0;
+            padding: 15px;
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #38b2ac;
         }
         
-        .atp-structure {
+        .step-title {
+            font-weight: bold;
+            color: #234e52;
+            margin-bottom: 8px;
+        }
+        
+        .atp-box {
+            background: #fff8e1;
+            border: 2px solid #ffcc02;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .atp-formula {
             font-family: monospace;
             font-size: 1.5em;
             color: #f57c00;
             font-weight: bold;
-            text-align: center;
-        }
-        
-        .age-decline-visualization {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-        
-        .age-decline-visualization h3 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .efficiency-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
             margin: 20px 0;
         }
         
-        .efficiency-young, .efficiency-aged {
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .efficiency-young {
-            background: rgba(72, 187, 120, 0.9);
-            color: white;
-        }
-        
-        .efficiency-aged {
-            background: rgba(245, 101, 101, 0.9);
-            color: white;
-        }
-        
-        .efficiency-percentage {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .efficiency-label {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-        
-        .efficiency-details {
-            font-size: 0.9em;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-        
-        .bottlenecks-section {
+        .decline-comparison {
             background: #fff5f5;
             border: 2px solid #fed7d7;
             padding: 25px;
@@ -254,14 +150,62 @@
             border-radius: 10px;
         }
         
-        .bottlenecks-section h3 {
-            color: #c53030;
-            margin-bottom: 20px;
+        .age-row {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .age-label {
+            min-width: 80px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .efficiency-bar {
+            flex: 1;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .efficiency-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .young .efficiency-fill {
+            background: #48bb78;
+            width: 100%;
+        }
+        
+        .aged .efficiency-fill {
+            background: #f56565;
+            width: 45%;
+        }
+        
+        .percentage {
+            min-width: 60px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .bottlenecks {
+            background: #fff5f5;
+            border: 2px solid #fed7d7;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
         }
         
         .bottleneck-item {
-            display: flex;
-            align-items: flex-start;
             margin: 15px 0;
             padding: 15px;
             background: white;
@@ -269,113 +213,10 @@
             border-left: 4px solid #f56565;
         }
         
-        .bottleneck-icon {
-            font-size: 1.5em;
-            margin-right: 15px;
-            margin-top: 5px;
-            min-width: 30px;
-        }
-        
-        .bottleneck-content {
-            flex: 1;
-        }
-        
         .bottleneck-title {
             font-weight: bold;
             color: #c53030;
             margin-bottom: 5px;
-        }
-        
-        .bottleneck-description {
-            color: #4a5568;
-            font-size: 0.95em;
-        }
-        
-        .cellular-factory {
-            background: #f0fff4;
-            border: 2px solid #9ae6b4;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-        
-        .cellular-factory h3 {
-            color: #38a169;
-            margin-bottom: 20px;
-        }
-        
-        .factory-analogy {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .factory-component {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #c6f6d5;
-        }
-        
-        .component-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .component-title {
-            font-weight: bold;
-            color: #38a169;
-            margin-bottom: 8px;
-        }
-        
-        .component-description {
-            color: #4a5568;
-            font-size: 0.9em;
-        }
-        
-        .optimization-preview {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-            text-align: center;
-        }
-        
-        .optimization-preview h3 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .optimization-benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .benefit-item {
-            background: rgba(255,255,255,0.2);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .benefit-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .benefit-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .benefit-description {
-            font-size: 0.9em;
-            opacity: 0.9;
         }
         
         .cta-section {
@@ -418,11 +259,12 @@
             box-shadow: 0 12px 35px rgba(0,0,0,0.3);
         }
         
-        .stats-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin: 40px 0;
+            justify-content: center;
         }
         
         .stat {
@@ -432,6 +274,7 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 2px solid #f1f3f4;
+            min-width: 200px;
         }
         
         .stat-number {
@@ -513,26 +356,22 @@
                 font-size: 1.5em;
             }
             
-            .production-step {
+            .age-row {
                 flex-direction: column;
                 text-align: center;
             }
             
-            .step-icon {
-                margin-right: 0;
-                margin-bottom: 15px;
+            .age-label {
+                margin-bottom: 10px;
             }
             
-            .efficiency-comparison {
-                grid-template-columns: 1fr;
+            .efficiency-bar {
+                margin: 10px 0;
             }
             
-            .factory-analogy {
-                grid-template-columns: 1fr;
-            }
-            
-            .optimization-benefits {
-                grid-template-columns: repeat(2, 1fr);
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
             }
             
             .cta-section {
@@ -542,10 +381,6 @@
             .main-cta {
                 padding: 15px 30px;
                 font-size: 1.1em;
-            }
-            
-            .stats-box {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -569,90 +404,41 @@
 
         <p>When this process works efficiently, you have abundant energy, sharp mental clarity, and robust physical performance. When it slows down—as it inevitably does after 40—you experience exactly what millions of people report: <a href="/why-always-tired-after-40/" class="internal-link">persistent fatigue</a>, <a href="/brain-fog-after-40-causes/" class="internal-link">brain fog</a>, and <a href="/afternoon-energy-crash-solutions/" class="internal-link">energy crashes</a>.</p>
 
-        <div class="cellular-factory">
-            <h3>🏭 Your Cellular Energy Factory Components:</h3>
-            <div class="factory-analogy">
-                <div class="factory-component">
-                    <div class="component-icon">🔋</div>
-                    <div class="component-title">Mitochondria</div>
-                    <div class="component-description">The power plants that generate energy (ATP)</div>
-                </div>
-                <div class="factory-component">
-                    <div class="component-icon">🧬</div>
-                    <div class="component-title">NAD</div>
-                    <div class="component-description">Essential cofactor that enables energy production</div>
-                </div>
-                <div class="factory-component">
-                    <div class="component-icon">⚡</div>
-                    <div class="component-title">ATP</div>
-                    <div class="component-description">The energy currency that powers all cellular functions</div>
-                </div>
-                <div class="factory-component">
-                    <div class="component-icon">🛡️</div>
-                    <div class="component-title">Antioxidants</div>
-                    <div class="component-description">Protective systems that prevent cellular damage</div>
-                </div>
-            </div>
-        </div>
-
         <h2>The Step-by-Step Energy Production Process</h2>
 
         <p>Understanding exactly how your cells make energy helps explain why certain interventions are so effective and why the process becomes less efficient with age.</p>
 
-        <div class="energy-production-flow">
+        <div class="energy-steps">
             <h3>⚡ The Complete Cellular Energy Production Flow:</h3>
             
-            <div class="production-step">
-                <div class="step-icon">🍎</div>
-                <div class="step-content">
-                    <div class="step-title">Step 1: Nutrient Intake</div>
-                    <div class="step-description">Food is broken down into glucose, fatty acids, and amino acids that enter your cells</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 1: Nutrient Intake</div>
+                <div>Food is broken down into glucose, fatty acids, and amino acids that enter your cells</div>
             </div>
-            <div class="flow-arrow">⬇️</div>
             
-            <div class="production-step">
-                <div class="step-icon">🔄</div>
-                <div class="step-content">
-                    <div class="step-title">Step 2: Glycolysis</div>
-                    <div class="step-description">Glucose is partially broken down in the cell cytoplasm, producing small amounts of ATP and pyruvate</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 2: Glycolysis</div>
+                <div>Glucose is partially broken down in the cell cytoplasm, producing small amounts of ATP and pyruvate</div>
             </div>
-            <div class="flow-arrow">⬇️</div>
             
-            <div class="production-step">
-                <div class="step-icon">🏭</div>
-                <div class="step-content">
-                    <div class="step-title">Step 3: Mitochondrial Entry</div>
-                    <div class="step-description">Pyruvate enters the mitochondria, where the real energy production begins</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 3: Mitochondrial Entry</div>
+                <div>Pyruvate enters the mitochondria, where the real energy production begins</div>
             </div>
-            <div class="flow-arrow">⬇️</div>
             
-            <div class="production-step">
-                <div class="step-icon">🔥</div>
-                <div class="step-content">
-                    <div class="step-title">Step 4: Krebs Cycle</div>
-                    <div class="step-description">Pyruvate is completely oxidized, generating NADH, FADH2, and CO2</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 4: Krebs Cycle</div>
+                <div>Pyruvate is completely oxidized, generating NADH, FADH2, and CO2</div>
             </div>
-            <div class="flow-arrow">⬇️</div>
             
-            <div class="production-step">
-                <div class="step-icon">⚡</div>
-                <div class="step-content">
-                    <div class="step-title">Step 5: Electron Transport Chain</div>
-                    <div class="step-description">NADH and FADH2 drive massive ATP production through oxidative phosphorylation</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 5: Electron Transport Chain</div>
+                <div>NADH and FADH2 drive massive ATP production through oxidative phosphorylation</div>
             </div>
-            <div class="flow-arrow">⬇️</div>
             
-            <div class="production-step">
-                <div class="step-icon">🎯</div>
-                <div class="step-content">
-                    <div class="step-title">Step 6: ATP Delivery</div>
-                    <div class="step-description">Newly created ATP is transported throughout the cell to power all cellular functions</div>
-                </div>
+            <div class="step-item">
+                <div class="step-title">Step 6: ATP Delivery</div>
+                <div>Newly created ATP is transported throughout the cell to power all cellular functions</div>
             </div>
         </div>
 
@@ -660,14 +446,12 @@
 
         <p>ATP (Adenosine Triphosphate) is often called the "energy currency" of life because it's the molecule that actually powers every cellular process in your body.</p>
 
-        <div class="atp-explanation">
+        <div class="atp-box">
             <h3>⚡ Understanding ATP: Your Cellular Battery</h3>
             
-            <div class="atp-molecule">
-                <div class="atp-structure">
-                    Adenine—Ribose—P~P~P<br>
-                    (High-energy phosphate bonds)
-                </div>
+            <div class="atp-formula">
+                Adenine—Ribose—P~P~P<br>
+                (High-energy phosphate bonds)
             </div>
             
             <p><strong>How ATP Works:</strong> When your cells need energy, they break the bonds between phosphate groups in ATP, releasing energy for cellular work. This process converts ATP to ADP (Adenosine Diphosphate), which must then be recharged back to ATP.</p>
@@ -681,34 +465,25 @@
 
         <p>The decline in cellular energy production isn't mysterious—it's driven by specific, measurable changes in your cellular machinery. Understanding these changes is key to reversing them.</p>
 
-        <div class="age-decline-visualization">
+        <div class="decline-comparison">
             <h3>📉 Energy Production Efficiency: Age 25 vs Age 50</h3>
             
-            <div class="efficiency-comparison">
-                <div class="efficiency-young">
-                    <div class="efficiency-percentage">100%</div>
-                    <div class="efficiency-label">Age 25 - Peak Efficiency</div>
-                    <div class="efficiency-details">
-                        • Optimal NAD levels<br>
-                        • Healthy mitochondria<br>
-                        • Efficient ATP production<br>
-                        • Minimal oxidative damage
-                    </div>
-                </div>
-                <div class="efficiency-aged">
-                    <div class="efficiency-percentage">45%</div>
-                    <div class="efficiency-label">Age 50 - Declined Efficiency</div>
-                    <div class="efficiency-details">
-                        • 50% reduced NAD levels<br>
-                        • Damaged mitochondria<br>
-                        • Impaired ATP synthesis<br>
-                        • Accumulated cellular damage
-                    </div>
-                </div>
+            <div class="age-row young">
+                <div class="age-label">Age 25:</div>
+                <div class="efficiency-bar"><div class="efficiency-fill"></div></div>
+                <div class="percentage">100%</div>
             </div>
+            <p style="text-align: center; margin: 10px 0; color: #48bb78;"><strong>Peak Efficiency:</strong> Optimal NAD levels, healthy mitochondria, efficient ATP production</p>
+            
+            <div class="age-row aged">
+                <div class="age-label">Age 50:</div>
+                <div class="efficiency-bar"><div class="efficiency-fill"></div></div>
+                <div class="percentage">45%</div>
+            </div>
+            <p style="text-align: center; margin: 10px 0; color: #f56565;"><strong>Declined Efficiency:</strong> 50% reduced NAD levels, damaged mitochondria, impaired ATP synthesis</p>
         </div>
 
-        <div class="stats-box">
+        <div class="stats-grid">
             <div class="stat">
                 <span class="stat-number">50%</span>
                 <span class="stat-label">ATP production decline by age 50</span>
@@ -727,39 +502,27 @@
 
         <p>Research has identified four primary bottlenecks that limit cellular energy production as we age. Each one represents an opportunity for targeted intervention.</p>
 
-        <div class="bottlenecks-section">
+        <div class="bottlenecks">
             <h3>🚫 The 4 Critical Energy Production Bottlenecks:</h3>
             
             <div class="bottleneck-item">
-                <div class="bottleneck-icon">🧬</div>
-                <div class="bottleneck-content">
-                    <div class="bottleneck-title">NAD Depletion</div>
-                    <div class="bottleneck-description">NAD levels drop dramatically with age, crippling the electron transport chain and reducing ATP production by up to 50%.</div>
-                </div>
+                <div class="bottleneck-title">1. NAD Depletion</div>
+                <div>NAD levels drop dramatically with age, crippling the electron transport chain and reducing ATP production by up to 50%.</div>
             </div>
             
             <div class="bottleneck-item">
-                <div class="bottleneck-icon">⚠️</div>
-                <div class="bottleneck-content">
-                    <div class="bottleneck-title">Mitochondrial Damage</div>
-                    <div class="bottleneck-description">Accumulated oxidative damage impairs mitochondrial structure and function, reducing energy output efficiency.</div>
-                </div>
+                <div class="bottleneck-title">2. Mitochondrial Damage</div>
+                <div>Accumulated oxidative damage impairs mitochondrial structure and function, reducing energy output efficiency.</div>
             </div>
             
             <div class="bottleneck-item">
-                <div class="bottleneck-icon">🔧</div>
-                <div class="bottleneck-content">
-                    <div class="bottleneck-title">Cofactor Deficiencies</div>
-                    <div class="bottleneck-description">Essential nutrients required for energy production become depleted, creating metabolic bottlenecks.</div>
-                </div>
+                <div class="bottleneck-title">3. Cofactor Deficiencies</div>
+                <div>Essential nutrients required for energy production become depleted, creating metabolic bottlenecks.</div>
             </div>
             
             <div class="bottleneck-item">
-                <div class="bottleneck-icon">🗑️</div>
-                <div class="bottleneck-content">
-                    <div class="bottleneck-title">Cellular Waste Accumulation</div>
-                    <div class="bottleneck-description">Damaged proteins and cellular debris accumulate faster than cleanup systems can remove them, impairing function.</div>
-                </div>
+                <div class="bottleneck-title">4. Cellular Waste Accumulation</div>
+                <div>Damaged proteins and cellular debris accumulate faster than cleanup systems can remove them, impairing function.</div>
             </div>
         </div>
 
@@ -785,70 +548,25 @@
 
         <p>This explains why <a href="/mitochondrial-dysfunction-aging-process/" class="internal-link">mitochondrial dysfunction drives premature aging</a> and why targeted NAD restoration can have such dramatic effects on energy levels.</p>
 
-        <h2>The Vicious Cycle of Energy Decline</h2>
-
-        <p>Energy production decline creates a self-perpetuating cycle that accelerates aging. Understanding this cycle is crucial for breaking it:</p>
-
-        <div class="scientific-box">
-            <h3>🔄 The Energy Decline Cycle:</h3>
-            
-            <p><strong>1. Reduced Energy Production:</strong> NAD decline and mitochondrial damage reduce ATP output</p>
-            <p><strong>2. Impaired Cellular Repair:</strong> Without adequate energy, cells can't maintain and repair themselves</p>
-            <p><strong>3. Increased Damage:</strong> Unrepaired cellular damage accumulates and worsens mitochondrial function</p>
-            <p><strong>4. Further Energy Decline:</strong> Damaged mitochondria produce even less energy, accelerating the cycle</p>
-            <p><strong>Breaking Point:</strong> This cycle explains why energy problems often worsen rapidly without intervention</p>
-        </div>
-
         <h2>The Hope: Energy Production Can Be Optimized</h2>
 
         <p>The remarkable discovery is that cellular energy production can be restored to youthful levels at any age when you address all the bottlenecks simultaneously.</p>
 
-        <div class="optimization-preview">
+        <div class="highlight">
             <h3>🚀 What Cellular Energy Optimization Achieves:</h3>
-            
-            <div class="optimization-benefits">
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-title">ATP Restoration</div>
-            <div class="optimization-benefits">
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-title">ATP Restoration</div>
-                    <div class="benefit-description">200-400% increase in cellular energy production</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🧬</div>
-                    <div class="benefit-title">NAD Revival</div>
-                    <div class="benefit-description">Restore NAD to youthful levels within weeks</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🔋</div>
-                    <div class="benefit-title">Mitochondrial Repair</div>
-                    <div class="benefit-description">Regenerate healthy cellular powerhouses</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <div class="benefit-title">Damage Prevention</div>
-                    <div class="benefit-description">Protect against future cellular deterioration</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-title">Sustained Energy</div>
-                    <div class="benefit-description">All-day vitality without crashes</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🧠</div>
-                    <div class="benefit-title">Enhanced Clarity</div>
-                    <div class="benefit-description">Optimal brain energy for peak cognition</div>
-                </div>
-            </div>
+            <p><strong>ATP Restoration:</strong> 200-400% increase in cellular energy production</p>
+            <p><strong>NAD Revival:</strong> Restore NAD to youthful levels within weeks</p>
+            <p><strong>Mitochondrial Repair:</strong> Regenerate healthy cellular powerhouses</p>
+            <p><strong>Damage Prevention:</strong> Protect against future cellular deterioration</p>
+            <p><strong>Sustained Energy:</strong> All-day vitality without crashes</p>
+            <p><strong>Enhanced Clarity:</strong> Optimal brain energy for peak cognition</p>
         </div>
 
         <h2>Dr. Shallenberger's Energy Production Protocol</h2>
 
         <p>Dr. Frank Shallenberger has developed the most comprehensive approach to optimizing cellular energy production. His protocol addresses every step of the energy production process simultaneously.</p>
 
-        <div class="highlight">
+        <div class="scientific-box">
             <h3>🎯 Complete Energy Production Optimization:</h3>
             <p><strong>Phase 1: Rapid NAD Restoration</strong><br>
             Immediately boost NAD levels to restart efficient energy production pathways</p>
@@ -863,22 +581,6 @@
             Sustain peak cellular energy production for years to come</p>
             
             <p><strong>Results:</strong> Most people experience dramatic energy improvements within 2-4 weeks</p>
-        </div>
-
-        <h2>The Science Behind Energy Restoration</h2>
-
-        <p>What makes cellular energy restoration so effective is that it works with your body's natural processes, not against them. Your mitochondria want to produce abundant energy—they just need the right support.</p>
-
-        <div class="scientific-box">
-            <h3>🔬 How Energy Restoration Works:</h3>
-            
-            <p><strong>Immediate Effects (Minutes-Hours):</strong> NAD levels increase, electron transport chain efficiency improves, ATP production surges</p>
-            
-            <p><strong>Short-term Effects (Days-Weeks):</strong> Mitochondrial function optimizes, cellular repair accelerates, energy becomes consistent</p>
-            
-            <p><strong>Long-term Effects (Months):</strong> New mitochondria form, cellular damage reverses, biological age markers improve</p>
-            
-            <p><strong>The Key:</strong> Unlike stimulants that force temporary energy, this approach restores your natural energy production capacity</p>
         </div>
 
         <h2>Understanding the Complete Energy Picture</h2>
@@ -935,7 +637,6 @@
 
     <script>
         function trackConversion() {
-            // Track the conversion click
             gtag('event', 'cellular_energy_conversion', {
                 'event_category': 'conversion',
                 'event_label': 'cellular_energy_cta',
@@ -943,91 +644,34 @@
             });
         }
 
-        // Track scroll depth
-        let scrollDepthTracked = {
-            25: false,
-            50: false,
-            75: false,
-            90: false
-        };
-
         window.addEventListener('scroll', function() {
             const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
             
-            Object.keys(scrollDepthTracked).forEach(depth => {
-                if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
-                    scrollDepthTracked[depth] = true;
-                    gtag('event', 'scroll_depth', {
-                        'event_category': 'engagement',
-                        'event_label': `${depth}_percent`,
-                        'value': parseInt(depth)
-                    });
-                }
-            });
-        });
-
-        // Track time on page
-        let timeOnPage = 0;
-        setInterval(function() {
-            timeOnPage += 10;
-            if (timeOnPage === 60) { // 1 minute
-                gtag('event', 'time_on_page', {
+            if (scrollPercent >= 25) {
+                gtag('event', 'scroll_depth', {
                     'event_category': 'engagement',
-                    'event_label': '1_minute'
-                });
-            } else if (timeOnPage === 180) { // 3 minutes
-                gtag('event', 'time_on_page', {
-                    'event_category': 'engagement',
-                    'event_label': '3_minutes'
-                });
-            } else if (timeOnPage === 300) { // 5 minutes
-                gtag('event', 'time_on_page', {
-                    'event_category': 'engagement',
-                    'event_label': '5_minutes'
+                    'event_label': '25_percent'
                 });
             }
-        }, 10000);
+            if (scrollPercent >= 50) {
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': '50_percent'
+                });
+            }
+            if (scrollPercent >= 75) {
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': '75_percent'
+                });
+            }
+        });
 
-        // Track internal link clicks
         document.querySelectorAll('.internal-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function() {
                 gtag('event', 'internal_link_click', {
                     'event_category': 'navigation',
-                    'event_label': this.getAttribute('href'),
-                    'value': 1
-                });
-            });
-        });
-
-        // Track production step interactions
-        document.querySelectorAll('.production-step').forEach((step, index) => {
-            step.addEventListener('click', function() {
-                gtag('event', 'production_step_interaction', {
-                    'event_category': 'engagement',
-                    'event_label': `step_${index + 1}`,
-                    'value': 1
-                });
-            });
-        });
-
-        // Track factory component interactions
-        document.querySelectorAll('.factory-component').forEach((component, index) => {
-            component.addEventListener('click', function() {
-                gtag('event', 'factory_component_click', {
-                    'event_category': 'engagement',
-                    'event_label': `component_${index + 1}`,
-                    'value': 1
-                });
-            });
-        });
-
-        // Track bottleneck interactions
-        document.querySelectorAll('.bottleneck-item').forEach((item, index) => {
-            item.addEventListener('click', function() {
-                gtag('event', 'bottleneck_interaction', {
-                    'event_category': 'engagement',
-                    'event_label': `bottleneck_${index + 1}`,
-                    'value': 1
+                    'event_label': this.getAttribute('href')
                 });
             });
         });
