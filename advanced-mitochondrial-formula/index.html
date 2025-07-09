@@ -661,4 +661,157 @@
                 <p style="margin-bottom: 20px; color: #666;">Over 43,000 people have already transformed their energy levels. Don't let fatigue control your life for another day.</p>
                 
                 <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <p style="
+                    <p style="font-size: 0.9em; color: #856404;"><strong>LAST CHANCE:</strong> Special pricing expires in minutes!</p>
+                </div>
+                
+                <button onclick="redirectToOffer()" class="popup-cta">
+                    🔥 Get Special Pricing Now!
+                </button>
+                
+                <br><br>
+                <button onclick="closeExitIntent()" class="decline-btn">
+                    No thanks, I'll continue being tired
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Партнерская ссылка DigiStore24
+        const AFFILIATE_URL = 'https://www.digistore24.com/redir/576637/danilichev/';
+        
+        function redirectToOffer() {
+            // Отслеживание клика
+            gtag('event', 'affiliate_click', {
+                'event_category': 'conversion',
+                'event_label': 'digistore24_redirect',
+                'value': 1
+            });
+            
+            // Переход на партнерскую ссылку
+            window.open(AFFILIATE_URL, '_blank');
+        }
+        
+        // Countdown Timer
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            let timeLeft = 3600; // 1 hour in seconds
+            
+            const timer = setInterval(() => {
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                countdownElement.innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    countdownElement.innerHTML = 'EXPIRED';
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        // Start countdown when page loads
+        window.addEventListener('load', startCountdown);
+        
+        // Exit Intent Detection
+        let exitIntentShown = false;
+        
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                showExitIntent();
+            }
+        });
+        
+        function showExitIntent() {
+            if (!exitIntentShown) {
+                document.getElementById('exitIntentPopup').style.display = 'flex';
+                exitIntentShown = true;
+                
+                // Track exit intent
+                gtag('event', 'exit_intent_shown', {
+                    'event_category': 'engagement',
+                    'event_label': 'popup_displayed'
+                });
+            }
+        }
+        
+        function closeExitIntent() {
+            document.getElementById('exitIntentPopup').style.display = 'none';
+            
+            // Track exit intent close
+            gtag('event', 'exit_intent_closed', {
+                'event_category': 'engagement',
+                'event_label': 'popup_closed'
+            });
+        }
+        
+        // Scroll tracking
+        let scrollDepthTracked = {
+            25: false,
+            50: false,
+            75: false,
+            90: false
+        };
+        
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            
+            Object.keys(scrollDepthTracked).forEach(depth => {
+                if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
+                    scrollDepthTracked[depth] = true;
+                    gtag('event', 'scroll_depth', {
+                        'event_category': 'engagement',
+                        'event_label': `${depth}_percent`,
+                        'value': parseInt(depth)
+                    });
+                }
+            });
+        });
+        
+        // Time on page tracking
+        let timeOnPage = 0;
+        setInterval(function() {
+            timeOnPage += 10;
+            if (timeOnPage === 60) { // 1 minute
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '1_minute'
+                });
+            } else if (timeOnPage === 180) { // 3 minutes
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '3_minutes'
+                });
+            } else if (timeOnPage === 300) { // 5 minutes
+                gtag('event', 'time_on_page', {
+                    'event_category': 'engagement',
+                    'event_label': '5_minutes'
+                });
+            }
+        }, 10000);
+        
+        // Enhanced CTA button tracking
+        document.getElementById('mainCTA').addEventListener('click', function() {
+            gtag('event', 'main_cta_click', {
+                'event_category': 'conversion',
+                'event_label': 'main_cta_button',
+                'value': 1
+            });
+        });
+        
+        // Add click tracking to all CTA elements
+        document.querySelectorAll('.cta-button, .popup-cta').forEach(button => {
+            button.addEventListener('click', function() {
+                gtag('event', 'cta_interaction', {
+                    'event_category': 'conversion',
+                    'event_label': this.className,
+                    'value': 1
+                });
+            });
+        });
+    </script>
+</body>
+</html>
