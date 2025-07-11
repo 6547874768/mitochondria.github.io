@@ -1,0 +1,204 @@
+name: Auto-generate Sitemap
+
+# Запускается при каждом push в main ветку
+on:
+  push:
+    branches: [ main, master ]
+  # Также можно запустить вручную
+  workflow_dispatch:
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    
+    # Права для записи в репозиторий
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        # Получаем полную историю для корректной работы
+        fetch-depth: 0
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Create sitemap generator script
+      run: |
+        cat > generate_sitemap.py << 'EOF'
+        #!/usr/bin/env python3
+        """
+        Автоматический генератор sitemap.xml для GitHub Pages
+        """
+        
+        import os
+        import datetime
+        from pathlib import Path
+        import re
+        
+        # Конфигурация
+        SITE_URL = "https://www.danilichev.info"
+        EXCLUDE_DIRS = ['.git', '.github', 'node_modules', '__pycache__']
+        EXCLUDE_FILES = ['README.md', 'sitemap.xml', 'robots.txt', '.gitignore', 'CNAME']
+        
+        def scan_html_files():
+            """Сканирует проект и находит все HTML страницы"""
+            urls = []
+            today = datetime.date.today().strftime('%Y-%m-%d')
+            
+            # Сканируем корневую директорию
+            for root, dirs, files in os.walk('.'):
+                # Исключаем ненужные директории
+                dirs[:] = [d for d in dirs if not any(exclude in d for exclude in EXCLUDE_DIRS)]
+                
+                for file in files:
+                    if file.endswith('.html'):
+                        file_path = os.path.join(root, file)
+                        rel_path = os.path.relpath(file_path, '.')
+                        
+                        # Пропускаем исключенные файлы
+                        if any(exclude in rel_path for exclude in EXCLUDE_FILES):
+                            continue
+                        
+                        # Формируем URL
+                        url_info = create_url_info(rel_path, today)
+                        if url_info:
+                            urls.append(url_info)
+            
+            # Добавляем главную страницу, если index.html есть
+            if os.path.exists('index.html'):
+                urls.append({
+                    'loc': SITE_URL + '/',
+                    'lastmod': today,
+                    'changefreq': 'weekly',
+                    'priority': '1.0'
+                })
+            
+            return sorted(urls, key=lambda x: float(x['priority']), reverse=True)
+        
+        def create_url_info(file_path, today):
+            """Создает информацию об URL для sitemap"""
+            # Убираем .html и формируем URL
+            if file_path == 'index.html':
+                return None  # Главная страница обрабатывается отдельно
+            
+            # Конвертируем путь файла в URL
+            url_path = file_path.replace('\\', '/').replace('.html', '/')
+            if not url_path.startswith('/'):
+                url_path = '/' + url_path
+            
+            # Определяем приоритет и частоту обновления
+            priority = determine_priority(url_path)
+            changefreq = determine_changefreq(url_path)
+            
+            return {
+                'loc': SITE_URL + url_path,
+                'lastmod': today,
+                'changefreq': changefreq,
+                'priority': priority
+            }
+        
+        def determine_priority(url_path):
+            """Определяет приоритет страницы на основе URL"""
+            # Главная страница
+            if url_path == '/':
+                return '1.0'
+            
+            # Основной продуктовый лендинг
+            if 'advanced-mitochondrial-formula' in url_path:
+                return '0.95'
+            
+            # Категории (одинарные слеши)
+            if url_path.count('/') == 2 and url_path.endswith('/'):
+                return '0.9'
+            
+            # Информационные страницы
+            return '0.8'
+        
+        def determine_changefreq(url_path):
+            """Определяет частоту обновления"""
+            if url_path == '/' or url_path.count('/') == 2:
+                return 'weekly'
+            return 'monthly'
+        
+        def generate_sitemap_xml(urls):
+            """Генерирует XML содержимое sitemap"""
+            xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        '''
+            
+            for url in urls:
+                xml_content += f'''
+            <url>
+                <loc>{url['loc']}</loc>
+                <lastmod>{url['lastmod']}</lastmod>
+                <changefreq>{url['changefreq']}</changefreq>
+                <priority>{url['priority']}</priority>
+            </url>'''
+            
+            xml_content += '''
+        
+        </urlset>'''
+            
+            return xml_content
+        
+        def main():
+            """Основная функция генерации sitemap"""
+            print("🔍 Сканирование HTML файлов...")
+            urls = scan_html_files()
+            
+            print(f"📄 Найдено {len(urls)} страниц:")
+            for url in urls:
+                print(f"  - {url['loc']} (приоритет: {url['priority']})")
+            
+            print("\n📝 Генерация sitemap.xml...")
+            sitemap_content = generate_sitemap_xml(urls)
+            
+            # Сохраняем файл
+            with open('sitemap.xml', 'w', encoding='utf-8') as f:
+                f.write(sitemap_content)
+            
+            print("✅ Sitemap успешно сгенерирован!")
+            print(f"🌐 URL: {SITE_URL}/sitemap.xml")
+        
+        if __name__ == "__main__":
+            main()
+        EOF
+    
+    - name: Generate sitemap
+      run: |
+        echo "🚀 Запуск генератора sitemap..."
+        python generate_sitemap.py
+        
+    - name: Check if sitemap changed
+      id: check_changes
+      run: |
+        if git diff --quiet sitemap.xml; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "📋 Sitemap не изменился"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "🔄 Sitemap обновлен"
+        fi
+    
+    - name: Commit and push sitemap
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "GitHub Actions Bot"
+        git add sitemap.xml
+        git commit -m "🤖 Auto-update sitemap.xml - $(date '+%Y-%m-%d %H:%M:%S')"
+        git push
+        echo "✅ Sitemap committed and pushed!"
+    
+    - name: No changes message
+      if: steps.check_changes.outputs.changed == 'false'
+      run: |
+        echo "ℹ️ Sitemap не требует обновления"
