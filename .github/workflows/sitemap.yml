@@ -26,19 +26,11 @@ jobs:
     - name: Update sitemap and check favicon
       run: |
         cat > update_site.py << 'EOF'
-        #!/usr/bin/env python3
-        """
-        Автоматическое обновление sitemap + проверка favicon во всех HTML
-        """
-        
         import os
         import datetime
-        import re
         
-        # Конфигурация
         SITE_URL = "https://www.danilichev.info"
         
-        # HTML код для favicon
         FAVICON_HTML = '''    <!-- Favicon -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -48,10 +40,8 @@ jobs:
         <link rel="manifest" href="/site.webmanifest" />'''
         
         def generate_sitemap():
-            """Генерирует sitemap.xml"""
             today = datetime.date.today().strftime('%Y-%m-%d')
             
-            # Предопределенный список страниц
             pages = [
                 {'url': '/', 'priority': '1.0', 'changefreq': 'weekly'},
                 {'url': '/advanced-mitochondrial-formula/', 'priority': '0.95', 'changefreq': 'monthly'},
@@ -76,7 +66,6 @@ jobs:
                 {'url': '/mens-fatigue-solutions-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
             ]
             
-            # Автоматическое обнаружение новых страниц
             for root, dirs, files in os.walk('.'):
                 dirs[:] = [d for d in dirs if not d.startswith('.')]
                 if root == '.':
@@ -86,46 +75,43 @@ jobs:
                     dir_path = os.path.relpath(root, '.')
                     url_path = '/' + dir_path.replace('\\', '/') + '/'
                     
-                    # Проверяем, есть ли уже в списке
                     if not any(page['url'] == url_path for page in pages):
-                        print(f"🆕 Найдена новая страница: {url_path}")
+                        print(f"New page found: {url_path}")
                         pages.append({
                             'url': url_path,
                             'priority': '0.8',
                             'changefreq': 'monthly'
                         })
             
-            # Генерируем XML
             xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-'''
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        '''
             
             pages_sorted = sorted(pages, key=lambda x: float(x['priority']), reverse=True)
             
             for page in pages_sorted:
                 full_url = SITE_URL + page['url']
                 xml_content += f'''
-    <url>
-        <loc>{full_url}</loc>
-        <lastmod>{today}</lastmod>
-        <changefreq>{page['changefreq']}</changefreq>
-        <priority>{page['priority']}</priority>
-    </url>'''
+            <url>
+                <loc>{full_url}</loc>
+                <lastmod>{today}</lastmod>
+                <changefreq>{page['changefreq']}</changefreq>
+                <priority>{page['priority']}</priority>
+            </url>'''
             
             xml_content += '''
 
-</urlset>'''
+        </urlset>'''
             
             with open('sitemap.xml', 'w', encoding='utf-8') as f:
                 f.write(xml_content)
             
-            print(f"✅ Sitemap обновлен ({len(pages)} страниц)")
+            print(f"Sitemap updated with {len(pages)} pages")
         
         def check_and_add_favicon():
-            """Проверяет и добавляет favicon во все HTML файлы"""
             updated_files = []
             
             for root, dirs, files in os.walk('.'):
@@ -139,41 +125,33 @@ jobs:
                             with open(file_path, 'r', encoding='utf-8') as f:
                                 content = f.read()
                             
-                            # Проверяем наличие favicon
                             if 'favicon' in content.lower() or 'apple-touch-icon' in content.lower():
                                 continue
                             
                             if '</head>' not in content:
                                 continue
                             
-                            # Добавляем favicon
                             new_content = content.replace('</head>', f'{FAVICON_HTML}\n</head>')
                             
                             with open(file_path, 'w', encoding='utf-8') as f:
                                 f.write(new_content)
                             
                             updated_files.append(file_path)
-                            print(f"🎨 Favicon добавлен: {file_path}")
+                            print(f"Favicon added to: {file_path}")
                             
                         except Exception as e:
-                            print(f"❌ Ошибка в {file_path}: {e}")
+                            print(f"Error processing {file_path}: {e}")
             
             if updated_files:
-                print(f"✅ Favicon добавлен в {len(updated_files)} файлов")
+                print(f"Favicon added to {len(updated_files)} files")
             else:
-                print("✅ Все файлы уже содержат favicon")
+                print("All files already have favicon")
         
         def main():
-            """Основная функция"""
-            print("🚀 Запуск автоматического обновления сайта...")
-            
-            # Обновляем sitemap
+            print("Starting site update...")
             generate_sitemap()
-            
-            # Проверяем favicon
             check_and_add_favicon()
-            
-            print("✅ Обновление завершено!")
+            print("Update completed!")
         
         if __name__ == "__main__":
             main()
@@ -186,10 +164,10 @@ jobs:
       run: |
         if git diff --quiet; then
           echo "changed=false" >> $GITHUB_OUTPUT
-          echo "📋 Нет изменений"
+          echo "No changes detected"
         else
           echo "changed=true" >> $GITHUB_OUTPUT
-          echo "🔄 Есть изменения"
+          echo "Changes detected"
         fi
     
     - name: Commit updates
@@ -198,11 +176,11 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions Bot"
         git add -A
-        git commit -m "🤖 Auto-update: sitemap + favicon check - $(date '+%Y-%m-%d %H:%M:%S')"
+        git commit -m "Auto-update: sitemap + favicon check"
         git push
-        echo "✅ Изменения сохранены!"
+        echo "Changes committed and pushed!"
     
     - name: No changes message
       if: steps.check_changes.outputs.changed == 'false'
       run: |
-        echo "ℹ️ Сайт актуален, обновления не требуются"
+        echo "Site is up to date, no updates needed"
