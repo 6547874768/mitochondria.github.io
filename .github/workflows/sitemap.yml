@@ -1,17 +1,14 @@
 name: Auto-generate Sitemap
 
-# Запускается при каждом push в main ветку
 on:
   push:
     branches: [ main, master ]
-  # Также можно запустить вручную
   workflow_dispatch:
 
 jobs:
   generate-sitemap:
     runs-on: ubuntu-latest
     
-    # Права для записи в репозиторий
     permissions:
       contents: write
     
@@ -19,7 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        # Получаем полную историю для корректной работы
         fetch-depth: 0
     
     - name: Setup Python
@@ -32,91 +28,54 @@ jobs:
         cat > generate_sitemap.py << 'EOF'
         #!/usr/bin/env python3
         """
-        Автоматический генератор sitemap.xml для GitHub Pages
+        Генератор sitemap.xml для Health Supplements Hub
         """
         
         import os
         import datetime
-        from pathlib import Path
-        import re
         
         # Конфигурация
         SITE_URL = "https://www.danilichev.info"
-        EXCLUDE_DIRS = ['.git', '.github', 'node_modules', '__pycache__']
-        EXCLUDE_FILES = ['README.md', 'sitemap.xml', 'robots.txt', '.gitignore', 'CNAME', '404.html']
         
-        def scan_html_files():
-            """Сканирует проект и находит все HTML страницы"""
-            urls = []
+        def main():
+            """Основная функция генерации sitemap"""
             today = datetime.date.today().strftime('%Y-%m-%d')
             
-            # Добавляем главную страницу
-            if os.path.exists('index.html'):
-                urls.append({
-                    'loc': SITE_URL + '/',
-                    'lastmod': today,
-                    'changefreq': 'weekly',
-                    'priority': '1.0'
-                })
-            
-            # Сканируем директории для поиска папок с index.html
-            for root, dirs, files in os.walk('.'):
-                # Исключаем ненужные директории
-                dirs[:] = [d for d in dirs if not any(exclude in d for exclude in EXCLUDE_DIRS)]
+            # Предопределенный список страниц с правильными URL
+            pages = [
+                # Главная страница
+                {'url': '/', 'priority': '1.0', 'changefreq': 'weekly'},
                 
-                # Пропускаем корневую директорию (уже обработана выше)
-                if root == '.':
-                    continue
+                # Основной продуктовый лендинг
+                {'url': '/advanced-mitochondrial-formula/', 'priority': '0.95', 'changefreq': 'monthly'},
                 
-                # Проверяем наличие index.html в директории
-                if 'index.html' in files:
-                    # Формируем URL из имени директории
-                    dir_path = os.path.relpath(root, '.')
-                    url_path = '/' + dir_path.replace('\\', '/') + '/'
-                    
-                    # Определяем приоритет и частоту обновления
-                    priority = determine_priority(url_path)
-                    changefreq = determine_changefreq(url_path)
-                    
-                    urls.append({
-                        'loc': SITE_URL + url_path,
-                        'lastmod': today,
-                        'changefreq': changefreq,
-                        'priority': priority
-                    })
-            
-            return sorted(urls, key=lambda x: float(x['priority']), reverse=True)
-        
-        def determine_priority(url_path):
-            """Определяет приоритет страницы на основе URL"""
-            # Главная страница
-            if url_path == '/':
-                return '1.0'
-            
-            # Основной продуктовый лендинг
-            if 'advanced-mitochondrial-formula' in url_path:
-                return '0.95'
-            
-            # Категории (основные разделы)
-            categories = [
-                'health-supplements', 'health-products', 'anti-aging-hacks', 
-                'brain-supplements', 'weight-loss-supplements'
+                # Категории (высокий приоритет)
+                {'url': '/health-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/health-products/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/anti-aging-hacks/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/brain-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/weight-loss-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                
+                # Информационные страницы (поддерживающие лендинг)
+                {'url': '/mitochondrial-energy-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/why-always-tired-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/afternoon-energy-crash-solutions/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/brain-fog-after-40-causes/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/chronic-fatigue-not-aging/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/low-energy-warning-signs/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/nad-decline-after-40-effects/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mitochondrial-dysfunction-aging-process/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/cellular-energy-production-slowdown/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mitochondrial-supplements-research/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/best-energy-supplements-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/nad-boosting-supplements-comparison/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/natural-energy-restoration-methods/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mens-fatigue-solutions-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
             ]
-            if any(cat in url_path for cat in categories):
-                return '0.9'
             
-            # Информационные страницы
-            return '0.8'
-        
-        def determine_changefreq(url_path):
-            """Определяет частоту обновления"""
-            # Главная и категории обновляются чаще
-            if url_path == '/' or float(determine_priority(url_path)) >= 0.9:
-                return 'weekly'
-            return 'monthly'
-        
-        def generate_sitemap_xml(urls):
-            """Генерирует XML содержимое sitemap"""
+            print(f"📄 Генерация sitemap для {len(pages)} страниц:")
+            
+            # Генерируем XML
             xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -124,36 +83,28 @@ jobs:
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 '''
             
-            for url in urls:
+            # Сортируем по приоритету (высокий -> низкий)
+            pages_sorted = sorted(pages, key=lambda x: float(x['priority']), reverse=True)
+            
+            for page in pages_sorted:
+                full_url = SITE_URL + page['url']
+                print(f"  - {full_url} (приоритет: {page['priority']})")
+                
                 xml_content += f'''
     <url>
-        <loc>{url['loc']}</loc>
-        <lastmod>{url['lastmod']}</lastmod>
-        <changefreq>{url['changefreq']}</changefreq>
-        <priority>{url['priority']}</priority>
+        <loc>{full_url}</loc>
+        <lastmod>{today}</lastmod>
+        <changefreq>{page['changefreq']}</changefreq>
+        <priority>{page['priority']}</priority>
     </url>'''
             
             xml_content += '''
 
 </urlset>'''
             
-            return xml_content
-        
-        def main():
-            """Основная функция генерации sitemap"""
-            print("🔍 Сканирование директорий с HTML файлами...")
-            urls = scan_html_files()
-            
-            print(f"📄 Найдено {len(urls)} страниц:")
-            for url in urls:
-                print(f"  - {url['loc']} (приоритет: {url['priority']})")
-            
-            print("\n📝 Генерация sitemap.xml...")
-            sitemap_content = generate_sitemap_xml(urls)
-            
             # Сохраняем файл
             with open('sitemap.xml', 'w', encoding='utf-8') as f:
-                f.write(sitemap_content)
+                f.write(xml_content)
             
             print("✅ Sitemap успешно сгенерирован!")
             print(f"🌐 URL: {SITE_URL}/sitemap.xml")
@@ -184,7 +135,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions Bot"
         git add sitemap.xml
-        git commit -m "🤖 Auto-update sitemap.xml - $(date '+%Y-%m-%d %H:%M:%S')"
+        git commit -m "🤖 Fix sitemap URLs - remove /index/ - $(date '+%Y-%m-%d %H:%M:%S')"
         git push
         echo "✅ Sitemap committed and pushed!"
     
