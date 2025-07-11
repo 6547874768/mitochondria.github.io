@@ -1,17 +1,14 @@
 User-agent: *
 Allow: /
 
-# Запрещаем индексацию служебных файлов
 Disallow: /*.css$
 Disallow: /*.js$
 Disallow: /assets/
 Disallow: /.git/
 Disallow: /404.html
 
-# Указываем местоположение sitemap
 Sitemap: https://www.danilichev.info/sitemap.xml
 
-# Настройки для поисковых ботов
 User-agent: Googlebot
 Crawl-delay: 1
 
