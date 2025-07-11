@@ -43,33 +43,14 @@ jobs:
         # Конфигурация
         SITE_URL = "https://www.danilichev.info"
         EXCLUDE_DIRS = ['.git', '.github', 'node_modules', '__pycache__']
-        EXCLUDE_FILES = ['README.md', 'sitemap.xml', 'robots.txt', '.gitignore', 'CNAME']
+        EXCLUDE_FILES = ['README.md', 'sitemap.xml', 'robots.txt', '.gitignore', 'CNAME', '404.html']
         
         def scan_html_files():
             """Сканирует проект и находит все HTML страницы"""
             urls = []
             today = datetime.date.today().strftime('%Y-%m-%d')
             
-            # Сканируем корневую директорию
-            for root, dirs, files in os.walk('.'):
-                # Исключаем ненужные директории
-                dirs[:] = [d for d in dirs if not any(exclude in d for exclude in EXCLUDE_DIRS)]
-                
-                for file in files:
-                    if file.endswith('.html'):
-                        file_path = os.path.join(root, file)
-                        rel_path = os.path.relpath(file_path, '.')
-                        
-                        # Пропускаем исключенные файлы
-                        if any(exclude in rel_path for exclude in EXCLUDE_FILES):
-                            continue
-                        
-                        # Формируем URL
-                        url_info = create_url_info(rel_path, today)
-                        if url_info:
-                            urls.append(url_info)
-            
-            # Добавляем главную страницу, если index.html есть
+            # Добавляем главную страницу
             if os.path.exists('index.html'):
                 urls.append({
                     'loc': SITE_URL + '/',
@@ -78,29 +59,33 @@ jobs:
                     'priority': '1.0'
                 })
             
+            # Сканируем директории для поиска папок с index.html
+            for root, dirs, files in os.walk('.'):
+                # Исключаем ненужные директории
+                dirs[:] = [d for d in dirs if not any(exclude in d for exclude in EXCLUDE_DIRS)]
+                
+                # Пропускаем корневую директорию (уже обработана выше)
+                if root == '.':
+                    continue
+                
+                # Проверяем наличие index.html в директории
+                if 'index.html' in files:
+                    # Формируем URL из имени директории
+                    dir_path = os.path.relpath(root, '.')
+                    url_path = '/' + dir_path.replace('\\', '/') + '/'
+                    
+                    # Определяем приоритет и частоту обновления
+                    priority = determine_priority(url_path)
+                    changefreq = determine_changefreq(url_path)
+                    
+                    urls.append({
+                        'loc': SITE_URL + url_path,
+                        'lastmod': today,
+                        'changefreq': changefreq,
+                        'priority': priority
+                    })
+            
             return sorted(urls, key=lambda x: float(x['priority']), reverse=True)
-        
-        def create_url_info(file_path, today):
-            """Создает информацию об URL для sitemap"""
-            # Убираем .html и формируем URL
-            if file_path == 'index.html':
-                return None  # Главная страница обрабатывается отдельно
-            
-            # Конвертируем путь файла в URL
-            url_path = file_path.replace('\\', '/').replace('.html', '/')
-            if not url_path.startswith('/'):
-                url_path = '/' + url_path
-            
-            # Определяем приоритет и частоту обновления
-            priority = determine_priority(url_path)
-            changefreq = determine_changefreq(url_path)
-            
-            return {
-                'loc': SITE_URL + url_path,
-                'lastmod': today,
-                'changefreq': changefreq,
-                'priority': priority
-            }
         
         def determine_priority(url_path):
             """Определяет приоритет страницы на основе URL"""
@@ -112,8 +97,12 @@ jobs:
             if 'advanced-mitochondrial-formula' in url_path:
                 return '0.95'
             
-            # Категории (одинарные слеши)
-            if url_path.count('/') == 2 and url_path.endswith('/'):
+            # Категории (основные разделы)
+            categories = [
+                'health-supplements', 'health-products', 'anti-aging-hacks', 
+                'brain-supplements', 'weight-loss-supplements'
+            ]
+            if any(cat in url_path for cat in categories):
                 return '0.9'
             
             # Информационные страницы
@@ -121,37 +110,38 @@ jobs:
         
         def determine_changefreq(url_path):
             """Определяет частоту обновления"""
-            if url_path == '/' or url_path.count('/') == 2:
+            # Главная и категории обновляются чаще
+            if url_path == '/' or float(determine_priority(url_path)) >= 0.9:
                 return 'weekly'
             return 'monthly'
         
         def generate_sitemap_xml(urls):
             """Генерирует XML содержимое sitemap"""
             xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-        '''
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+'''
             
             for url in urls:
                 xml_content += f'''
-            <url>
-                <loc>{url['loc']}</loc>
-                <lastmod>{url['lastmod']}</lastmod>
-                <changefreq>{url['changefreq']}</changefreq>
-                <priority>{url['priority']}</priority>
-            </url>'''
+    <url>
+        <loc>{url['loc']}</loc>
+        <lastmod>{url['lastmod']}</lastmod>
+        <changefreq>{url['changefreq']}</changefreq>
+        <priority>{url['priority']}</priority>
+    </url>'''
             
             xml_content += '''
-        
-        </urlset>'''
+
+</urlset>'''
             
             return xml_content
         
         def main():
             """Основная функция генерации sitemap"""
-            print("🔍 Сканирование HTML файлов...")
+            print("🔍 Сканирование директорий с HTML файлами...")
             urls = scan_html_files()
             
             print(f"📄 Найдено {len(urls)} страниц:")
