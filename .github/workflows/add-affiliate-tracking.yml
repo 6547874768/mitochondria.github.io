@@ -1,0 +1,159 @@
+name: Add Affiliate Tracking Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update all pages (even if already have script)'
+        required: false
+        default: 'false'
+        type: boolean
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.html'
+
+jobs:
+  add-affiliate-tracking:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Add affiliate tracking script to HTML pages
+      run: |
+        echo "🚀 Starting affiliate tracking script addition..."
+        
+        # Счетчики для статистики
+        updated_count=0
+        skipped_count=0
+        total_count=0
+        
+        # Функция для добавления скрипта
+        add_affiliate_script() {
+            local file="$1"
+            local script_path="$2"
+            
+            echo "Processing $file..."
+            
+            # Проверяем, есть ли уже affiliate tracking script
+            if grep -q "affiliate-tracking.js" "$file"; then
+                if [ "${{ github.event.inputs.force_update }}" == "true" ]; then
+                    echo "  ↻ Force updating $file"
+                    # Удаляем старый скрипт
+                    sed -i '/affiliate-tracking\.js/d' "$file"
+                else
+                    echo "  ⏭️  Skipping $file (already has affiliate tracking)"
+                    return 1
+                fi
+            fi
+            
+            # Проверяем, есть ли закрывающий тег </body>
+            if ! grep -q "</body>" "$file"; then
+                echo "  ⚠️  Warning: No </body> tag found in $file"
+                return 1
+            fi
+            
+            # Добавляем скрипт перед закрывающим тегом </body>
+            sed -i "s|</body>|    <script src=\"$script_path\"></script>\n</body>|" "$file"
+            
+            echo "  ✅ Added affiliate tracking to $file"
+            return 0
+        }
+        
+        # Обрабатываем HTML файлы в корне
+        for file in *.html; do
+            if [ -f "$file" ]; then
+                total_count=$((total_count + 1))
+                if add_affiliate_script "$file" "affiliate-tracking.js"; then
+                    updated_count=$((updated_count + 1))
+                else
+                    skipped_count=$((skipped_count + 1))
+                fi
+            fi
+        done
+        
+        # Обрабатываем HTML файлы в подпапках
+        for dir in */; do
+            if [ -d "$dir" ]; then
+                for file in "$dir"*.html; do
+                    if [ -f "$file" ]; then
+                        total_count=$((total_count + 1))
+                        if add_affiliate_script "$file" "../affiliate-tracking.js"; then
+                            updated_count=$((updated_count + 1))
+                        else
+                            skipped_count=$((skipped_count + 1))
+                        fi
+                    fi
+                done
+            fi
+        done
+        
+        # Обрабатываем index.html файлы в подпапках
+        for dir in */; do
+            if [ -d "$dir" ] && [ -f "${dir}index.html" ]; then
+                file="${dir}index.html"
+                total_count=$((total_count + 1))
+                if add_affiliate_script "$file" "../affiliate-tracking.js"; then
+                    updated_count=$((updated_count + 1))
+                else
+                    skipped_count=$((skipped_count + 1))
+                fi
+            fi
+        done
+        
+        # Выводим статистику
+        echo ""
+        echo "📊 СТАТИСТИКА ОБНОВЛЕНИЯ:"
+        echo "  📄 Всего HTML файлов: $total_count"
+        echo "  ✅ Обновлено: $updated_count"
+        echo "  ⏭️  Пропущено: $skipped_count"
+        echo ""
+        
+        if [ $updated_count -gt 0 ]; then
+            echo "🎯 Affiliate tracking script успешно добавлен на $updated_count страниц!"
+        else
+            echo "ℹ️  Все страницы уже имеют affiliate tracking script"
+        fi
+        
+    - name: Verify affiliate tracking implementation
+      run: |
+        echo "🔍 Проверяем добавление affiliate tracking..."
+        
+        # Ищем файлы с affiliate tracking
+        files_with_tracking=$(find . -name "*.html" -exec grep -l "affiliate-tracking.js" {} \;)
+        count=$(echo "$files_with_tracking" | wc -l)
+        
+        echo "📋 Файлы с affiliate tracking script:"
+        echo "$files_with_tracking"
+        echo ""
+        echo "✅ Всего файлов с affiliate tracking: $count"
+        
+        # Проверяем, что affiliate-tracking.js существует
+        if [ -f "affiliate-tracking.js" ]; then
+            echo "✅ affiliate-tracking.js file exists"
+        else
+            echo "❌ affiliate-tracking.js file not found!"
+            exit 1
+        fi
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        
+        if git diff --staged --quiet; then
+            echo "ℹ️  No changes to commit"
+        else
+            echo "💾 Committing changes..."
+            git commit -m "Add affiliate tracking script to HTML pages
+
+            - Automatically added affiliate-tracking.js to all HTML files
+            - Script will track DigitalStore24 partner links
+            - Sends click_affiliate events to GA4
+            - Auto-run: $(date)"
+            git push
+            echo "🚀 Changes committed and pushed successfully!"
+        fi
