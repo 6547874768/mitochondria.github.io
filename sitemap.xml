@@ -4,152 +4,134 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-    <!-- Главная страница -->
     <url>
         <loc>https://www.danilichev.info/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-
-    <!-- Основные категории -->
     <url>
-        <loc>https://www.danilichev.info/health-supplements/</loc>
-        <lastmod>2025-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://www.danilichev.info/health-products/</loc>
-        <lastmod>2025-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://www.danilichev.info/anti-aging-hacks/</loc>
-        <lastmod>2025-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://www.danilichev.info/brain-supplements/</loc>
-        <lastmod>2025-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://www.danilichev.info/weight-loss-supplements/</loc>
-        <lastmod>2025-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Основной лендинг -->
-    <url>
-        <loc>https://www.danilichev.info/advanced-mitochondrial-formula/</loc>
+        <loc>https://www.danilichev.info/advanced-mitochondrial-formula/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
     </url>
-
-    <!-- Информационные страницы (поддерживающие лендинг) -->
     <url>
-        <loc>https://www.danilichev.info/mitochondrial-energy-guide/</loc>
+        <loc>https://www.danilichev.info/404/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/brain-fog-after-40-causes/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/why-always-tired-after-40/</loc>
+        <loc>https://www.danilichev.info/mitochondrial-energy-guide/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/afternoon-energy-crash-solutions/</loc>
+        <loc>https://www.danilichev.info/health-products/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/brain-fog-after-40-causes/</loc>
+        <loc>https://www.danilichev.info/natural-energy-restoration-methods/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/chronic-fatigue-not-aging/</loc>
+        <loc>https://www.danilichev.info/health-supplements/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/low-energy-warning-signs/</loc>
+        <loc>https://www.danilichev.info/nad-boosting-supplements-comparison/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/nad-decline-after-40-effects/</loc>
+        <loc>https://www.danilichev.info/anti-aging-hacks/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/mitochondrial-dysfunction-aging-process/</loc>
+        <loc>https://www.danilichev.info/afternoon-energy-crash-solutions/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/cellular-energy-production-slowdown/</loc>
+        <loc>https://www.danilichev.info/low-energy-warning-signs/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/mitochondrial-supplements-research/</loc>
+        <loc>https://www.danilichev.info/mitochondrial-dysfunction-aging-process/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/best-energy-supplements-after-40/</loc>
+        <loc>https://www.danilichev.info/chronic-fatigue-not-aging/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/nad-boosting-supplements-comparison/</loc>
+        <loc>https://www.danilichev.info/cellular-energy-production-slowdown/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/natural-energy-restoration-methods/</loc>
+        <loc>https://www.danilichev.info/best-energy-supplements-after-40/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.danilichev.info/mens-fatigue-solutions-over-40/</loc>
+        <loc>https://www.danilichev.info/weight-loss-supplements/index/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/nad-decline-after-40-effects/index/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/brain-supplements/index/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/why-always-tired-after-40/index/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/mitochondrial-supplements-research/index/</loc>
+        <lastmod>2025-07-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.danilichev.info/mens-fatigue-solutions-over-40/index/</loc>
         <lastmod>2025-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
