@@ -42,8 +42,27 @@ jobs:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
-                if 'gtag' in content or 'G-HMDTQL1LWD' in content:
-                    print(f"  GA4 already exists, skipping")
+                # Remove old GA4 code first
+                if 'GA_MEASUREMENT_ID' in content:
+                    print(f"  Removing old GA4 template code")
+                    lines = content.split('\n')
+                    new_lines = []
+                    skip_lines = False
+                    
+                    for line in lines:
+                        if '<!-- Google tag (gtag.js) -->' in line:
+                            skip_lines = True
+                            continue
+                        elif skip_lines and '</script>' in line:
+                            skip_lines = False
+                            continue
+                        elif not skip_lines:
+                            new_lines.append(line)
+                    
+                    content = '\n'.join(new_lines)
+                
+                if 'gtag' in content and 'G-HMDTQL1LWD' in content:
+                    print(f"  GA4 already exists with correct ID, skipping")
                     return False
                 
                 if '</head>' not in content:
@@ -107,9 +126,9 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions Bot"
         git add -A
-        git commit -m "Add GA4 tracking code to all HTML pages"
+        git commit -m "Fix GA4 tracking - replace template ID with real ID"
         git push
-        echo "GA4 tracking code added and committed!"
+        echo "GA4 tracking code fixed and committed!"
     
     - name: No changes message
       if: steps.check_changes.outputs.changed == 'false'
