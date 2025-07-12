@@ -114,10 +114,10 @@
             const originalFunction = window.redirectToOffer;
             
             window.redirectToOffer = function() {
-                // Отслеживаем клик - URL берется из самой функции redirectToOffer
+                // Отслеживаем клик с правильной партнерской ссылкой
                 trackAffiliateClick(
                     { textContent: 'JavaScript Redirect' },
-                    'AFFILIATE_URL_FROM_REDIRECT_FUNCTION'
+                    'https://www.digistore24.com/redir/576637/danilichev/'
                 );
                 
                 // Вызываем оригинальную функцию
