@@ -13,100 +13,59 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 # Полная история
     
     - name: Set backup date
       run: |
         echo "BACKUP_DATE=$(date +'%Y-%m-%d-%H%M')" >> $GITHUB_ENV
-        echo "BACKUP_BRANCH=backup-$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-    
-    - name: Create backup info
-      run: |
-        mkdir -p backup-info
-        echo "# Health Supplements Hub Backup" > backup-info/README.md
-        echo "Backup created: $(date)" >> backup-info/README.md
-        echo "Repository: ${{ github.repository }}" >> backup-info/README.md
-        echo "Commit: ${{ github.sha }}" >> backup-info/README.md
-        echo "" >> backup-info/README.md
-        echo "## Files included:" >> backup-info/README.md
-        find . -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.yml" -o -name "*.xml" -o -name "*.txt" | grep -v ".git" | sort >> backup-info/README.md
-        echo "" >> backup-info/README.md
-        echo "## Statistics:" >> backup-info/README.md
-        echo "Total HTML pages: $(find . -name "*.html" | wc -l)" >> backup-info/README.md
-        echo "Total files: $(find . -type f | grep -v ".git" | wc -l)" >> backup-info/README.md
     
     - name: Create backup archive
       run: |
-        tar -czf health-supplements-hub-backup-${{ env.BACKUP_DATE }}.tar.gz \
-          --exclude='.git' \
-          --exclude='node_modules' \
-          --exclude='*.tar.gz' \
-          .
-        
-        # Показать размер архива
-        ls -lh health-supplements-hub-backup-${{ env.BACKUP_DATE }}.tar.gz
+        # Простой архив основных файлов
+        tar -czf backup-${{ env.BACKUP_DATE }}.tar.gz *.html *.css *.js *.yml *.xml *.txt *.ico *.png 2>/dev/null || true
+        ls -lh backup-${{ env.BACKUP_DATE }}.tar.gz
     
-    - name: Create backup branch
+    - name: Create backup info
       run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "actions@github.com"
-        
-        # Создаем новую ветку для бекапа
-        git checkout -b ${{ env.BACKUP_BRANCH }}
-        
-        # Добавляем информацию о бекапе
-        git add backup-info/
-        git commit -m "📦 Daily backup - ${{ env.BACKUP_DATE }}"
-        
-        # Пушим ветку
-        git push origin ${{ env.BACKUP_BRANCH }}
+        echo "# Health Supplements Hub Backup - ${{ env.BACKUP_DATE }}" > backup-info.md
+        echo "Backup created: $(date)" >> backup-info.md
+        echo "Repository: ${{ github.repository }}" >> backup-info.md
+        echo "Commit: ${{ github.sha }}" >> backup-info.md
+        echo "HTML pages: $(ls *.html 2>/dev/null | wc -l)" >> backup-info.md
+        echo "Total files in backup: $(tar -tzf backup-${{ env.BACKUP_DATE }}.tar.gz | wc -l)" >> backup-info.md
     
     - name: Create Release with backup
       uses: softprops/action-gh-release@v1
       with:
         tag_name: backup-${{ env.BACKUP_DATE }}
-        name: "Daily Backup - ${{ env.BACKUP_DATE }}"
+        name: "📦 Daily Backup - ${{ env.BACKUP_DATE }}"
         body: |
           🔄 **Автоматический ежедневный бекап**
           
           📅 **Дата:** ${{ env.BACKUP_DATE }}
           🏷️ **Коммит:** ${{ github.sha }}
           
-          📊 **Статистика:**
-          - HTML страниц: 24
-          - Все файлы сохранены
-          - Полная история Git
-          
-          💾 **Включено:**
-          - Все HTML страницы
+          📊 **Включено в архив:**
+          - HTML страницы (24 шт)
           - CSS/JS файлы  
-          - GitHub Actions
-          - Конфигурация
+          - GitHub Actions (yml)
+          - Конфигурация (xml, txt)
+          - Иконки и изображения
           
-          🔗 **Ветка бекапа:** `${{ env.BACKUP_BRANCH }}`
+          💾 **Скачать:** backup-${{ env.BACKUP_DATE }}.tar.gz
+          
+          ⏰ **Следующий бекап:** завтра в 12:00 UTC (15:00 МСК)
         files: |
-          health-supplements-hub-backup-${{ env.BACKUP_DATE }}.tar.gz
+          backup-${{ env.BACKUP_DATE }}.tar.gz
+          backup-info.md
         draft: false
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Cleanup old backup branches
-      run: |
-        # Удаляем ветки бекапов старше 30 дней
-        git branch -r | grep 'origin/backup-' | sed 's/origin\///' | while read branch; do
-          branch_date=$(echo $branch | sed 's/backup-//')
-          if [ $(date -d "$branch_date" +%s 2>/dev/null || echo 0) -lt $(date -d "30 days ago" +%s) ]; then
-            echo "Удаляем старую ветку: $branch"
-            git push origin --delete $branch || echo "Не удалось удалить $branch"
-          fi
-        done
-    
     - name: Summary
       run: |
         echo "✅ Бекап успешно создан!"
-        echo "📦 Архив: health-supplements-hub-backup-${{ env.BACKUP_DATE }}.tar.gz"
-        echo "🌿 Ветка: ${{ env.BACKUP_BRANCH }}"
+        echo "📦 Архив: backup-${{ env.BACKUP_DATE }}.tar.gz"
         echo "🏷️ Релиз: backup-${{ env.BACKUP_DATE }}"
+        echo "📊 Размер: $(ls -lh backup-${{ env.BACKUP_DATE }}.tar.gz | awk '{print $5}')"
         echo "⏰ Следующий бекап: завтра в 12:00 UTC"
