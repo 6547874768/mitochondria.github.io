@@ -769,7 +769,18 @@
         const AFFILIATE_URL = 'https://www.digistore24.com/redir/576637/danilichev/';
         
         function redirectToOffer() {
-            // Отслеживание конверсий
+            // Отслеживание affiliate события для GA4
+            gtag('event', 'click_affiliate', {
+                'affiliate_url': AFFILIATE_URL,
+                'product_name': 'Advanced Mitochondrial Formula',
+                'page_category': 'landing',
+                'page_title': document.title,
+                'page_url': window.location.href,
+                'click_text': 'Button Click',
+                'timestamp': new Date().toISOString()
+            });
+            
+            // Отслеживание конверсий (старое событие - оставляем для совместимости)
             gtag('event', 'purchase_intent', {
                 'event_category': 'conversion',
                 'event_label': 'advanced_formula_cta',
@@ -865,6 +876,5 @@
             ctaObserver.observe(section);
         });
     </script>
-    <script src="../affiliate-tracking.js"></script>
 </body>
 </html>
