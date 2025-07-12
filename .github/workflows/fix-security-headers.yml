@@ -1,0 +1,163 @@
+name: Fix Security Headers
+
+on:
+  workflow_dispatch: # Ручной запуск
+
+jobs:
+  fix-security-headers:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Remove old Security Headers and add complete set
+      run: |
+        echo "🔧 Исправляем Security Headers..."
+        
+        # Создаем новый полный набор Security Headers
+        cat > security_headers_complete.txt << 'EOF'
+        <!-- Security Headers -->
+        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.digistore24.com; frame-src 'none';">
+        <meta http-equiv="X-Frame-Options" content="DENY">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+        <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+        <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+        EOF
+        
+        PROCESSED=0
+        
+        # Обрабатываем все HTML файлы
+        for file in *.html; do
+          if [ -f "$file" ]; then
+            echo "📄 Исправляем: $file"
+            
+            # Удаляем старые Security Headers
+            sed '/<!-- Security Headers -->/,/X-XSS-Protection/d' "$file" > "${file}.tmp1"
+            
+            # Добавляем новые полные Security Headers
+            awk '
+            /^[[:space:]]*<\/head>/ {
+              while ((getline line < "security_headers_complete.txt") > 0) {
+                print "    " line
+              }
+              close("security_headers_complete.txt")
+            }
+            { print }
+            ' "${file}.tmp1" > "${file}.tmp2"
+            
+            mv "${file}.tmp2" "$file"
+            rm -f "${file}.tmp1"
+            
+            echo "   ✅ Security Headers обновлены"
+            PROCESSED=$((PROCESSED + 1))
+          fi
+        done
+        
+        rm -f security_headers_complete.txt
+        
+        echo ""
+        echo "📊 Обновлено файлов: $PROCESSED"
+        echo "🔒 Добавлен Strict-Transport-Security!"
+    
+    - name: Force cache busting
+      run: |
+        echo "🔄 Добавляем cache-busting комментарии..."
+        
+        # Добавляем уникальный комментарий для сброса кеша
+        TIMESTAMP=$(date +%s)
+        
+        for file in *.html; do
+          if [ -f "$file" ]; then
+            # Добавляем комментарий с timestamp в начало файла
+            echo "<!-- Cache bust: $TIMESTAMP -->" > "${file}.tmp"
+            cat "$file" >> "${file}.tmp"
+            mv "${file}.tmp" "$file"
+            echo "   🔄 Cache-bust добавлен в $file"
+          fi
+        done
+    
+    - name: Verify all Security Headers
+      run: |
+        echo "🔍 Проверяем ПОЛНЫЙ набор Security Headers..."
+        echo ""
+        
+        for file in *.html; do
+          if [ -f "$file" ]; then
+            echo "📄 $file:"
+            
+            # Проверяем ВСЕ headers включая новый HSTS
+            if grep -q "Strict-Transport-Security" "$file"; then
+              echo "   ✅ Strict-Transport-Security"
+            else
+              echo "   ❌ Strict-Transport-Security НЕ НАЙДЕН"
+            fi
+            
+            if grep -q "Content-Security-Policy" "$file"; then
+              echo "   ✅ Content-Security-Policy"
+            else
+              echo "   ❌ Content-Security-Policy НЕ НАЙДЕН"
+            fi
+            
+            if grep -q "X-Frame-Options" "$file"; then
+              echo "   ✅ X-Frame-Options"
+            else
+              echo "   ❌ X-Frame-Options НЕ НАЙДЕН"
+            fi
+            
+            if grep -q "X-Content-Type-Options" "$file"; then
+              echo "   ✅ X-Content-Type-Options"
+            else
+              echo "   ❌ X-Content-Type-Options НЕ НАЙДЕН"
+            fi
+            
+            if grep -q "Referrer-Policy" "$file"; then
+              echo "   ✅ Referrer-Policy"
+            else
+              echo "   ❌ Referrer-Policy НЕ НАЙДЕН"
+            fi
+            
+            if grep -q "Permissions-Policy" "$file"; then
+              echo "   ✅ Permissions-Policy"
+            else
+              echo "   ❌ Permissions-Policy НЕ НАЙДЕН"
+            fi
+            
+            echo ""
+          fi
+        done
+    
+    - name: Commit changes
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
+        
+        git add *.html
+        git commit -m "🔒 Fix Security Headers - add HSTS and cache busting
+
+        - Добавлен Strict-Transport-Security (HSTS)
+        - Обновлены все Security Headers
+        - Добавлен cache-busting для принудительного обновления
+        - Исправлен Content-Security-Policy для полной совместимости"
+        
+        git push
+        echo "✅ Исправления отправлены!"
+    
+    - name: Summary
+      run: |
+        echo "🎉 Security Headers исправлены!"
+        echo ""
+        echo "🔒 ПОЛНЫЙ набор заголовков:"
+        echo "   • Strict-Transport-Security (HSTS) - ДОБАВЛЕН"
+        echo "   • Content-Security-Policy (обновлен)"
+        echo "   • X-Frame-Options: DENY"  
+        echo "   • X-Content-Type-Options: nosniff"
+        echo "   • Referrer-Policy: strict-origin-when-cross-origin"
+        echo "   • Permissions-Policy"
+        echo "   • X-XSS-Protection"
+        echo ""
+        echo "🔄 Cache-busting активирован"
+        echo "🧪 ОБЯЗАТЕЛЬНО: очистите Cloudflare кеш!"
+        echo "🌐 Повторите тест через 5 минут"
