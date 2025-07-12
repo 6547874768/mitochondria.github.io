@@ -18,14 +18,16 @@ jobs:
       run: |
         echo "🔒 Добавляем Security Headers в HTML файлы..."
         
-        # Определяем Security Headers для вставки
-        SECURITY_HEADERS='    <!-- Security Headers -->
-        <meta http-equiv="Content-Security-Policy" content="default-src '\''self'\''; script-src '\''self'\'' '\''unsafe-inline'\'' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net; style-src '\''self'\'' '\''unsafe-inline'\'' https://fonts.googleapis.com; font-src '\''self'\'' https://fonts.gstatic.com; img-src '\''self'\'' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src '\''self'\'' https://www.google-analytics.com https://analytics.google.com https://www.digistore24.com; frame-src https://www.google.com;">
+        # Создаем файл с Security Headers
+        cat > security_headers.txt << 'EOF'
+        <!-- Security Headers -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://www.digistore24.com;">
         <meta http-equiv="X-Frame-Options" content="DENY">
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
         <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-        <meta http-equiv="X-XSS-Protection" content="1; mode=block">'
+        <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+        EOF
         
         # Счетчик обработанных файлов
         PROCESSED=0
@@ -39,10 +41,19 @@ jobs:
             if grep -q "Security Headers" "$file"; then
               echo "   ⚠️  Security Headers уже есть, пропускаем"
             else
-              # Находим закрывающий тег </head> и вставляем перед ним
+              # Находим строку с </head> и вставляем перед ней
               if grep -q "</head>" "$file"; then
-                # Создаем временный файл с добавленными headers
-                sed "s|</head>|$SECURITY_HEADERS\n</head>|" "$file" > "${file}.tmp"
+                # Используем awk для безопасной вставки
+                awk '
+                /^[[:space:]]*<\/head>/ {
+                  while ((getline line < "security_headers.txt") > 0) {
+                    print "    " line
+                  }
+                  close("security_headers.txt")
+                }
+                { print }
+                ' "$file" > "${file}.tmp"
+                
                 mv "${file}.tmp" "$file"
                 echo "   ✅ Security Headers добавлены"
                 PROCESSED=$((PROCESSED + 1))
@@ -53,6 +64,9 @@ jobs:
           fi
         done
         
+        # Удаляем временный файл
+        rm -f security_headers.txt
+        
         echo ""
         echo "📊 Обработано файлов: $PROCESSED"
         echo "🔒 Security Headers добавлены!"
@@ -62,38 +76,55 @@ jobs:
         echo "🔍 Проверяем добавленные Security Headers..."
         echo ""
         
+        TOTAL_FILES=0
+        HEADERS_OK=0
+        
         for file in *.html; do
           if [ -f "$file" ]; then
+            TOTAL_FILES=$((TOTAL_FILES + 1))
             echo "📄 $file:"
+            
+            CURRENT_HEADERS=0
             
             # Проверяем каждый header
             if grep -q "Content-Security-Policy" "$file"; then
               echo "   ✅ Content-Security-Policy"
+              CURRENT_HEADERS=$((CURRENT_HEADERS + 1))
             else
               echo "   ❌ Content-Security-Policy НЕ НАЙДЕН"
             fi
             
             if grep -q "X-Frame-Options" "$file"; then
               echo "   ✅ X-Frame-Options"
+              CURRENT_HEADERS=$((CURRENT_HEADERS + 1))
             else
               echo "   ❌ X-Frame-Options НЕ НАЙДЕН"
             fi
             
             if grep -q "X-Content-Type-Options" "$file"; then
               echo "   ✅ X-Content-Type-Options"
+              CURRENT_HEADERS=$((CURRENT_HEADERS + 1))
             else
               echo "   ❌ X-Content-Type-Options НЕ НАЙДЕН"
             fi
             
             if grep -q "Referrer-Policy" "$file"; then
               echo "   ✅ Referrer-Policy"
+              CURRENT_HEADERS=$((CURRENT_HEADERS + 1))
             else
               echo "   ❌ Referrer-Policy НЕ НАЙДЕН"
+            fi
+            
+            if [ $CURRENT_HEADERS -eq 4 ]; then
+              HEADERS_OK=$((HEADERS_OK + 1))
+              echo "   🎉 Все headers присутствуют!"
             fi
             
             echo ""
           fi
         done
+        
+        echo "📊 Итого: $HEADERS_OK из $TOTAL_FILES файлов имеют все Security Headers"
     
     - name: Commit changes
       run: |
