@@ -6,17 +6,28 @@
     <title>Anti-Aging Hacks 2025 - Science-Backed Secrets to Look & Feel Younger</title>
     <meta name="description" content="Discover proven anti-aging hacks that actually work. Science-backed cellular energy secrets to reverse aging, boost vitality, and maintain youthful energy after 40.">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMDTQL1LWD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-HMDTQL1LWD', {
+            'page_title': 'Anti-Aging Hacks Category',
+            'page_location': window.location.href
+        });
     </script>
     
-    <!-- Ahrefs Web Analytics -->
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="U41Gh05Onzp/ZeG31xRrgg" async></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof window.gtag !== 'undefined') {
+                var script = document.createElement('script');
+                script.src = 'https://analytics.ahrefs.com/analytics.js';
+                script.setAttribute('data-key', 'U41Gh05Onzp/ZeG31xRrgg');
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    </script>
     
     <style>
         * {
@@ -38,7 +49,6 @@
             padding: 0 20px;
         }
         
-        /* Navigation */
         .navigation {
             background: #2c3e50;
             padding: 15px 0;
@@ -69,7 +79,7 @@
         }
         
         .nav-links a {
-            color: #ecf0f1;
+            color: #f8f9fa;
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -87,7 +97,6 @@
             color: white;
         }
         
-        /* Header */
         .header {
             background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
             color: white;
@@ -131,7 +140,35 @@
             box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
         }
 
-        /* Featured Breakthrough */
+        .urgency-alert {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .urgency-alert h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .urgency-alert p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
         .featured-breakthrough {
             background: linear-gradient(135deg, #ff6b35, #f7931e);
             color: white;
@@ -140,6 +177,20 @@
             margin: 40px 0;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+        
+        .urgency-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #9b59b6;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
         
         .featured-breakthrough h2 {
@@ -160,6 +211,44 @@
             opacity: 0.9;
         }
         
+        .price-section {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .current-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .savings {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .social-proof-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
         .featured-cta {
             background: white;
             color: #ff6b35;
@@ -174,6 +263,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 20px;
         }
         
         .featured-cta:hover {
@@ -181,7 +271,94 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        /* Content Layout */
+        .mid-page-cta {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+        }
+        
+        .mid-page-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .mid-page-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        
+        .urgency-cta {
+            background: white;
+            color: #9b59b6;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .urgency-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 15px 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .sticky-cta-bar.show {
+            transform: translateY(0);
+        }
+        
+        .sticky-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .sticky-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .sticky-button {
+            background: white;
+            color: #9b59b6;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         .content-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -217,7 +394,6 @@
             text-align: justify;
         }
 
-        /* Anti-Aging Hacks Grid */
         .hacks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -241,6 +417,11 @@
             box-shadow: 0 15px 40px rgba(155, 89, 182, 0.2);
         }
         
+        .hack-card.featured {
+            border-top: 4px solid #ff6b35;
+            background: linear-gradient(145deg, #fff, #f8f9fa);
+        }
+        
         .hack-number {
             position: absolute;
             top: -15px;
@@ -256,6 +437,40 @@
             font-weight: bold;
             font-size: 1rem;
             box-shadow: 0 3px 10px rgba(155, 89, 182, 0.3);
+        }
+        
+        .hack-card.featured .hack-number {
+            background: #ff6b35;
+        }
+        
+        .hack-price {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #bbf7d0;
+            text-align: center;
+        }
+        
+        .hack-price .old-price {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1rem;
+            display: block;
+        }
+        
+        .hack-price .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #059669;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .hack-price .savings {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1rem;
         }
         
         .hack-icon {
@@ -275,6 +490,16 @@
             line-height: 1.6;
         }
         
+        .hack-social-proof {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+        
         .hack-link {
             color: #9b59b6;
             text-decoration: none;
@@ -288,62 +513,6 @@
             border-bottom: 1px solid #8e44ad;
         }
 
-        /* Science Section */
-        .science-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 40px 0;
-            border: 2px solid #e9ecef;
-        }
-        
-        .science-section h3 {
-            color: #9b59b6;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .science-facts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .science-fact {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .science-fact:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .science-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #9b59b6;
-            margin-bottom: 10px;
-        }
-        
-        .science-fact h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .science-fact p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* Sidebar */
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -384,7 +553,6 @@
             color: #9b59b6;
         }
 
-        /* Bio Age Calculator */
         .bio-age-calculator {
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
             color: white;
@@ -417,66 +585,6 @@
             margin-bottom: 5px;
         }
 
-        /* Internal Links */
-        .internal-link {
-            color: #ff6b35;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px dotted #ff6b35;
-        }
-        
-        .internal-link:hover {
-            color: #e55a2b;
-            border-bottom: 1px solid #e55a2b;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-            margin: 50px 0;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(155, 89, 182, 0.3);
-        }
-        
-        .cta-section h3 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            background: #ff6b35;
-            color: white;
-            padding: 18px 40px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-        }
-        
-        .cta-button:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Research Section */
         .research-section {
             background: #f8f9fa;
             padding: 50px 0;
@@ -528,7 +636,18 @@
             border-bottom: 1px solid #9b59b6;
         }
 
-        /* Disclaimer */
+        .internal-link {
+            color: #d97706;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dotted #d97706;
+        }
+        
+        .internal-link:hover {
+            color: #b45309;
+            border-bottom: 1px solid #b45309;
+        }
+
         .disclaimer {
             background: #f8f9fa;
             border: 2px solid #e9ecef;
@@ -544,7 +663,6 @@
             margin-bottom: 15px;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5rem;
@@ -577,29 +695,26 @@
                 grid-template-columns: 1fr;
             }
             
-            .science-facts {
-                grid-template-columns: repeat(2, 1fr);
+            .sticky-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .sticky-text {
+                font-size: 1rem;
             }
         }
     </style>
-    <!-- Favicon -->
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Health Supplements Hub" />
-<link rel="manifest" href="/site.webmanifest" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HMDTQL1LWD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HMDTQL1LWD');
-</script>
+    
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Health Supplements Hub" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navigation">
         <div class="container">
             <div class="nav-content">
@@ -616,28 +731,56 @@
         </div>
     </nav>
 
-    <!-- Header -->
     <section class="header">
         <div class="container">
             <h1>Anti-Aging Hacks 2025</h1>
             <p class="subtitle">Science-Backed Cellular Secrets to Look & Feel Younger</p>
-            <a href="/mitochondrial-energy-guide/" class="header-cta">Discover Age-Reversal Secrets</a>
+            <a href="/advanced-mitochondrial-formula/" class="header-cta" onclick="trackHeaderCTA()">Get Anti-Aging Formula Now</a>
         </div>
     </section>
 
-    <!-- Featured Breakthrough -->
+    <div class="container">
+        <div class="urgency-alert">
+            <h2>⏰ Aging Accelerates After 40 - But It's Reversible</h2>
+            <p>Cellular damage compounds daily. Every month you wait = more aging to reverse. Start now.</p>
+        </div>
+    </div>
+
     <div class="container">
         <div class="featured-breakthrough">
+            <div class="urgency-badge">🏆 Dr. Shallenberger's Discovery</div>
             <h2>🔬 #1 Anti-Aging Breakthrough</h2>
             <p class="subtitle">Dr. Shallenberger's Cellular Age Reversal Formula</p>
+            
+            <div class="price-section">
+                <span class="old-price">Single Bottle: $79.95</span>
+                <span class="current-price">Best Deal: $66.65/bottle</span>
+                <span class="savings">Save up to $199.80 (33% OFF)</span>
+            </div>
+            
+            <div class="social-proof-box">
+                ⭐ <strong>4.2/5 stars</strong> from 62 verified reviews<br>
+                ✨ <strong>At 77, Dr. Shallenberger</strong> has the vitality of a 40-year-old<br>
+                ⚡ <strong>3000% cellular energy boost</strong> reverses aging at source<br>
+                ✅ <strong>90-day guarantee</strong> - full refund
+            </div>
+            
             <p>The revolutionary discovery that's helping thousands reverse aging at the cellular level. Clinical research shows up to 3000% improvement in cellular energy - the master regulator of aging.</p>
             <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackFeaturedBreakthrough()">
-                Discover This Secret →
+                Reverse Aging Now - $66.65 →
             </a>
         </div>
     </div>
 
-    <!-- Main Content -->
+    <div class="sticky-cta-bar" id="sticky-cta">
+        <div class="sticky-content">
+            <span class="sticky-text">✨ Reverse Aging at Cellular Level</span>
+            <a href="/advanced-mitochondrial-formula/" class="sticky-button" onclick="trackStickyCTA()">
+                Order Now $66.65 →
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="content-layout">
             <div class="main-content">
@@ -648,24 +791,27 @@
                 <h3>Why Cellular Energy Is the Key to Anti-Aging</h3>
                 <p><a href="/why-always-tired-after-40/" class="internal-link">After age 40, cellular energy production declines dramatically</a>, leading to the visible and invisible signs of aging we all experience. This isn't just about feeling tired - it affects every cell in your body.</p>
                 
-                <p><a href="/cellular-energy-production-slowdown/" class="internal-link">When cellular energy production slows down</a>, your body loses its ability to:</p>
-                
-                <ul style="padding-left: 25px; margin-bottom: 25px;">
-                    <li>Repair damaged DNA and proteins</li>
-                    <li>Maintain healthy skin, hair, and nails</li>
-                    <li>Support optimal brain function</li>
-                    <li>Keep muscles strong and metabolism active</li>
-                    <li>Fight inflammation and oxidative stress</li>
-                </ul>
+                <p><a href="/cellular-energy-production-slowdown/" class="internal-link">When cellular energy production slows down</a>, your body loses its ability to repair damaged DNA, maintain healthy skin, support optimal brain function, keep muscles strong, and fight inflammation.</p>
 
                 <h3>The Most Effective Anti-Aging Hacks</h3>
                 <div class="hacks-grid">
-                    <div class="hack-card">
+                    <div class="hack-card featured">
                         <div class="hack-number">1</div>
                         <div class="hack-icon">⚡</div>
                         <h4>Cellular Energy Optimization</h4>
-                        <p>The #1 anti-aging strategy - restore mitochondrial function for maximum cellular energy production</p>
-                        <a href="/best-energy-supplements-after-40/" class="hack-link">Energy Solutions →</a>
+                        
+                        <div class="hack-price">
+                            <span class="old-price">Single Bottle: $79.95</span>
+                            <span class="current-price">$66.65/bottle</span>
+                            <span class="savings">Save $199.80</span>
+                        </div>
+                        
+                        <div class="hack-social-proof">
+                            ⭐ <strong>4.2/5 stars</strong> • 👍 <strong>82% recommend</strong> • ✅ <strong>90-day guarantee</strong>
+                        </div>
+                        
+                        <p>The #1 anti-aging strategy - restore mitochondrial function for maximum cellular energy production and age reversal.</p>
+                        <a href="/advanced-mitochondrial-formula/" class="hack-link" onclick="trackHackClick('cellular-energy')">Get Formula Now →</a>
                     </div>
                     
                     <div class="hack-card">
@@ -704,44 +850,21 @@
                         <div class="hack-number">6</div>
                         <div class="hack-icon">👥</div>
                         <h4>Gender-Specific Approaches</h4>
-                        <p>Targeted anti-aging strategies for unique male and female hormonal changes</p>
+                        <p>Targeted anti-aging strategies for unique male and female hormonal changes after 40</p>
                         <a href="/womens-energy-decline-menopause/" class="hack-link">Women's Solutions →</a>
                     </div>
                 </div>
 
+                <div class="mid-page-cta">
+                    <h2>🚨 Every Day You Wait, You Age More</h2>
+                    <p>After 40, NAD levels drop 50%. Dr. Shallenberger's formula can reverse cellular aging in weeks.</p>
+                    <a href="/advanced-mitochondrial-formula/" class="urgency-cta" onclick="trackMidPageCTA()">
+                        Reverse Aging Now - $66.65/Bottle →
+                    </a>
+                </div>
+
                 <h3>Dr. Shallenberger's Anti-Aging Discovery</h3>
                 <p>At 77 years old, Dr. Frank Shallenberger demonstrates remarkable vitality through his groundbreaking research on cellular energy restoration. <a href="/mitochondrial-supplements-research/" class="internal-link">His research shows that cellular aging is reversible</a> when you address the root cause.</p>
-
-                <div class="science-section">
-                    <h3>The Science Behind Cellular Age Reversal</h3>
-                    <p>Dr. Shallenberger's clinical research demonstrates that optimizing cellular energy production can reverse many hallmarks of aging. His studies show remarkable results in patients who restore their mitochondrial function.</p>
-                    
-                    <div class="science-facts">
-                        <div class="science-fact">
-                            <div class="science-number">3000%</div>
-                            <h4>Energy Boost</h4>
-                            <p>Maximum cellular energy increase with optimal mitochondrial support</p>
-                        </div>
-                        
-                        <div class="science-fact">
-                            <div class="science-number">50%</div>
-                            <h4>NAD Decline</h4>
-                            <p>Average NAD loss after 40 - but completely reversible with the right approach</p>
-                        </div>
-                        
-                        <div class="science-fact">
-                            <div class="science-number">77</div>
-                            <h4>Doctor's Age</h4>
-                            <p>Age of the physician who discovered this breakthrough anti-aging formula</p>
-                        </div>
-                        
-                        <div class="science-fact">
-                            <div class="science-number">1000+</div>
-                            <h4>Success Stories</h4>
-                            <p>People who have experienced dramatic age-reversal results</p>
-                        </div>
-                    </div>
-                </div>
 
                 <h3>Why Traditional Anti-Aging Fails</h3>
                 <p>Most anti-aging approaches focus on superficial symptoms rather than the underlying cause. They might temporarily improve appearance or provide short-term energy, but they don't address the fundamental issue: declining cellular function.</p>
@@ -756,14 +879,6 @@
                 <p><strong>Men After 40:</strong> <a href="/mens-fatigue-solutions-over-40/" class="internal-link">Male fatigue isn't just about testosterone</a> - cellular energy decline plays a major role.</p>
 
                 <p><strong>Early Warning Signs:</strong> <a href="/low-energy-warning-signs-over-40/" class="internal-link">Recognizing the first signs of cellular aging</a> allows for proactive intervention.</p>
-
-                <div class="cta-section">
-                    <h3>Ready to Reverse Your Cellular Age?</h3>
-                    <p>Discover the breakthrough formula that's helping thousands turn back the biological clock by restoring cellular energy production.</p>
-                    <a href="/mitochondrial-energy-guide/" class="cta-button" onclick="trackMainCTA()">
-                        Start Your Transformation
-                    </a>
-                </div>
 
                 <div class="disclaimer">
                     <h4>Important Information</h4>
@@ -793,7 +908,7 @@
                         <strong>Recovery Time:</strong> Slow = +5 cellular years<br>
                         <strong>Mental Clarity:</strong> Foggy = +7 cellular years
                     </div>
-                    <a href="/mitochondrial-energy-guide/" class="featured-cta" onclick="trackBioAgeCalc()">
+                    <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackBioAgeCalc()">
                         Reverse Your Cellular Age →
                     </a>
                 </div>
@@ -833,7 +948,6 @@
         </div>
     </div>
 
-    <!-- Research Section -->
     <section class="research-section">
         <div class="container">
             <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Latest Anti-Aging Research & Breakthroughs</h2>
@@ -868,104 +982,93 @@
     </section>
 
     <script>
-        // Enhanced tracking for different CTAs
-        function trackFeaturedBreakthrough() {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'click', {
-                    'event_category': 'anti_aging',
-                    'event_label': 'featured_breakthrough_hero',
-                    'value': 1
-                });
-            }
+        function trackHeaderCTA() {
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'header_cta_formula',
+                'value': 1
+            });
         }
         
-        function trackMainCTA() {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'click', {
-                    'event_category': 'anti_aging',
-                    'event_label': 'main_content_cta',
-                    'value': 1
-                });
-            }
+        function trackFeaturedBreakthrough() {
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'featured_breakthrough_hero',
+                'value': 1
+            });
+        }
+        
+        function trackMidPageCTA() {
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'mid_page_urgency_cta',
+                'value': 1
+            });
+        }
+        
+        function trackStickyCTA() {
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'sticky_cta_bar',
+                'value': 1
+            });
         }
         
         function trackBioAgeCalc() {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'click', {
-                    'event_category': 'anti_aging',
-                    'event_label': 'bio_age_calculator',
-                    'value': 1
-                });
-            }
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'bio_age_calculator',
+                'value': 1
+            });
         }
         
-        // Wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Track internal link clicks
-            document.querySelectorAll('.internal-link, .research-link, .hack-link').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'internal_link_click', {
-                            'event_category': 'navigation',
-                            'event_label': this.getAttribute('href'),
-                            'value': 1
-                        });
-                    }
+        function trackHackClick(hackType) {
+            gtag('event', 'click', {
+                'event_category': 'anti_aging',
+                'event_label': 'hack_' + hackType,
+                'value': 1
+            });
+        }
+        
+        document.querySelectorAll('.internal-link, .research-link, .hack-link').forEach(link => {
+            link.addEventListener('click', function() {
+                gtag('event', 'internal_link_click', {
+                    'event_category': 'navigation',
+                    'event_label': this.getAttribute('href'),
+                    'value': 1
                 });
             });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const stickyCTA = document.getElementById('sticky-cta');
             
-            // Hack card interactions
-            document.querySelectorAll('.hack-card').forEach(function(card, index) {
-                card.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'hack_card_click', {
-                            'event_category': 'anti_aging',
-                            'event_label': 'hack_' + (index + 1),
-                            'value': index + 1
-                        });
-                    }
-                });
-                
-                card.addEventListener('mouseenter', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'hack_card_hover', {
-                            'event_category': 'engagement',
-                            'event_label': 'hack_' + (index + 1),
-                            'value': 1
-                        });
-                    }
-                });
-            });
-            
-            // Science fact interactions
-            document.querySelectorAll('.science-fact').forEach(function(fact, index) {
-                fact.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'science_fact_click', {
-                            'event_category': 'anti_aging',
-                            'event_label': 'science_fact_' + (index + 1),
-                            'value': index + 1
-                        });
-                    }
-                });
-            });
-            
-            // Bio age calculator interaction
-            const bioAgeCalc = document.querySelector('.bio-age-calculator');
-            if (bioAgeCalc) {
-                bioAgeCalc.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'bio_age_calculator_interaction', {
-                            'event_category': 'anti_aging',
-                            'event_label': 'sidebar_calculator',
-                            'value': 1
-                        });
-                    }
-                });
+            if (scrollPercent > 50) {
+                stickyCTA.classList.add('show');
+            } else {
+                stickyCTA.classList.remove('show');
             }
         });
         
-        // Scroll depth tracking
+        document.querySelectorAll('.hack-card').forEach(function(card, index) {
+            card.addEventListener('click', function() {
+                gtag('event', 'hack_card_click', {
+                    'event_category': 'anti_aging',
+                    'event_label': 'hack_' + (index + 1),
+                    'value': index + 1
+                });
+            });
+            
+            card.addEventListener('mouseenter', function() {
+                gtag('event', 'hack_card_hover', {
+                    'event_category': 'engagement',
+                    'event_label': 'hack_' + (index + 1),
+                    'value': 1
+                });
+            });
+        });
+        
         let scrollDepthTracked = {
             25: false,
             50: false,
@@ -979,18 +1082,15 @@
             Object.keys(scrollDepthTracked).forEach(depth => {
                 if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
                     scrollDepthTracked[depth] = true;
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'scroll_depth', {
-                            'event_category': 'engagement',
-                            'event_label': 'anti_aging_' + depth + '_percent',
-                            'value': parseInt(depth)
-                        });
-                    }
+                    gtag('event', 'scroll_depth', {
+                        'event_category': 'engagement',
+                        'event_label': 'anti_aging_' + depth + '_percent',
+                        'value': parseInt(depth)
+                    });
                 }
             });
         });
         
-        // Time on page tracking
         let startTime = Date.now();
         let timeTracked = {
             30: false,
@@ -1005,17 +1105,15 @@
             Object.keys(timeTracked).forEach(threshold => {
                 if (timeOnPage >= threshold && !timeTracked[threshold]) {
                     timeTracked[threshold] = true;
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'time_on_page', {
-                            'event_category': 'engagement',
-                            'event_label': 'anti_aging_' + threshold + '_seconds',
-                            'value': timeOnPage
-                        });
-                    }
+                    gtag('event', 'time_on_page', {
+                        'event_category': 'engagement',
+                        'event_label': 'anti_aging_' + threshold + '_seconds',
+                        'value': timeOnPage
+                    });
                 }
             });
         }, 5000);
     </script>
-    <script src="../affiliate-tracking.js"></script>
+    <script src="../affiliate-tracking.js" defer></script>
 </body>
 </html>
