@@ -6,17 +6,30 @@
     <title>Best Brain Supplements 2025 - Boost Memory, Focus & Mental Clarity</title>
     <meta name="description" content="Discover the most effective brain supplements for memory, focus, and cognitive performance after 40. Science-backed cellular energy solutions for optimal brain health.">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <!-- Google Analytics - Optimized loading -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMDTQL1LWD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-HMDTQL1LWD', {
+            'page_title': 'Brain Supplements Category',
+            'page_location': window.location.href
+        });
     </script>
     
-    <!-- Ahrefs Web Analytics -->
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="U41Gh05Onzp/ZeG31xRrgg" async></script>
+    <!-- Ahrefs Web Analytics - CSP Fixed -->
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof window.gtag !== 'undefined') {
+                var script = document.createElement('script');
+                script.src = 'https://analytics.ahrefs.com/analytics.js';
+                script.setAttribute('data-key', 'U41Gh05Onzp/ZeG31xRrgg');
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    </script>
     
     <style>
         * {
@@ -38,7 +51,7 @@
             padding: 0 20px;
         }
         
-        /* Navigation */
+        /* Navigation - Fixed contrast */
         .navigation {
             background: #2c3e50;
             padding: 15px 0;
@@ -69,7 +82,7 @@
         }
         
         .nav-links a {
-            color: #ecf0f1;
+            color: #f8f9fa;
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -131,7 +144,37 @@
             box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
         }
 
-        /* Featured Brain Solution */
+        /* NEW: Urgency Alert */
+        .urgency-alert {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .urgency-alert h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .urgency-alert p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Featured Brain Solution - ENHANCED */
         .featured-brain-solution {
             background: linear-gradient(135deg, #ff6b35, #f7931e);
             color: white;
@@ -140,6 +183,21 @@
             margin: 40px 0;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+        
+        /* NEW: Urgency Badge */
+        .urgency-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1abc9c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
         
         .featured-brain-solution h2 {
@@ -160,6 +218,46 @@
             opacity: 0.9;
         }
         
+        /* NEW: Price Section */
+        .price-section {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .current-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .savings {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* NEW: Social Proof Box */
+        .social-proof-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
         .featured-cta {
             background: white;
             color: #ff6b35;
@@ -174,11 +272,102 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 20px;
         }
         
         .featured-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* NEW: Mid Page CTA */
+        .mid-page-cta {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3);
+        }
+        
+        .mid-page-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .mid-page-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        
+        .urgency-cta {
+            background: white;
+            color: #1abc9c;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .urgency-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sticky CTA Bar */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 15px 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .sticky-cta-bar.show {
+            transform: translateY(0);
+        }
+        
+        .sticky-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .sticky-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .sticky-button {
+            background: white;
+            color: #1abc9c;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* Content Layout */
@@ -258,6 +447,37 @@
             font-weight: bold;
         }
         
+        /* NEW: Price info in supplement card */
+        .supplement-price {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #bbf7d0;
+            text-align: center;
+        }
+        
+        .supplement-price .old-price {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1rem;
+            display: block;
+        }
+        
+        .supplement-price .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #059669;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .supplement-price .savings {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
         .supplement-icon {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -297,6 +517,17 @@
             margin-top: 5px;
         }
         
+        /* NEW: Enhanced Social Proof */
+        .supplement-social-proof {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+        
         .supplement-link {
             color: #1abc9c;
             text-decoration: none;
@@ -308,99 +539,6 @@
         .supplement-link:hover {
             color: #16a085;
             border-bottom: 1px solid #16a085;
-        }
-
-        /* Brain Metrics Section */
-        .brain-metrics {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 40px 0;
-            border: 2px solid #e9ecef;
-        }
-        
-        .brain-metrics h3 {
-            color: #1abc9c;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .metric-item {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .metric-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .metric-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #1abc9c;
-            margin-bottom: 10px;
-        }
-        
-        .metric-item h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .metric-item p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* Cognitive Benefits */
-        .cognitive-benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .benefit-item {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #1abc9c;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .benefit-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .benefit-item h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .benefit-item p {
-            color: #666;
-            font-size: 0.95rem;
         }
 
         /* Sidebar */
@@ -529,63 +667,17 @@
             border-bottom: 1px solid #1abc9c;
         }
 
-        /* Internal Links */
+        /* Internal Links - Fixed contrast */
         .internal-link {
-            color: #ff6b35;
+            color: #d97706;
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 1px dotted #ff6b35;
+            border-bottom: 1px dotted #d97706;
         }
         
         .internal-link:hover {
-            color: #e55a2b;
-            border-bottom: 1px solid #e55a2b;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-            margin: 50px 0;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(26, 188, 156, 0.3);
-        }
-        
-        .cta-section h3 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            background: #ff6b35;
-            color: white;
-            padding: 18px 40px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-        }
-        
-        .cta-button:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            color: #b45309;
+            border-bottom: 1px solid #b45309;
         }
 
         /* Disclaimer */
@@ -637,8 +729,14 @@
                 grid-template-columns: 1fr;
             }
             
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .sticky-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .sticky-text {
+                font-size: 1rem;
             }
         }
     </style>
@@ -681,18 +779,53 @@
         <div class="container">
             <h1>Brain Supplements 2025</h1>
             <p class="subtitle">Boost Memory, Focus & Mental Clarity with Cellular Energy</p>
-            <a href="/mitochondrial-energy-guide/" class="header-cta">Unlock Brain Power</a>
+            <a href="/advanced-mitochondrial-formula/" class="header-cta" onclick="trackHeaderCTA()">Get Brain Formula Now</a>
         </div>
     </section>
 
-    <!-- Featured Brain Solution -->
+    <!-- NEW: Urgency Alert -->
+    <div class="container">
+        <div class="urgency-alert">
+            <h2>🧠 Your Brain Uses 20% of Your Body's Energy</h2>
+            <p>When cellular energy drops, brain function declines. Restore cognitive power at the source.</p>
+        </div>
+    </div>
+
+    <!-- Featured Brain Solution - ENHANCED -->
     <div class="container">
         <div class="featured-brain-solution">
+            <div class="urgency-badge">🧠 Cognitive Enhancement Formula</div>
             <h2>🧠 #1 Brain Performance Breakthrough</h2>
             <p class="subtitle">The Cellular Energy Solution for Peak Cognitive Function</p>
-            <p>Your brain uses 20% of your body's energy. Dr. Shallenberger's cellular energy formula optimizes brain power at the source - delivering up to 3000% improvement in cognitive performance.</p>
+            
+            <!-- NEW: Price Section -->
+            <div class="price-section">
+                <span class="old-price">Single Bottle: $79.95</span>
+                <span class="current-price">Best Deal: $66.65/bottle</span>
+                <span class="savings">Save up to $199.80 (33% OFF)</span>
+            </div>
+            
+            <!-- NEW: Social Proof -->
+            <div class="social-proof-box">
+                ⭐ <strong>4.2/5 stars</strong> from 62 verified reviews<br>
+                🧠 <strong>3000% NAD boost</strong> improves brain energy<br>
+                👍 <strong>82% recommend</strong> for cognitive enhancement<br>
+                ✅ <strong>90-day guarantee</strong> - full refund
+            </div>
+            
+            <p>Your brain uses 20% of your body's energy. Dr. Shallenberger's cellular energy formula optimizes brain power at the source - delivering dramatic improvements in cognitive performance through mitochondrial restoration.</p>
             <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackFeaturedBrain()">
-                Optimize Brain Energy →
+                Optimize Brain Energy - $66.65 →
+            </a>
+        </div>
+    </div>
+
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta-bar" id="sticky-cta">
+        <div class="sticky-content">
+            <span class="sticky-text">🧠 3000% Brain Energy Boost</span>
+            <a href="/advanced-mitochondrial-formula/" class="sticky-button" onclick="trackStickyCTA()">
+                Order Now $66.65 →
             </a>
         </div>
     </div>
@@ -708,35 +841,29 @@
                 <h3>Why Brain Energy Matters After 40</h3>
                 <p><a href="/brain-fog-after-40-causes/" class="internal-link">Brain fog after 40 isn't inevitable</a> - it's a sign of declining cellular energy production. Your brain consumes approximately 20% of your body's total energy, making it highly vulnerable to mitochondrial dysfunction.</p>
                 
-                <p><a href="/cellular-energy-production-slowdown/" class="internal-link">When cellular energy production slows down</a>, your brain experiences:</p>
-                
-                <ul style="padding-left: 25px; margin-bottom: 25px;">
-                    <li>Reduced mental clarity and focus</li>
-                    <li>Memory formation and recall problems</li>
-                    <li>Slower information processing</li>
-                    <li>Increased mental fatigue</li>
-                    <li>Decreased cognitive flexibility</li>
-                </ul>
+                <p><a href="/cellular-energy-production-slowdown/" class="internal-link">When cellular energy production slows down</a>, your brain experiences reduced mental clarity, memory problems, slower processing, increased fatigue, and decreased cognitive flexibility.</p>
 
                 <!-- Brain Supplements -->
-                <h3>Most Effective Brain Supplements</h3>
+                <h3>Most Effective Brain Enhancement Approaches</h3>
                 <div class="supplements-grid">
                     <div class="supplement-card featured">
                         <div class="supplement-badge">TOP RATED</div>
                         <div class="supplement-icon">🧬</div>
                         <h4>Cellular Energy Optimizers</h4>
-                        <p class="supplement-description">Advanced mitochondrial support that boosts brain energy production by up to 3000% for peak cognitive performance.</p>
-                        <div class="effectiveness-bar">
-                            <div class="effectiveness-fill" style="width: 95%"></div>
+                        
+                        <!-- NEW: Price in supplement card -->
+                        <div class="supplement-price">
+                            <span class="old-price">Single Bottle: $79.95</span>
+                            <span class="current-price">$66.65/bottle</span>
+                            <span class="savings">Save $199.80</span>
                         </div>
-                        <div class="effectiveness-label">95% Effectiveness</div>
-                        <a href="/best-energy-supplements-after-40/" class="supplement-link">Energy Solutions →</a>
-                    </div>
-                    
-                    <div class="supplement-card">
-                        <div class="supplement-icon">🧠</div>
-                        <h4>NAD+ Boosters</h4>
-                        <p class="supplement-description">Restore NAD levels that decline 50% after 40, essential for brain cell energy and cognitive function.</p>
+                        
+                        <!-- NEW: Social proof -->
+                        <div class="supplement-social-proof">
+                            ⭐ <strong>4.2/5 stars</strong> • 👍 <strong>82% recommend</strong> • ✅ <strong>90-day guarantee</strong>
+                        </div>
+                        
+                        <p class="supplement-description">Advanced mitochondrial support that boosts brain energy production by up to 3000% for peak cognitive performance through cellular restoration.</p>
                         <div class="effectiveness-bar">
                             <div class="effectiveness-fill" style="width: 90%"></div>
                         </div>
@@ -754,113 +881,30 @@
                         <div class="effectiveness-label">85% Effectiveness</div>
                         <a href="/natural-energy-restoration-methods/" class="supplement-link">Natural Methods →</a>
                     </div>
-                    
-                    <div class="supplement-card">
-                        <div class="supplement-icon">⚡</div>
-                        <h4>Phosphatidylserine</h4>
-                        <p class="supplement-description">Supports brain cell membrane health and neurotransmitter function for improved memory and focus.</p>
-                        <div class="effectiveness-bar">
-                            <div class="effectiveness-fill" style="width: 80%"></div>
-                        </div>
-                        <div class="effectiveness-label">80% Effectiveness</div>
-                        <a href="/mitochondrial-supplements-research/" class="supplement-link">Research →</a>
-                    </div>
-                    
-                    <div class="supplement-card">
-                        <div class="supplement-icon">🌿</div>
-                        <h4>Bacopa Monnieri</h4>
-                        <p class="supplement-description">Ancient herb clinically proven to enhance memory formation and reduce anxiety for clearer thinking.</p>
-                        <div class="effectiveness-bar">
-                            <div class="effectiveness-fill" style="width: 75%"></div>
-                        </div>
-                        <div class="effectiveness-label">75% Effectiveness</div>
-                        <a href="/natural-energy-restoration-methods/" class="supplement-link">Natural Solutions →</a>
-                    </div>
-                    
-                    <div class="supplement-card">
-                        <div class="supplement-icon">🍄</div>
-                        <h4>Lion's Mane Mushroom</h4>
-                        <p class="supplement-description">Promotes nerve growth factor production for enhanced neuroplasticity and brain health.</p>
-                        <div class="effectiveness-bar">
-                            <div class="effectiveness-fill" style="width: 70%"></div>
-                        </div>
-                        <div class="effectiveness-label">70% Effectiveness</div>
-                        <a href="/mitochondrial-supplements-research/" class="supplement-link">Learn More →</a>
-                    </div>
+                </div>
+
+                <!-- NEW: Mid Page CTA -->
+                <div class="mid-page-cta">
+                    <h2>🚨 Your Brain Energy is Declining Every Day</h2>
+                    <p>After 40, NAD levels drop 50%. Dr. Shallenberger's formula can boost brain energy 3000% in 30 minutes.</p>
+                    <a href="/advanced-mitochondrial-formula/" class="urgency-cta" onclick="trackMidPageCTA()">
+                        Restore Brain Power Now - $66.65/Bottle →
+                    </a>
                 </div>
 
                 <h3>The Brain-Energy Connection Revolution</h3>
                 <p>Dr. Shallenberger's breakthrough research demonstrates that cognitive performance is fundamentally limited by cellular energy production. By optimizing mitochondrial function in brain cells, you can enhance all aspects of cognitive performance simultaneously.</p>
 
-                <div class="brain-metrics">
-                    <h3>Brain Performance Enhancement Data</h3>
-                    <p>Clinical studies show remarkable improvements when brain cellular energy is optimized:</p>
-                    
-                    <div class="metrics-grid">
-                        <div class="metric-item">
-                            <div class="metric-number">3000%</div>
-                            <h4>Cognitive Boost</h4>
-                            <p>Maximum improvement in mental performance with cellular energy optimization</p>
-                        </div>
-                        
-                        <div class="metric-item">
-                            <div class="metric-number">20%</div>
-                            <h4>Brain Energy Use</h4>
-                            <p>Percentage of total body energy consumed by the brain daily</p>
-                        </div>
-                        
-                        <div class="metric-item">
-                            <div class="metric-number">50%</div>
-                            <h4>NAD Decline</h4>
-                            <p>Average decline in brain NAD levels after age 40 - but reversible</p>
-                        </div>
-                        
-                        <div class="metric-item">
-                            <div class="metric-number">77</div>
-                            <h4>Doctor's Age</h4>
-                            <p>Age of the physician who discovered this brain energy breakthrough</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Cognitive Benefits of Optimal Brain Energy</h3>
-                <div class="cognitive-benefits">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🎯</div>
-                        <h4>Enhanced Focus</h4>
-                        <p>Improved ability to concentrate on tasks for extended periods without mental fatigue or distraction.</p>
-                    </div>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🧠</div>
-                        <h4>Superior Memory</h4>
-                        <p>Enhanced formation, storage, and retrieval of both short-term and long-term memories.</p>
-                    </div>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">⚡</div>
-                        <h4>Mental Clarity</h4>
-                        <p>Clearer thinking, reduced brain fog, and improved decision-making capabilities.</p>
-                    </div>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🚀</div>
-                        <h4>Processing Speed</h4>
-                        <p>Faster information processing and improved reaction times for mental tasks.</p>
-                    </div>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">💡</div>
-                        <h4>Enhanced Creativity</h4>
-                        <p>Improved creative thinking and problem-solving abilities through optimal brain function.</p>
-                    </div>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🔄</div>
-                        <h4>Neuroplasticity</h4>
-                        <p>Enhanced brain's ability to form new neural connections and adapt to challenges throughout life.</p>
-                    </div>
-                </div>
+                <h3>Warning Signs Your Brain Needs Energy Support</h3>
+                <p><a href="/low-energy-warning-signs-over-40/" class="internal-link">Early warning signs of cognitive energy decline</a> include:</p>
+                
+                <ul style="padding-left: 25px; margin-bottom: 25px;">
+                    <li>Difficulty concentrating in the afternoon</li>
+                    <li>Forgetting words or names more frequently</li>
+                    <li>Feeling mentally "foggy" or unclear</li>
+                    <li>Taking longer to process information</li>
+                    <li>Struggling with complex mental tasks</li>
+                </ul>
 
                 <h3>Gender-Specific Brain Health Challenges</h3>
                 <p>Brain health needs differ between men and women, especially after 40:</p>
@@ -879,28 +923,6 @@
                     <li>Providing sustained, long-term improvements</li>
                     <li>Enhancing the effectiveness of other supplements</li>
                 </ul>
-
-                <h3>Warning Signs Your Brain Needs Energy Support</h3>
-                <p><a href="/low-energy-warning-signs-over-40/" class="internal-link">Early warning signs of cognitive energy decline</a> include:</p>
-                
-                <ul style="padding-left: 25px; margin-bottom: 25px;">
-                    <li>Difficulty concentrating in the afternoon</li>
-                    <li>Forgetting words or names more frequently</li>
-                    <li>Feeling mentally "foggy" or unclear</li>
-                    <li>Taking longer to process information</li>
-                    <li>Struggling with complex mental tasks</li>
-                </ul>
-
-                <h3>The Revolutionary Brain Optimization Approach</h3>
-                <p>Instead of treating cognitive symptoms individually, the cellular energy approach addresses brain health at its foundation. By restoring mitochondrial function, you can achieve comprehensive cognitive enhancement that supports all aspects of mental performance.</p>
-
-                <div class="cta-section">
-                    <h3>Ready to Unlock Your Brain's Full Potential?</h3>
-                    <p>Discover how Dr. Shallenberger's cellular energy formula is helping thousands achieve peak cognitive performance and mental clarity after 40.</p>
-                    <a href="/mitochondrial-energy-guide/" class="cta-button" onclick="trackMainCTA()">
-                        Optimize Brain Power
-                    </a>
-                </div>
 
                 <div class="disclaimer">
                     <h4>Important Information</h4>
@@ -926,11 +948,11 @@
                     <h3>🧠 Cognitive Performance Test</h3>
                     <p>How's your brain energy?</p>
                     <div class="brain-score">
-                        <strong>Mental Fatigue:</strong> High = -30% performance
-                        <strong>Focus Issues:</strong> Present = -25% efficiency  
+                        <strong>Mental Fatigue:</strong> High = -30% performance<br>
+                        <strong>Focus Issues:</strong> Present = -25% efficiency<br>
                         <strong>Memory Problems:</strong> Frequent = -40% retention
                     </div>
-                    <a href="/mitochondrial-energy-guide/" class="featured-cta" onclick="trackBrainTest()">
+                    <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackBrainTest()">
                         Optimize Brain Energy →
                     </a>
                 </div>
@@ -1006,6 +1028,14 @@
 
     <script>
         // Enhanced tracking for different CTAs
+        function trackHeaderCTA() {
+            gtag('event', 'click', {
+                'event_category': 'brain_supplements',
+                'event_label': 'header_cta_formula',
+                'value': 1
+            });
+        }
+        
         function trackFeaturedBrain() {
             gtag('event', 'click', {
                 'event_category': 'brain_supplements',
@@ -1014,10 +1044,18 @@
             });
         }
         
-        function trackMainCTA() {
+        function trackMidPageCTA() {
             gtag('event', 'click', {
                 'event_category': 'brain_supplements',
-                'event_label': 'main_content_cta',
+                'event_label': 'mid_page_urgency_cta',
+                'value': 1
+            });
+        }
+        
+        function trackStickyCTA() {
+            gtag('event', 'click', {
+                'event_category': 'brain_supplements',
+                'event_label': 'sticky_cta_bar',
                 'value': 1
             });
         }
@@ -1026,6 +1064,14 @@
             gtag('event', 'click', {
                 'event_category': 'brain_supplements',
                 'event_label': 'brain_performance_test',
+                'value': 1
+            });
+        }
+        
+        function trackSupplementClick(supplementType) {
+            gtag('event', 'click', {
+                'event_category': 'brain_supplements',
+                'event_label': 'supplement_' + supplementType,
                 'value': 1
             });
         }
@@ -1039,6 +1085,18 @@
                     'value': 1
                 });
             });
+        });
+        
+        // Show sticky CTA after 50% scroll
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const stickyCTA = document.getElementById('sticky-cta');
+            
+            if (scrollPercent > 50) {
+                stickyCTA.classList.add('show');
+            } else {
+                stickyCTA.classList.remove('show');
+            }
         });
         
         // Supplement card interactions
@@ -1056,17 +1114,6 @@
                     'event_category': 'engagement',
                     'event_label': 'supplement_' + (index + 1),
                     'value': 1
-                });
-            });
-        });
-        
-        // Metric item interactions
-        document.querySelectorAll('.metric-item').forEach(function(item, index) {
-            item.addEventListener('click', function() {
-                gtag('event', 'metric_item_click', {
-                    'event_category': 'brain_supplements',
-                    'event_label': 'metric_' + (index + 1),
-                    'value': index + 1
                 });
             });
         });
@@ -1131,16 +1178,18 @@
                 }
             });
         }, 5000);
-        
-        // Brain test interaction
-        document.querySelector('.brain-test').addEventListener('click', function() {
-            gtag('event', 'brain_test_interaction', {
-                'event_category': 'brain_supplements',
-                'event_label': 'sidebar_brain_test',
-                'value': 1
-            });
-        });
     </script>
-    <script src="../affiliate-tracking.js"></script>
+    <script src="../affiliate-tracking.js" defer></script>
 </body>
-</html>
+</html>effectiveness-fill" style="width: 95%"></div>
+                        </div>
+                        <div class="effectiveness-label">95% Effectiveness</div>
+                        <a href="/advanced-mitochondrial-formula/" class="supplement-link" onclick="trackSupplementClick('cellular-energy')">Order Formula Now →</a>
+                    </div>
+                    
+                    <div class="supplement-card">
+                        <div class="supplement-icon">🧠</div>
+                        <h4>NAD+ Boosters</h4>
+                        <p class="supplement-description">Restore NAD levels that decline 50% after 40, essential for brain cell energy and cognitive function.</p>
+                        <div class="effectiveness-bar">
+                            <div class="
