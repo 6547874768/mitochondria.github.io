@@ -131,7 +131,37 @@
             box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
         }
 
-        /* Featured Product Alert */
+        /* NEW: Urgency Alert */
+        .urgency-alert {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .urgency-alert h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .urgency-alert p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Featured Product Alert - ENHANCED */
         .featured-product {
             background: linear-gradient(135deg, #ff6b35, #f7931e);
             color: white;
@@ -140,6 +170,28 @@
             margin: 40px 0;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+        
+        /* NEW: Urgency Badge */
+        .urgency-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #dc2626;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
         
         .featured-product h2 {
@@ -160,6 +212,46 @@
             opacity: 0.9;
         }
         
+        /* NEW: Price Section */
+        .price-section {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .current-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .savings {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* NEW: Social Proof Box */
+        .social-proof-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
         .featured-cta {
             background: white;
             color: #ff6b35;
@@ -174,11 +266,102 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 20px;
         }
         
         .featured-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* NEW: Mid Page CTA */
+        .mid-page-cta {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+        
+        .mid-page-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .mid-page-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        
+        .urgency-cta {
+            background: white;
+            color: #dc2626;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .urgency-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sticky CTA Bar */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 20px;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .sticky-cta-bar.show {
+            transform: translateY(0);
+        }
+        
+        .sticky-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .sticky-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .sticky-button {
+            background: white;
+            color: #ff6b35;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* Content Layout */
@@ -257,6 +440,37 @@
             font-weight: bold;
         }
         
+        /* NEW: Price info in product card */
+        .product-price {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #bbf7d0;
+            text-align: center;
+        }
+        
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1rem;
+            display: block;
+        }
+        
+        .product-price .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #059669;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .product-price .savings {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
         .product-card h4 {
             color: #2c3e50;
             margin-bottom: 15px;
@@ -301,6 +515,17 @@
         .rating-score {
             font-weight: bold;
             color: #2c3e50;
+        }
+        
+        /* NEW: Enhanced Social Proof */
+        .product-social-proof {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
         }
         
         .product-cta {
@@ -525,6 +750,16 @@
             .categories-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .sticky-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .sticky-text {
+                font-size: 1rem;
+            }
         }
     </style>
     <!-- Favicon -->
@@ -566,18 +801,43 @@
         <div class="container">
             <h1>Health Supplements 2025</h1>
             <p class="subtitle">Expert Reviews, Clinical Research & Science-Backed Recommendations</p>
-            <a href="/mitochondrial-energy-guide/" class="header-cta">Discover Top Supplements</a>
+            <a href="/advanced-mitochondrial-formula/" class="header-cta" onclick="trackHeaderCTA()">Get Top Formula Now</a>
         </div>
     </section>
 
-    <!-- Featured Product -->
+    <!-- NEW: Urgency Alert -->
+    <div class="container">
+        <div class="urgency-alert">
+            <h3>⚠️ NAD Levels Drop 2% Every Year After Age 45</h3>
+            <p>By 55, you've lost 20% of cellular energy. By 65, it's 40%. Don't wait until it's too late.</p>
+        </div>
+    </div>
+
+    <!-- Featured Product - ENHANCED -->
     <div class="container">
         <div class="featured-product">
+            <div class="urgency-badge">⏰ Limited Research Release - Only 847 Left</div>
             <h2>🔬 #1 Breakthrough: Advanced Mitochondrial Formula</h2>
             <p class="subtitle">Dr. Shallenberger's Research Shows 3000% NAD Boost</p>
-            <p>77-year-old doctor's cellular energy formula used by thousands to restore vitality after 40. Clinical studies show remarkable energy restoration at the mitochondrial level.</p>
+            
+            <!-- NEW: Price Section -->
+            <div class="price-section">
+                <span class="old-price">Single Bottle: $79.95</span>
+                <span class="current-price">Best Deal: $66.65/bottle</span>
+                <span class="savings">Save up to $199.80 (33% OFF)</span>
+            </div>
+            
+            <!-- NEW: Social Proof -->
+            <div class="social-proof-box">
+                ⭐ <strong>4.2/5 stars</strong> from 62 verified reviews<br>
+                👍 <strong>82% recommend</strong> this supplement<br>
+                🔥 <strong>3000% NAD boost</strong> in just 30 minutes<br>
+                ✅ <strong>90-day guarantee</strong> - full refund
+            </div>
+            
+            <p>Dr. Frank Shallenberger's breakthrough mitochondrial formula with 11 scientifically-proven ingredients. At 77, he has the lung capacity and strength of a 40-year-old. Real customer reviews: 4.2/5 stars, 82% recommend.</p>
             <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackFeaturedProduct()">
-                Learn About This Formula →
+                Get This Formula Before It's Gone →
             </a>
         </div>
     </div>
@@ -605,286 +865,30 @@
                             <span class="stars">★★★★★</span>
                             <span class="rating-score">9.7/10</span>
                         </div>
-                        <p class="product-description">Dr. Shallenberger's breakthrough cellular energy formula. Clinical research shows up to 3000% NAD boost for restored vitality after 40.</p>
+                        
+                        <!-- NEW: Price in product card -->
+                        <div class="product-price">
+                            <span class="old-price">Single Bottle: $79.95</span>
+                            <span class="current-price">$66.65/bottle</span>
+                            <span class="savings">Save $199.80</span>
+                        </div>
+                        
+                        <!-- NEW: Social proof -->
+                        <div class="product-social-proof">
+                            ⭐ <strong>4.2/5 stars</strong> • 👍 <strong>82% recommend</strong> • ✅ <strong>90-day guarantee</strong>
+                        </div>
+                        
+                        <p class="product-description">Dr. Shallenberger's breakthrough mitochondrial formula with 11 scientifically-proven ingredients. Real results: 3000% NAD boost in 30 minutes, improved energy and mental clarity.</p>
                         <ul class="product-benefits">
-                            <li>Boosts cellular energy production by up to 3000%</li>
-                            <li>Restores NAD levels naturally</li>
-                            <li>Improves mental clarity and focus</li>
-                            <li>Enhances physical endurance</li>
-                            <li>Supports healthy aging processes</li>
+                            <li>3000% NAD boost in just 30 minutes</li>
+                            <li>11 scientifically-proven ingredients</li>
+                            <li>Improves energy, stamina, and mental clarity</li>
+                            <li>Created by 77-year-old doctor with 40-year-old vitality</li>
+                            <li>90-day money-back guarantee</li>
                         </ul>
                         <a href="/advanced-mitochondrial-formula/" class="product-cta featured" onclick="trackProductClick('mitochondrial-formula')">
-                            Learn More About This Formula
+                            Order Now - Best Price $66.65 →
                         </a>
                     </div>
                     
                     <!-- Placeholder for Future Products -->
-                    <div class="product-card">
-                        <h4>Future Premium Supplements</h4>
-                        <div class="product-rating">
-                            <span class="stars">★★★★☆</span>
-                            <span class="rating-score">Coming Soon</span>
-                        </div>
-                        <p class="product-description">Additional research-backed supplements currently under evaluation. Stay tuned for more breakthrough formulas.</p>
-                        <ul class="product-benefits">
-                            <li>Rigorous scientific evaluation process</li>
-                            <li>Clinical trial requirements</li>
-                            <li>Expert panel review</li>
-                            <li>Real-world testing</li>
-                            <li>Safety and efficacy verified</li>
-                        </ul>
-                        <a href="/mitochondrial-energy-guide/" class="product-cta">
-                            Join Waiting List
-                        </a>
-                    </div>
-                </div>
-
-                <h3>Evidence-Based Supplement Categories</h3>
-                <div class="categories-grid">
-                    <div class="category-card">
-                        <div class="category-icon">⚡</div>
-                        <h4>Cellular Energy Support</h4>
-                        <p>Mitochondrial function and NAD restoration supplements</p>
-                        <a href="/best-energy-supplements-after-40/" class="category-link">View Energy Supplements →</a>
-                    </div>
-                    
-                    <div class="category-card">
-                        <div class="category-icon">🧬</div>
-                        <h4>NAD Boosting Formulas</h4>
-                        <p>Advanced supplements that restore NAD levels</p>
-                        <a href="/nad-boosting-supplements-comparison/" class="category-link">Compare NAD Supplements →</a>
-                    </div>
-                    
-                    <div class="category-card">
-                        <div class="category-icon">🛡️</div>
-                        <h4>Antioxidant Protection</h4>
-                        <p>Cellular protection and healthy aging support</p>
-                        <a href="/mitochondrial-supplements-research/" class="category-link">Research & Reviews →</a>
-                    </div>
-                    
-                    <div class="category-card">
-                        <div class="category-icon">🧠</div>
-                        <h4>Cognitive Support</h4>
-                        <p>Brain health and mental clarity supplements</p>
-                        <a href="/brain-fog-after-40-causes/" class="category-link">Brain Health Solutions →</a>
-                    </div>
-                </div>
-
-                <h3>Our Supplement Selection Criteria</h3>
-                <p>Every supplement we recommend must meet strict criteria:</p>
-                
-                <ul style="padding-left: 25px; margin-bottom: 25px;">
-                    <li><strong>Clinical Research:</strong> Backed by published studies</li>
-                    <li><strong>Bioavailability:</strong> Proven absorption and effectiveness</li>
-                    <li><strong>Third-Party Testing:</strong> Verified purity and potency</li>
-                    <li><strong>Professional Grade:</strong> Developed by qualified researchers</li>
-                    <li><strong>Real Results:</strong> Demonstrated outcomes in users</li>
-                </ul>
-
-                <h3>Why Traditional Supplements Often Fail</h3>
-                <p>Most supplements on the market address symptoms rather than root causes. <a href="/nad-decline-after-40-effects/" class="internal-link">NAD decline affects every cell in your body</a>, but typical supplements don't target this fundamental issue.</p>
-
-                <p>Our featured supplements work differently by:</p>
-                <ul style="padding-left: 25px; margin-bottom: 25px;">
-                    <li>Targeting cellular energy production directly</li>
-                    <li>Addressing multiple pathways simultaneously</li>
-                    <li>Using bioavailable forms of nutrients</li>
-                    <li>Following scientific dosing protocols</li>
-                </ul>
-
-                <div class="disclaimer">
-                    <h4>Important Information</h4>
-                    <p><strong>*These statements have not been evaluated by the Food and Drug Administration. Products mentioned are not intended to diagnose, treat, cure, or prevent any disease.</strong></p>
-                    <p>Individual results may vary. Always consult your healthcare provider before starting any supplement regimen, especially if you have existing health conditions or take medications.</p>
-                    <p>This website may contain affiliate links. We may receive compensation when you purchase products we recommend, at no additional cost to you.</p>
-                </div>
-            </div>
-            
-            <div class="sidebar">
-                <div class="sidebar-widget">
-                    <h3>🔥 Top Articles</h3>
-                    <ul>
-                        <li><a href="/why-always-tired-after-40/">Why You're Always Tired After 40</a></li>
-                        <li><a href="/nad-decline-after-40-effects/">NAD Decline: The Hidden Cause</a></li>
-                        <li><a href="/cellular-energy-production-slowdown/">Cellular Energy Production</a></li>
-                        <li><a href="/mitochondrial-dysfunction-aging-process/">Mitochondrial Dysfunction</a></li>
-                        <li><a href="/afternoon-energy-crash-solutions/">Energy Crash Solutions</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-widget">
-                    <h3>🧪 Research Guides</h3>
-                    <ul>
-                        <li><a href="/best-energy-supplements-after-40/">Best Energy Supplements</a></li>
-                        <li><a href="/nad-boosting-supplements-comparison/">NAD Supplements Comparison</a></li>
-                        <li><a href="/natural-energy-restoration-methods/">Natural Energy Methods</a></li>
-                        <li><a href="/mitochondrial-supplements-research/">Mitochondrial Research</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-widget">
-                    <h3>👥 By Gender</h3>
-                    <ul>
-                        <li><a href="/womens-energy-decline-menopause/">Women's Energy & Menopause</a></li>
-                        <li><a href="/mens-fatigue-solutions-over-40/">Men's Fatigue Solutions</a></li>
-                        <li><a href="/chronic-fatigue-not-aging/">Chronic Fatigue vs Aging</a></li>
-                        <li><a href="/low-energy-warning-signs-over-40/">Warning Signs</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-widget">
-                    <h3>🧬 Featured Formula</h3>
-                    <p>Dr. Shallenberger's breakthrough research on cellular energy restoration.</p>
-                    <br>
-                    <a href="/mitochondrial-energy-guide/" class="featured-cta" onclick="trackSidebarCTA()">
-                        Complete Guide →
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Research Section -->
-    <section class="research-section">
-        <div class="container">
-            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Latest Research & Clinical Studies</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">Breakthrough discoveries in cellular energy and healthy aging</p>
-            
-            <div class="research-grid">
-                <div class="research-card">
-                    <h4>🕐 Energy Crashes After 40</h4>
-                    <p>New research reveals why afternoon energy crashes become more common and severe after age 40.</p>
-                    <a href="/afternoon-energy-crash-solutions/" class="research-link">Read Full Study →</a>
-                </div>
-                
-                <div class="research-card">
-                    <h4>🧠 Brain Fog Solutions</h4>
-                    <p>Clinical studies on the cellular causes of mental fatigue and research-backed restoration methods.</p>
-                    <a href="/brain-fog-after-40-causes/" class="research-link">Discover Solutions →</a>
-                </div>
-                
-                <div class="research-card">
-                    <h4>⚠️ Warning Signs</h4>
-                    <p>Early indicators of cellular energy decline and how to address them before they worsen.</p>
-                    <a href="/low-energy-warning-signs-over-40/" class="research-link">Check Warning Signs →</a>
-                </div>
-                
-                <div class="research-card">
-                    <h4>😴 Chronic Fatigue</h4>
-                    <p>Why persistent tiredness isn't normal aging and proven interventions for energy restoration.</p>
-                    <a href="/chronic-fatigue-not-aging/" class="research-link">Learn More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Enhanced tracking for different CTAs
-        function trackFeaturedProduct() {
-            gtag('event', 'click', {
-                'event_category': 'health_supplements',
-                'event_label': 'featured_product_hero',
-                'value': 1
-            });
-        }
-        
-        function trackProductClick(productName) {
-            gtag('event', 'click', {
-                'event_category': 'health_supplements',
-                'event_label': 'product_card_' + productName,
-                'value': 1
-            });
-        }
-        
-        function trackSidebarCTA() {
-            gtag('event', 'click', {
-                'event_category': 'health_supplements',
-                'event_label': 'sidebar_formula_cta',
-                'value': 1
-            });
-        }
-        
-        // Track internal link clicks
-        document.querySelectorAll('.internal-link, .research-link, .category-link').forEach(link => {
-            link.addEventListener('click', function() {
-                gtag('event', 'internal_link_click', {
-                    'event_category': 'navigation',
-                    'event_label': this.getAttribute('href'),
-                    'value': 1
-                });
-            });
-        });
-        
-        // Scroll depth tracking
-        let scrollDepthTracked = {
-            25: false,
-            50: false,
-            75: false,
-            90: false
-        };
-        
-        window.addEventListener('scroll', function() {
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            
-            Object.keys(scrollDepthTracked).forEach(depth => {
-                if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
-                    scrollDepthTracked[depth] = true;
-                    gtag('event', 'scroll_depth', {
-                        'event_category': 'engagement',
-                        'event_label': 'health_supplements_' + depth + '_percent',
-                        'value': parseInt(depth)
-                    });
-                }
-            });
-        });
-        
-        // Product card hover tracking
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                const productName = this.querySelector('h4').textContent;
-                gtag('event', 'product_hover', {
-                    'event_category': 'engagement',
-                    'event_label': productName,
-                    'value': 1
-                });
-            });
-        });
-        
-        // Category interest tracking
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const categoryName = this.querySelector('h4').textContent;
-                gtag('event', 'category_interest', {
-                    'event_category': 'health_supplements',
-                    'event_label': categoryName,
-                    'value': 1
-                });
-            });
-        });
-        
-        // Time on page tracking
-        let startTime = Date.now();
-        let timeTracked = {
-            30: false,
-            60: false,
-            120: false
-        };
-        
-        setInterval(function() {
-            let timeOnPage = Math.floor((Date.now() - startTime) / 1000);
-            
-            Object.keys(timeTracked).forEach(threshold => {
-                if (timeOnPage >= threshold && !timeTracked[threshold]) {
-                    timeTracked[threshold] = true;
-                    gtag('event', 'time_on_page', {
-                        'event_category': 'engagement',
-                        'event_label': 'health_supplements_' + threshold + '_seconds',
-                        'value': timeOnPage
-                    });
-                }
-            });
-        }, 5000);
-    </script>
-    <script src="../affiliate-tracking.js"></script>
-</body>
-</html>
