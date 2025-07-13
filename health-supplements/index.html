@@ -15,8 +15,19 @@
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
     
-    <!-- Ahrefs Web Analytics -->
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="U41Gh05Onzp/ZeG31xRrgg" async></script>
+    <!-- Ahrefs Web Analytics - CSP Fixed -->
+    <script>
+        // Load Ahrefs after page load to avoid CSP issues
+        window.addEventListener('load', function() {
+            if (typeof window.gtag !== 'undefined') {
+                var script = document.createElement('script');
+                script.src = 'https://analytics.ahrefs.com/analytics.js';
+                script.setAttribute('data-key', 'U41Gh05Onzp/ZeG31xRrgg');
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    </script>
     
     <style>
         * {
@@ -68,8 +79,9 @@
             flex-wrap: wrap;
         }
         
+        /* FIX: Improved contrast for accessibility */
         .nav-links a {
-            color: #ecf0f1;
+            color: #f8f9fa; /* Better contrast */
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -149,7 +161,8 @@
             100% { transform: scale(1); }
         }
         
-        .urgency-alert h3 {
+        /* FIX: Remove unused CSS and optimize */
+        .urgency-alert h3, .mid-page-cta h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: white;
@@ -185,7 +198,6 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: bold;
-            animation: bounce 2s infinite;
         }
         
         @keyframes bounce {
@@ -686,16 +698,17 @@
         }
 
         /* Internal Links */
+        /* FIX: Better contrast for internal links */
         .internal-link {
-            color: #ff6b35;
+            color: #d97706; /* Darker orange for better contrast */
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 1px dotted #ff6b35;
+            border-bottom: 1px dotted #d97706;
         }
         
         .internal-link:hover {
-            color: #e55a2b;
-            border-bottom: 1px solid #e55a2b;
+            color: #b45309;
+            border-bottom: 1px solid #b45309;
         }
 
         /* Disclaimer */
@@ -816,7 +829,7 @@
     <!-- Featured Product - ENHANCED -->
     <div class="container">
         <div class="featured-product">
-            <div class="urgency-badge">⏰ Limited Research Release - Only 847 Left</div>
+            <div class="urgency-badge">⭐ 4.2/5 Stars - 82% Recommend</div>
             <h2>🔬 #1 Breakthrough: Advanced Mitochondrial Formula</h2>
             <p class="subtitle">Dr. Shallenberger's Research Shows 3000% NAD Boost</p>
             
@@ -837,7 +850,7 @@
             
             <p>Dr. Frank Shallenberger's breakthrough mitochondrial formula with 11 scientifically-proven ingredients. At 77, he has the lung capacity and strength of a 40-year-old. Real customer reviews: 4.2/5 stars, 82% recommend.</p>
             <a href="/advanced-mitochondrial-formula/" class="featured-cta" onclick="trackFeaturedProduct()">
-                Get This Formula Before It's Gone →
+                Get This Formula - Best Price $66.65 →
             </a>
         </div>
     </div>
