@@ -119,11 +119,73 @@ def check_and_add_favicon():
     else:
         print("All files already have favicon")
 
+def add_footer_to_content_pages():
+    """Add footer component to content pages (exclude main + 5 categories)"""
+    
+    # Pages WITHOUT footer (main + 5 categories)
+    excluded_pages = {
+        './index.html',
+        './health-supplements/index.html',
+        './health-products/index.html', 
+        './anti-aging-hacks/index.html',
+        './brain-supplements/index.html',
+        './weight-loss-supplements/index.html',
+        './404.html'
+    }
+    
+    footer_script = '<script src="/footer-component.js"></script>'
+    updated_files = []
+    
+    for root, dirs, files in os.walk('.'):
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        
+        for file in files:
+            if file.endswith('.html'):
+                file_path = os.path.join(root, file).replace('\\', '/')
+                normalized_path = './' + file_path if not file_path.startswith('./') else file_path
+                
+                # Skip excluded pages
+                if normalized_path in excluded_pages:
+                    print(f"⏭️ Skipping: {file_path} (excluded)")
+                    continue
+                
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    # Check if footer already exists
+                    if 'footer-component.js' in content:
+                        print(f"✅ Footer already exists: {file_path}")
+                        continue
+                    
+                    # Check if </body> exists
+                    if '</body>' not in content:
+                        print(f"⚠️ No </body> found in: {file_path}")
+                        continue
+                    
+                    # Add footer script before </body>
+                    new_content = content.replace('</body>', f'{footer_script}\n</body>')
+                    
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+                    
+                    updated_files.append(file_path)
+                    print(f"➕ Footer added to: {file_path}")
+                    
+                except Exception as e:
+                    print(f"❌ Error processing {file_path}: {e}")
+    
+    if updated_files:
+        print(f"🦶 Footer added to {len(updated_files)} content pages")
+    else:
+        print("🦶 All content pages already have footer")
+
 def main():
-    print("Starting site update...")
+    print("🚀 Starting site update...")
     generate_sitemap()
     check_and_add_favicon()
-    print("Update completed!")
+    add_footer_to_content_pages()
+    print("✅ Update completed!")
 
 if __name__ == "__main__":
     main()
