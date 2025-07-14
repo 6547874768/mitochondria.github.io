@@ -8,6 +8,11 @@ Disallow: /assets/
 Disallow: /.git/
 Disallow: /404.html
 
+# Запрещаем индексацию технических страниц
+Disallow: /contact-us.html
+Disallow: /terms-of-use.html
+Disallow: /sitemap.html
+
 # Указываем местоположение sitemap
 Sitemap: https://www.danilichev.info/sitemap.xml
 
