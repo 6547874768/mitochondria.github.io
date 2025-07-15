@@ -765,13 +765,21 @@
     </div>
 
     <script>
-        // DigiStore24 партнерская ссылка
-        const AFFILIATE_URL = 'https://www.digistore24.com/redir/576637/danilichev/';
+        // DigiStore24 партнерская ссылка с исправленным tracking
+        const AFFILIATE_URL = 'https://www.digistore24.com/redir/576637/danilichev/?aid={clickid}';
         
         function redirectToOffer() {
+            // Получаем clickid из URL параметров PropellerAds
+            const urlParams = new URLSearchParams(window.location.search);
+            const clickId = urlParams.get('utm_content') || urlParams.get('clickid') || 'direct_' + Date.now();
+            
+            // Формируем финальную ссылку с clickid
+            const finalUrl = AFFILIATE_URL.replace('{clickid}', clickId);
+            
             // Отслеживание affiliate события для GA4
             gtag('event', 'click_affiliate', {
-                'affiliate_url': AFFILIATE_URL,
+                'affiliate_url': finalUrl,
+                'clickid': clickId,
                 'product_name': 'Advanced Mitochondrial Formula',
                 'page_category': 'landing',
                 'page_title': document.title,
@@ -784,11 +792,17 @@
             gtag('event', 'purchase_intent', {
                 'event_category': 'conversion',
                 'event_label': 'advanced_formula_cta',
+                'clickid': clickId,
                 'value': 1
             });
             
+            // Отслеживание для PropellerAds (если есть их пиксель)
+            if (typeof window.propellerAds !== 'undefined') {
+                window.propellerAds.conversion(clickId);
+            }
+            
             // Переход на партнерскую ссылку
-            window.open(AFFILIATE_URL, '_blank');
+            window.open(finalUrl, '_blank');
         }
         
         // Отслеживание скролла
@@ -874,6 +888,25 @@
         
         ctaSections.forEach(section => {
             ctaObserver.observe(section);
+        });
+        
+        // Автоматическое отслеживание загрузки страницы с PropellerAds параметрами
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const clickId = urlParams.get('utm_content') || urlParams.get('clickid');
+            const source = urlParams.get('utm_source');
+            const campaign = urlParams.get('utm_campaign');
+            
+            if (clickId) {
+                gtag('event', 'propellerads_landing', {
+                    'event_category': 'traffic_source',
+                    'event_label': 'propellerads',
+                    'clickid': clickId,
+                    'source': source,
+                    'campaign': campaign,
+                    'value': 1
+                });
+            }
         });
     </script>
     <script src="../affiliate-tracking.js"></script>
