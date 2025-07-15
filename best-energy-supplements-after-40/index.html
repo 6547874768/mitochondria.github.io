@@ -763,3 +763,28 @@
                 });
             }
         });
+
+        document.querySelectorAll('.internal-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                gtag('event', 'internal_link_click', {
+                    'event_category': 'navigation',
+                    'event_label': this.getAttribute('href'),
+                    'value': 1
+                });
+            });
+        });
+
+        document.querySelectorAll('.supplement-review').forEach((review, index) => {
+            review.addEventListener('click', function() {
+                gtag('event', 'supplement_review_interaction', {
+                    'event_category': 'engagement',
+                    'event_label': `supplement_${index + 1}`,
+                    'value': 1
+                });
+            });
+        });
+    </script>
+    <script src="../affiliate-tracking.js"></script>
+<script src="/footer-component.js"></script>
+</body>
+</html>
