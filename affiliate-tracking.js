@@ -1,5 +1,5 @@
 // Affiliate Tracking Script для Health Supplements Hub
-// Отслеживание кликов по партнерским ссылкам DigitalStore24
+// Отслеживание кликов по партнерским ссылкам Advanced Bio Nutritionals
 
 (function() {
     'use strict';
@@ -10,8 +10,10 @@
         return;
     }
     
-    // URL партнерских ссылок DigitalStore24
+    // URL партнерских ссылок Advanced Bio Nutritionals
     const AFFILIATE_URLS = [
+        'advancedbionutritionals.com',
+        'www.advancedbionutritionals.com',
         'digistore24.com',
         'www.digistore24.com',
         'ds24.com'
@@ -114,10 +116,14 @@
             const originalFunction = window.redirectToOffer;
             
             window.redirectToOffer = function() {
+                // Получаем clickid из URL параметров
+                const urlParams = new URLSearchParams(window.location.search);
+                const clickId = urlParams.get('utm_content') || urlParams.get('clickid') || 'js_redirect_' + Date.now();
+                
                 // Отслеживаем клик с правильной партнерской ссылкой
                 trackAffiliateClick(
                     { textContent: 'JavaScript Redirect' },
-                    'https://www.digistore24.com/redir/576637/danilichev/'
+                    'https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=danilichev&clickid=' + clickId
                 );
                 
                 // Вызываем оригинальную функцию
