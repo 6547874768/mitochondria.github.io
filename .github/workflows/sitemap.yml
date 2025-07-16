@@ -81,10 +81,14 @@ jobs:
                     seen.add(p['url'])
             pages = sorted(unique_pages, key=lambda x: float(x['priority']), reverse=True)
 
-            # Сборка XML
+            # Сборка XML с правильной структурой
             xml = '''<?xml version="1.0" encoding="UTF-8"?>
-            
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 '''
+            
             for page in pages:
                 xml += f'''  <url>
     <loc>{SITE_URL}{page['url']}</loc>
@@ -99,11 +103,15 @@ jobs:
                 f.write(xml)
             print(f"✅ sitemap.xml создан: {len(pages)} страниц")
 
+            # Создаем robots.txt
             with open('robots.txt', 'w', encoding='utf-8') as f:
                 f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml")
+            print("✅ robots.txt создан")
 
         def main():
+            print("🚀 Генерация sitemap.xml и robots.txt...")
             generate_sitemap()
+            print("✅ Генерация завершена!")
 
         if __name__ == "__main__":
             main()
@@ -128,7 +136,12 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions"
         git add sitemap.xml robots.txt
-        git commit -m "🔄 Auto-regenerated sitemap.xml and robots.txt (only valid URLs)"
+        git commit -m "🔄 Auto-regenerated sitemap.xml and robots.txt
+
+        📊 Complete sitemap with all 41 pages
+        🔧 Fixed XML structure with proper <urlset> tags
+        ✅ Technical pages priority 0.7, content pages 0.8
+        🤖 Updated robots.txt with sitemap reference"
         git push
 
     - name: No changes
