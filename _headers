@@ -1,4 +1,89 @@
+# Security Headers и редиректы для Health Supplements Hub
+# GitHub Pages + Cloudflare Pro
+
+# Редиректы для множественных слешей (SEO fix)
+//*    /:splat  301
+///*   /:splat  301
+////*  /:splat  301
+
+# Удаление trailing slash с технических страниц
+/about-us.html/           /about-us.html           301
+/contact-us.html/         /contact-us.html         301
+/privacy-policy.html/     /privacy-policy.html     301
+/terms-of-use.html/       /terms-of-use.html       301
+/disclaimer.html/         /disclaimer.html         301
+/affiliate-disclosure.html/ /affiliate-disclosure.html 301
+/editorial-policy.html/   /editorial-policy.html   301
+/sitemap.html/            /sitemap.html            301
+
+# Главная страница canonical (добавляем trailing slash)
+/index.html               /                        301
+
+# Security Headers для всех страниц
 /*
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://www.digistore24.com
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  # HSTS - принудительный HTTPS
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # CSP - защита от XSS и инъекций
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://www.digistore24.com; frame-src 'none'
+  
+  # Clickjacking защита
+  X-Frame-Options: DENY
+  
+  # MIME type защита
+  X-Content-Type-Options: nosniff
+  
+  # Referrer политика
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Permissions политика
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  
+  # XSS защита
+  X-XSS-Protection: 1; mode=block
+  
+  # Кэширование статических ресурсов
+  Cache-Control: public, max-age=31536000
+
+# Специальные заголовки для HTML страниц
+/*.html
+  # Кэш для HTML (короткий)
+  Cache-Control: public, max-age=3600
+  
+  # Дополнительная CSP для HTML
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://www.digistore24.com
+
+# Статические ресурсы - длительный кэш
+/*.css
+  Cache-Control: public, max-age=31536000
+  
+/*.js
+  Cache-Control: public, max-age=31536000
+  
+/*.png
+  Cache-Control: public, max-age=31536000
+  
+/*.jpg
+  Cache-Control: public, max-age=31536000
+  
+/*.jpeg
+  Cache-Control: public, max-age=31536000
+  
+/*.gif
+  Cache-Control: public, max-age=31536000
+  
+/*.svg
+  Cache-Control: public, max-age=31536000
+  
+/*.webp
+  Cache-Control: public, max-age=31536000
+  
+/*.ico
+  Cache-Control: public, max-age=31536000
+
+# robots.txt и sitemap - умеренный кэш
+/robots.txt
+  Cache-Control: public, max-age=86400
+  
+/sitemap.xml
+  Cache-Control: public, max-age=86400
