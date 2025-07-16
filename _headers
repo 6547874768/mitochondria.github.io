@@ -1,7 +1,7 @@
 # Security Headers и редиректы для Health Supplements Hub
 # GitHub Pages + Cloudflare Pro
 
-# Редиректы для множественных слешей (SEO fix)
+# Редиректы для множественных слешей (SEO fix для всего сайта)
 //*    /:splat  301
 ///*   /:splat  301
 ////*  /:splat  301
