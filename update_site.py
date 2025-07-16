@@ -60,6 +60,8 @@ def generate_sitemap():
     
     # AUTO-DETECTION для новых страниц
     print("🔍 Scanning for new pages...")
+    
+    # 1. Поиск папок с index.html
     for root, dirs, files in os.walk('.'):
         dirs[:] = [d for d in dirs if not d.startswith('.')]
         if root == '.':
@@ -70,10 +72,30 @@ def generate_sitemap():
             url_path = '/' + dir_path.replace('\\', '/') + '/'
             
             if not any(page['url'] == url_path for page in pages):
-                print(f"📄 New page found: {url_path}")
+                print(f"📄 New page found (folder): {url_path}")
                 pages.append({
                     'url': url_path,
                     'priority': '0.8',
+                    'changefreq': 'monthly'
+                })
+    
+    # 2. Поиск .html файлов в корне (кроме index.html и 404.html)
+    for file in os.listdir('.'):
+        if file.endswith('.html') and file not in ['index.html', '404.html']:
+            url_path = '/' + file
+            
+            if not any(page['url'] == url_path for page in pages):
+                print(f"📄 New page found (HTML file): {url_path}")
+                # Технические страницы - приоритет 0.7, остальные - 0.8
+                priority = '0.7' if file in [
+                    'affiliate-disclosure.html', 'contact-us.html', 'disclaimer.html',
+                    'editorial-policy.html', 'privacy-policy.html', 'terms-of-use.html',
+                    'sitemap.html', 'about-us.html'
+                ] else '0.8'
+                
+                pages.append({
+                    'url': url_path,
+                    'priority': priority,
                     'changefreq': 'monthly'
                 })
     
