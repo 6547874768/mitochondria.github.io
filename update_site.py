@@ -14,14 +14,22 @@ FAVICON_HTML = '''    <!-- Favicon -->
 def generate_sitemap():
     today = datetime.date.today().strftime('%Y-%m-%d')
     
+    # СТАТИЧЕСКИЕ СТРАНИЦЫ С ПРАВИЛЬНЫМИ ПРИОРИТЕТАМИ
     pages = [
+        # Main Homepage
         {'url': '/', 'priority': '1.0', 'changefreq': 'weekly'},
+        
+        # Product Landing Page
         {'url': '/advanced-mitochondrial-formula/', 'priority': '0.95', 'changefreq': 'monthly'},
+        
+        # Category Pages
         {'url': '/health-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/health-products/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/anti-aging-hacks/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/brain-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/weight-loss-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+        
+        # Content Articles
         {'url': '/mitochondrial-energy-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
         {'url': '/why-always-tired-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
         {'url': '/afternoon-energy-crash-solutions/', 'priority': '0.8', 'changefreq': 'monthly'},
@@ -36,8 +44,22 @@ def generate_sitemap():
         {'url': '/nad-boosting-supplements-comparison/', 'priority': '0.8', 'changefreq': 'monthly'},
         {'url': '/natural-energy-restoration-methods/', 'priority': '0.8', 'changefreq': 'monthly'},
         {'url': '/mens-fatigue-solutions-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/womens-energy-decline-menopause/', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/low-energy-warning-signs-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+        
+        # КРИТИЧЕСКИ ВАЖНЫЕ ТЕХНИЧЕСКИЕ СТРАНИЦЫ для YMYL-сайтов
+        {'url': '/about-us/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/contact-us/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/disclaimer/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/privacy-policy/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/terms-of-use/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/editorial-policy/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/affiliate-disclosure/', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/sitemap/', 'priority': '0.6', 'changefreq': 'weekly'},
     ]
     
+    # AUTO-DETECTION для новых страниц
+    print("🔍 Scanning for new pages...")
     for root, dirs, files in os.walk('.'):
         dirs[:] = [d for d in dirs if not d.startswith('.')]
         if root == '.':
@@ -48,24 +70,43 @@ def generate_sitemap():
             url_path = '/' + dir_path.replace('\\', '/') + '/'
             
             if not any(page['url'] == url_path for page in pages):
-                print(f"New page found: {url_path}")
+                print(f"📄 New page found: {url_path}")
                 pages.append({
                     'url': url_path,
                     'priority': '0.8',
                     'changefreq': 'monthly'
                 })
     
+    # GENERATE XML
     xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-'''
+
+    <!-- Main Homepage -->'''
     
+    # Sort by priority (highest first)
     pages_sorted = sorted(pages, key=lambda x: float(x['priority']), reverse=True)
     
+    current_priority = None
     for page in pages_sorted:
         full_url = SITE_URL + page['url']
+        
+        # Add section comments
+        if current_priority != page['priority']:
+            current_priority = page['priority']
+            if page['priority'] == '0.95':
+                xml_content += '\n\n    <!-- Product Landing Page -->'
+            elif page['priority'] == '0.9':
+                xml_content += '\n\n    <!-- Category Pages -->'
+            elif page['priority'] == '0.8':
+                xml_content += '\n\n    <!-- Content Articles -->'
+            elif page['priority'] == '0.7':
+                xml_content += '\n\n    <!-- CRITICAL TECHNICAL PAGES for YMYL compliance -->'
+            elif page['priority'] == '0.6':
+                xml_content += '\n\n    <!-- Site Navigation -->'
+        
         xml_content += f'''
     <url>
         <loc>{full_url}</loc>
@@ -81,7 +122,14 @@ def generate_sitemap():
     with open('sitemap.xml', 'w', encoding='utf-8') as f:
         f.write(xml_content)
     
-    print(f"Sitemap updated with {len(pages)} pages")
+    print(f"✅ Sitemap updated with {len(pages)} pages")
+    
+    # Count by type
+    technical_pages = [p for p in pages if p['priority'] == '0.7']
+    content_pages = [p for p in pages if p['priority'] == '0.8']
+    print(f"📊 Technical pages: {len(technical_pages)}")
+    print(f"📊 Content pages: {len(content_pages)}")
+    print(f"📊 Total pages: {len(pages)}")
 
 def check_and_add_favicon():
     updated_files = []
