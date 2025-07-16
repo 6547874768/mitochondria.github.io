@@ -163,8 +163,12 @@ jobs:
             xml_lines.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">')
             
             for page in pages:
+                # Убираем двойные слеши в URL
+                clean_url = page['url'].lstrip('/')
+                full_url = f'{SITE_URL}/{clean_url}' if clean_url else SITE_URL
+                
                 xml_lines.append('  <url>')
-                xml_lines.append(f'    <loc>{SITE_URL}{page[\"url\"]}</loc>')
+                xml_lines.append(f'    <loc>{full_url}</loc>')
                 xml_lines.append(f'    <lastmod>{today}</lastmod>')
                 xml_lines.append(f'    <changefreq>{page[\"changefreq\"]}</changefreq>')
                 xml_lines.append(f'    <priority>{page[\"priority\"]}</priority>')
