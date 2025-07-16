@@ -1,4 +1,4 @@
-name: Auto-generate Sitemap + Favicon + Footer
+name: Auto-generate Sitemap + Robots
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Generate sitemap + favicon + footer
+    - name: Generate sitemap + robots.txt
       run: |
         cat > update_site.py << 'EOF'
         import os
@@ -35,14 +35,26 @@ jobs:
             today = datetime.date.today().strftime('%Y-%m-%d')
             pages = []
 
-            # Добавим index.html как главную
+            # Добавим главную страницу
             pages.append({
                 'url': '/',
                 'priority': '1.0',
                 'changefreq': 'weekly'
             })
 
-            # Обход всех .html файлов
+            # Добавим все index.html в подпапках (например /category/index.html => /category/)
+            for root, dirs, files in os.walk('.'):
+                dirs[:] = [d for d in dirs if not d.startswith('.')]
+                if 'index.html' in files and root != '.':
+                    rel_path = os.path.relpath(root, '.')
+                    url_path = '/' + rel_path.replace('\\', '/') + '/'
+                    pages.append({
+                        'url': url_path,
+                        'priority': '0.9',
+                        'changefreq': 'weekly'
+                    })
+
+            # Добавим все отдельные .html файлы (технические или статьи)
             for root, dirs, files in os.walk('.'):
                 dirs[:] = [d for d in dirs if not d.startswith('.')]
                 for file in files:
@@ -54,14 +66,13 @@ jobs:
                             'editorial-policy', 'privacy-policy', 'terms-of-use',
                             'sitemap'
                         ]) else '0.8'
-
                         pages.append({
                             'url': url_path,
                             'priority': priority,
                             'changefreq': 'monthly'
                         })
 
-            # Удалим дубликаты
+            # Удалим дубликаты по URL
             seen = set()
             unique_pages = []
             for p in pages:
@@ -70,6 +81,7 @@ jobs:
                     seen.add(p['url'])
             pages = sorted(unique_pages, key=lambda x: float(x['priority']), reverse=True)
 
+            # Сборка XML
             xml = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 '''
@@ -116,7 +128,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions"
         git add sitemap.xml robots.txt
-        git commit -m "🔄 Auto-generate sitemap.xml and robots.txt"
+        git commit -m "🔄 Auto-regenerated sitemap.xml and robots.txt (only valid URLs)"
         git push
 
     - name: No changes
