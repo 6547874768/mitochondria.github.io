@@ -822,13 +822,15 @@
                 <h1>Advanced Mitochondrial Formula</h1>
                 <p class="subtitle">Dr. Shallenberger's Clinically Proven Breakthrough for Cellular Energy Restoration</p>
                 <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
-                <a href="#" onclick="redirectToOffer(); return false;" class="hero-cta">Get Advanced Formula Now</a>
+                <a href="javascript:void(0);" onclick="redirectToOffer()" class="hero-cta">Get Advanced Formula Now</a>
             </div>
         </section>
         
         <!-- ЛИПКАЯ КНОПКА ДЛЯ МАКСИМАЛЬНЫХ КОНВЕРСИЙ НА ПК -->
-        <div class="sticky-cta">
-            <a href="#" onclick="redirectToOffer(); return false;">🔬 Order Now – 90-Day Guarantee</a>
+        <div id="sticky-cta" style="position:fixed;bottom:20px;left:0;right:0;text-align:center;z-index:9999;">
+            <a href="javascript:void(0);" onclick="redirectToOffer()" style="background:#ff6b35;color:#fff;padding:15px 30px;border-radius:30px;font-weight:bold;text-decoration:none;box-shadow:0 8px 25px rgba(255,107,53,0.4);display:inline-block;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;">
+                🔬 Order Now – 90-Day Guarantee
+            </a>
         </div>
         
         <div class="content">
@@ -884,7 +886,7 @@
                 
                 <div style="margin-top: 35px;">
                     <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
-                    <a href="#" onclick="redirectToOffer(); return false;" class="main-cta-button">Get Dr. Shallenberger's Formula</a>
+                    <a href="javascript:void(0);" onclick="redirectToOffer()" class="main-cta-button">Get Dr. Shallenberger's Formula</a>
                 </div>
             </section>
             
@@ -956,7 +958,7 @@
                     <h2>Ready to Restore Your Energy?</h2>
                     <p>Join thousands of people who've transformed their energy levels with Dr. Shallenberger's breakthrough formula.</p>
                     <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
-                    <a href="#" onclick="redirectToOffer(); return false;" class="main-cta-button">Order Advanced Formula Now</a>
+                    <a href="javascript:void(0);" onclick="redirectToOffer()" class="main-cta-button">Order Advanced Formula Now</a>
                     <p style="margin-top: 25px; font-size: 1em; opacity: 0.9;">
                         ✅ 90-Day Money-Back Guarantee<br>
                         ✅ Free Shipping on Multi-Bottle Orders<br>
@@ -1085,7 +1087,7 @@
                 <h2>Transform Your Energy Today</h2>
                 <p>Don't let another day pass feeling exhausted. Join thousands who've restored their energy with Dr. Shallenberger's breakthrough formula.</p>
                 <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
-                <a href="#" onclick="redirectToOffer(); return false;" class="bottom-cta-button">Get Advanced Formula Now</a>
+                <a href="javascript:void(0);" onclick="redirectToOffer()" class="bottom-cta-button">Get Advanced Formula Now</a>
                 <p style="margin-top: 25px; font-size: 1em; opacity: 0.8;">
                     ✅ 90-Day Money-Back Guarantee<br>
                     ✅ Same Formula Dr. Shallenberger Uses<br>
@@ -1143,13 +1145,13 @@
                     'campaign': urlParams.get('utm_campaign')
                 });
                 
-                // ИСПРАВЛЕНО: Используем location.href вместо window.open для лучшей совместимости
-                location.href = affiliateUrl;
+                // ИСПРАВЛЕНО: Используем window.location.href для максимальной совместимости
+                window.location.href = affiliateUrl;
                 
             } catch (error) {
                 console.error('Error in redirectToOffer:', error);
                 // Резервная ссылка если что-то пошло не так
-                location.href = 'https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=danilichev';
+                window.location.href = 'https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=danilichev';
             }
         }
         
@@ -1277,6 +1279,5 @@
             }
         });
     </script>
-    <script src="../affiliate-tracking.js"></script>
 </body>
 </html>
