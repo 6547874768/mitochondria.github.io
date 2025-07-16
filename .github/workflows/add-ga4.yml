@@ -133,4 +133,5 @@ jobs:
     - name: No changes message
       if: steps.check_changes.outputs.changed == 'false'
       run: |
-        echo "GA4 tracking already present in all HTML files"
+        echo "🟢 GA4 tracking already present in all HTML files"
+        echo "✅ All pages have correct GA4 tracking code"
