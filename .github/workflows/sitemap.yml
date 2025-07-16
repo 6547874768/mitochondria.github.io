@@ -1,4 +1,4 @@
-name: Auto-generate Sitemap + Robots
+name: Auto-generate Sitemap Only
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Generate sitemap + robots.txt
+    - name: Generate sitemap.xml only
       run: |
         python3 -c "
         import os
@@ -180,13 +180,11 @@ jobs:
                 f.write('\\n'.join(xml_lines))
             print(f'✅ sitemap.xml создан: {len(pages)} страниц')
 
-            # Создаем robots.txt
-            with open('robots.txt', 'w', encoding='utf-8') as f:
-                f.write(f'User-agent: *\\nAllow: /\\n\\nSitemap: {SITE_URL}/sitemap.xml')
-            print('✅ robots.txt создан')
+            # ROBOTS.TXT УДАЛЕН - больше не генерируется автоматически
+            print('🚫 robots.txt не изменяется - управляется вручную')
 
         def main():
-            print('🚀 Генерация sitemap.xml и robots.txt...')
+            print('🚀 Генерация sitemap.xml...')
             generate_sitemap()
             print('✅ Генерация завершена!')
 
@@ -199,12 +197,12 @@ jobs:
     - name: Check for changes
       id: check_changes
       run: |
-        if git diff --quiet; then
+        if git diff --quiet sitemap.xml; then
           echo "changed=false" >> $GITHUB_OUTPUT
-          echo "No changes detected"
+          echo "No changes detected in sitemap.xml"
         else
           echo "changed=true" >> $GITHUB_OUTPUT
-          echo "Changes detected"
+          echo "Changes detected in sitemap.xml"
         fi
 
     - name: Commit and push changes
@@ -212,15 +210,15 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions"
-        git add sitemap.xml robots.txt
-        git commit -m "🔄 Auto-regenerated sitemap.xml and robots.txt
+        git add sitemap.xml
+        git commit -m "🔄 Auto-regenerated sitemap.xml only
 
         📊 Complete sitemap with all pages
         🔧 Fixed XML structure with proper <urlset> tags
         ✅ Technical pages priority 0.7, content pages 0.8
-        🤖 Updated robots.txt with sitemap reference"
+        🚫 robots.txt not touched - manual control"
         git push
 
     - name: No changes
       if: steps.check_changes.outputs.changed == 'false'
-      run: echo "🟢 Всё актуально. Обновления не нужны."
+      run: echo "🟢 Sitemap актуальный. Обновления не нужны."
