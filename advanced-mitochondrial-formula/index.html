@@ -143,7 +143,8 @@
             margin-bottom: 50px;
         }
         
-        .hero-cta {
+        /* ИСПРАВЛЕННЫЕ CTA КНОПКИ - ТЕПЕРЬ ЭТО ССЫЛКИ! */
+        .hero-cta, .main-cta-button, .bottom-cta-button {
             background: linear-gradient(45deg, #ff6b35, #f7931e);
             color: white;
             padding: 22px 50px;
@@ -160,10 +161,71 @@
             display: inline-block;
         }
         
-        .hero-cta:hover {
+        .hero-cta:hover, .main-cta-button:hover, .bottom-cta-button:hover {
             background: linear-gradient(45deg, #e55a2b, #e6851f);
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* БЕЛАЯ КНОПКА В СЕРЕДИНЕ */
+        .main-cta-button {
+            background: white;
+            color: #ff6b35;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .main-cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+        
+        /* ЛИПКАЯ КНОПКА ДЛЯ ПК - КРИТИЧНО! */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        .sticky-cta a {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            display: inline-block;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sticky-cta a:hover {
+            background: linear-gradient(45deg, #e55a2b, #e6851f);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        /* Скрыть липкую кнопку на мобилках */
+        @media (max-width: 768px) {
+            .sticky-cta {
+                display: none;
+            }
         }
         
         .content {
@@ -459,30 +521,6 @@
             margin-bottom: 40px;
         }
         
-        .main-cta-button {
-            background: white;
-            color: #ff6b35;
-            padding: 22px 50px;
-            font-size: 1.5em;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 15px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .main-cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            background: #f8f9fa;
-        }
-        
         .benefits-list {
             background: linear-gradient(135deg, #f0fff4 0%, #dcfce7 100%);
             padding: 40px;
@@ -623,30 +661,6 @@
             margin-bottom: 40px;
         }
         
-        .bottom-cta-button {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            color: white;
-            padding: 22px 50px;
-            font-size: 1.4em;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 15px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .bottom-cta-button:hover {
-            background: linear-gradient(45deg, #e55a2b, #e6851f);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-        
         .gender-section {
             margin: 50px 0;
         }
@@ -724,13 +738,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .main-cta-button, .bottom-cta-button {
+            .main-cta-button, .bottom-cta-button, .hero-cta {
                 padding: 18px 35px;
-                font-size: 1.2em;
-            }
-            
-            .hero-cta {
-                padding: 18px 40px;
                 font-size: 1.2em;
             }
             
@@ -774,17 +783,13 @@
         }
         
         /* Loading States */
-        .cta-button.loading,
-        .main-cta-button.loading,
-        .bottom-cta-button.loading {
+        .hero-cta.loading, .main-cta-button.loading, .bottom-cta-button.loading {
             opacity: 0.7;
             cursor: not-allowed;
             pointer-events: none;
         }
         
-        .cta-button.loading::after,
-        .main-cta-button.loading::after,
-        .bottom-cta-button.loading::after {
+        .hero-cta.loading::after, .main-cta-button.loading::after, .bottom-cta-button.loading::after {
             content: '';
             width: 16px;
             height: 16px;
@@ -816,9 +821,15 @@
             <div class="hero-content">
                 <h1>Advanced Mitochondrial Formula</h1>
                 <p class="subtitle">Dr. Shallenberger's Clinically Proven Breakthrough for Cellular Energy Restoration</p>
-                <button onclick="redirectToOffer()" class="hero-cta">Get Advanced Formula Now</button>
+                <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
+                <a href="#" onclick="redirectToOffer(); return false;" class="hero-cta">Get Advanced Formula Now</a>
             </div>
         </section>
+        
+        <!-- ЛИПКАЯ КНОПКА ДЛЯ МАКСИМАЛЬНЫХ КОНВЕРСИЙ НА ПК -->
+        <div class="sticky-cta">
+            <a href="#" onclick="redirectToOffer(); return false;">🔬 Order Now – 90-Day Guarantee</a>
+        </div>
         
         <div class="content">
             <section class="section">
@@ -872,7 +883,8 @@
                 <p style="font-size: 1.2em; margin-top: 25px; line-height: 1.6;"><strong>He still rides his bicycle around Lake Tahoe, backpacks up mountains, and does whatever he wants without limitation.</strong> <a href="/mitochondrial-supplements-research/" class="problem-link">Discover his 30+ year research breakthrough</a>.</p>
                 
                 <div style="margin-top: 35px;">
-                    <button onclick="redirectToOffer()" class="main-cta-button">Get Dr. Shallenberger's Formula</button>
+                    <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
+                    <a href="#" onclick="redirectToOffer(); return false;" class="main-cta-button">Get Dr. Shallenberger's Formula</a>
                 </div>
             </section>
             
@@ -943,7 +955,8 @@
                 <div class="cta-content">
                     <h2>Ready to Restore Your Energy?</h2>
                     <p>Join thousands of people who've transformed their energy levels with Dr. Shallenberger's breakthrough formula.</p>
-                    <button onclick="redirectToOffer()" class="main-cta-button">Order Advanced Formula Now</button>
+                    <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
+                    <a href="#" onclick="redirectToOffer(); return false;" class="main-cta-button">Order Advanced Formula Now</a>
                     <p style="margin-top: 25px; font-size: 1em; opacity: 0.9;">
                         ✅ 90-Day Money-Back Guarantee<br>
                         ✅ Free Shipping on Multi-Bottle Orders<br>
@@ -1071,7 +1084,8 @@
             <div class="bottom-cta-content">
                 <h2>Transform Your Energy Today</h2>
                 <p>Don't let another day pass feeling exhausted. Join thousands who've restored their energy with Dr. Shallenberger's breakthrough formula.</p>
-                <button onclick="redirectToOffer()" class="bottom-cta-button">Get Advanced Formula Now</button>
+                <!-- ИСПРАВЛЕНО: теперь это ссылка, а не кнопка! -->
+                <a href="#" onclick="redirectToOffer(); return false;" class="bottom-cta-button">Get Advanced Formula Now</a>
                 <p style="margin-top: 25px; font-size: 1em; opacity: 0.8;">
                     ✅ 90-Day Money-Back Guarantee<br>
                     ✅ Same Formula Dr. Shallenberger Uses<br>
@@ -1082,7 +1096,7 @@
     </div>
 
     <script>
-        // ПРАВИЛЬНАЯ ПАРТНЕРСКАЯ ССЫЛКА - ЭТО КЛЮЧ К 70+ ПРОДАЖАМ!
+        // ИСПРАВЛЕННАЯ ФУНКЦИЯ ДЛЯ МАКСИМАЛЬНЫХ КОНВЕРСИЙ!
         function redirectToOffer() {
             try {
                 // Получаем clickid из URL параметров PropellerAds
@@ -1129,13 +1143,13 @@
                     'campaign': urlParams.get('utm_campaign')
                 });
                 
-                // Переход на партнерскую ссылку
-                window.open(affiliateUrl, '_blank');
+                // ИСПРАВЛЕНО: Используем location.href вместо window.open для лучшей совместимости
+                location.href = affiliateUrl;
                 
             } catch (error) {
                 console.error('Error in redirectToOffer:', error);
                 // Резервная ссылка если что-то пошло не так
-                window.open('https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=danilichev', '_blank');
+                location.href = 'https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=danilichev';
             }
         }
         
@@ -1263,6 +1277,5 @@
             }
         });
     </script>
-    <script src="../affiliate-tracking.js"></script>
 </body>
 </html>
