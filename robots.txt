@@ -17,6 +17,9 @@ Disallow: /*?
 Disallow: /search
 Disallow: /?s=
 
+# Block multiple slashes (SEO protection)
+Disallow: //
+
 # Block common admin paths
 Disallow: /admin/
 Disallow: /login/
