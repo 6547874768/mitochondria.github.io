@@ -67,17 +67,24 @@ jobs:
                         rel_path = os.path.relpath(os.path.join(root, file), '.')
                         url_path = '/' + rel_path.replace('\\\\', '/')
                         
-                        # Убираем .html из URL для SEO-friendly URLs
-                        if url_path.endswith('.html'):
-                            url_path = url_path[:-5] + '/'
-                        
-                        priority = '0.7' if any(kw in file for kw in [
+                        # Технические страницы остаются как .html
+                        is_technical = any(kw in file for kw in [
                             'affiliate-disclosure', 'contact-us', 'disclaimer',
                             'editorial-policy', 'privacy-policy', 'terms-of-use',
-                            'sitemap'
-                        ]) else '0.8'
+                            'sitemap', 'about-us'
+                        ])
+                        
+                        if is_technical:
+                            # Технические страницы: оставляем .html
+                            priority = '0.7'
+                            url_final = url_path
+                        else:
+                            # Контентные страницы: убираем .html, добавляем /
+                            priority = '0.8'
+                            url_final = url_path[:-5] + '/' if url_path.endswith('.html') else url_path
+                        
                         pages.append({
-                            'url': url_path,
+                            'url': url_final,
                             'priority': priority,
                             'changefreq': 'monthly'
                         })
