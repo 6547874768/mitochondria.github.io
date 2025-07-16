@@ -25,11 +25,11 @@ jobs:
 
     - name: Generate sitemap + robots.txt
       run: |
-        cat > update_site.py << 'EOF'
+        python3 -c "
         import os
         import datetime
 
-        SITE_URL = "https://www.danilichev.info"
+        SITE_URL = 'https://www.danilichev.info'
 
         def generate_sitemap():
             today = datetime.date.today().strftime('%Y-%m-%d')
@@ -47,7 +47,7 @@ jobs:
                 dirs[:] = [d for d in dirs if not d.startswith('.')]
                 if 'index.html' in files and root != '.':
                     rel_path = os.path.relpath(root, '.')
-                    url_path = '/' + rel_path.replace('\\', '/') + '/'
+                    url_path = '/' + rel_path.replace('\\\\', '/') + '/'
                     pages.append({
                         'url': url_path,
                         'priority': '0.9',
@@ -60,7 +60,7 @@ jobs:
                 for file in files:
                     if file.endswith('.html') and file not in ['index.html', '404.html']:
                         rel_path = os.path.relpath(os.path.join(root, file), '.')
-                        url_path = '/' + rel_path.replace('\\', '/')
+                        url_path = '/' + rel_path.replace('\\\\', '/')
                         priority = '0.7' if any(kw in file for kw in [
                             'affiliate-disclosure', 'contact-us', 'disclaimer',
                             'editorial-policy', 'privacy-policy', 'terms-of-use',
@@ -82,42 +82,42 @@ jobs:
             pages = sorted(unique_pages, key=lambda x: float(x['priority']), reverse=True)
 
             # Сборка XML с правильной структурой
-            xml = '''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-'''
+            xml_content = []
+            xml_content.append('<?xml version=\"1.0\" encoding=\"UTF-8\"?>')
+            xml_content.append('<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"')
+            xml_content.append('        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"')
+            xml_content.append('        xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9')
+            xml_content.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">')
             
             for page in pages:
-                xml += f'''  <url>
-    <loc>{SITE_URL}{page['url']}</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>{page['changefreq']}</changefreq>
-    <priority>{page['priority']}</priority>
-  </url>
-'''
-            xml += '</urlset>'
-
+                xml_content.append('  <url>')
+                xml_content.append(f'    <loc>{SITE_URL}{page[\"url\"]}</loc>')
+                xml_content.append(f'    <lastmod>{today}</lastmod>')
+                xml_content.append(f'    <changefreq>{page[\"changefreq\"]}</changefreq>')
+                xml_content.append(f'    <priority>{page[\"priority\"]}</priority>')
+                xml_content.append('  </url>')
+            
+            xml_content.append('</urlset>')
+            
             with open('sitemap.xml', 'w', encoding='utf-8') as f:
-                f.write(xml)
-            print(f"✅ sitemap.xml создан: {len(pages)} страниц")
+                f.write('\\n'.join(xml_content))
+            print(f'✅ sitemap.xml создан: {len(pages)} страниц')
 
             # Создаем robots.txt
             with open('robots.txt', 'w', encoding='utf-8') as f:
-                f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml")
-            print("✅ robots.txt создан")
+                f.write(f'User-agent: *\\nAllow: /\\n\\nSitemap: {SITE_URL}/sitemap.xml')
+            print('✅ robots.txt создан')
 
         def main():
-            print("🚀 Генерация sitemap.xml и robots.txt...")
+            print('🚀 Генерация sitemap.xml и robots.txt...')
             generate_sitemap()
-            print("✅ Генерация завершена!")
+            print('✅ Генерация завершена!')
 
-        if __name__ == "__main__":
+        if __name__ == '__main__':
             main()
-        EOF
 
-        python update_site.py
+        main()
+        "
 
     - name: Check for changes
       id: check_changes
@@ -138,7 +138,7 @@ jobs:
         git add sitemap.xml robots.txt
         git commit -m "🔄 Auto-regenerated sitemap.xml and robots.txt
 
-        📊 Complete sitemap with all 41 pages
+        📊 Complete sitemap with all pages
         🔧 Fixed XML structure with proper <urlset> tags
         ✅ Technical pages priority 0.7, content pages 0.8
         🤖 Updated robots.txt with sitemap reference"
