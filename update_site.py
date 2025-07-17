@@ -1,5 +1,6 @@
 import os
 import datetime
+import re
 
 SITE_URL = "https://www.danilichev.info"
 
@@ -10,6 +11,141 @@ FAVICON_HTML = '''    <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Health Supplements Hub" />
 <link rel="manifest" href="/site.webmanifest" />'''
+
+def get_page_title(file_path):
+    """Извлекает title из HTML файла"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Ищем <title>...</title>
+        title_match = re.search(r'<title[^>]*>(.*?)</title>', content, re.IGNORECASE | re.DOTALL)
+        if title_match:
+            title = title_match.group(1).strip()
+            # Убираем общую часть сайта из title
+            title = re.sub(r'\s*-\s*Health Supplements Hub.*$', '', title)
+            title = re.sub(r'\s*\|\s*Health Supplements Hub.*$', '', title)
+            return title[:60]  # Ограничиваем длину
+        
+        # Если title нет, пытаемся взять из h1
+        h1_match = re.search(r'<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE | re.DOTALL)
+        if h1_match:
+            h1_text = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip()
+            return h1_text[:60]
+        
+        # Если ничего нет, генерируем из URL
+        dir_name = os.path.basename(os.path.dirname(file_path))
+        return dir_name.replace('-', ' ').title()
+        
+    except Exception as e:
+        print(f"Ошибка чтения title из {file_path}: {e}")
+        return "Unknown Page"
+
+def scan_content_pages():
+    """Сканирует только контентные страницы в папках (исключает .html файлы)"""
+    
+    # Исключаемые папки (главная + 5 категорий)
+    excluded_dirs = {
+        'health-supplements', 'health-products', 'anti-aging-hacks', 
+        'brain-supplements', 'weight-loss-supplements'
+    }
+    
+    content_pages = []
+    
+    # ТОЛЬКО папки с index.html (статьи со слешем /)
+    for root, dirs, files in os.walk('.'):
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        
+        if root == '.':
+            continue
+            
+        dir_name = os.path.basename(root)
+        if dir_name in excluded_dirs:
+            continue
+            
+        if 'index.html' in files:
+            file_path = os.path.join(root, 'index.html')
+            url_path = '/' + os.path.relpath(root, '.').replace('\\', '/') + '/'
+            title = get_page_title(file_path)
+            
+            # Получаем дату последнего изменения
+            mod_time = os.path.getmtime(file_path)
+            mod_date = datetime.datetime.fromtimestamp(mod_time)
+            
+            content_pages.append({
+                'url': url_path,
+                'title': title,
+                'file_path': file_path,
+                'mod_date': mod_date
+            })
+            print(f"📄 Найдена статья: {url_path} - {title}")
+    
+    # НЕ сканируем .html файлы - это технические страницы
+    
+    # Сортируем по дате изменения (новые сверху)
+    content_pages.sort(key=lambda x: x['mod_date'], reverse=True)
+    
+    print(f"🔍 Найдено {len(content_pages)} контентных страниц (только папки со слешем)")
+    return content_pages
+
+def update_footer_component():
+    """Обновляет footer-component.js с актуальным списком статей"""
+    
+    content_pages = scan_content_pages()
+    
+    # Берем топ-10 самых свежих статей для футера
+    popular_articles = content_pages[:10]
+    
+    # Генерируем HTML для популярных статей
+    popular_html = ""
+    for page in popular_articles:
+        # Добавляем эмодзи для некоторых популярных статей
+        title = page['title']
+        if 'mitochondrial' in title.lower() and 'formula' in title.lower():
+            title = f"🚀 {title}"
+        elif any(word in title.lower() for word in ['tired', 'fatigue', 'energy']):
+            title = f"⚡ {title}"
+        elif 'brain' in title.lower():
+            title = f"🧠 {title}"
+        elif 'nad' in title.lower():
+            title = f"🔬 {title}"
+            
+        popular_html += f'                    <li><a href="{page["url"]}">{title}</a></li>\n'
+    
+    # Читаем текущий footer-component.js
+    footer_file = 'footer-component.js'
+    
+    try:
+        with open(footer_file, 'r', encoding='utf-8') as f:
+            footer_content = f.read()
+    except FileNotFoundError:
+        print(f"❌ Файл {footer_file} не найден!")
+        return False
+    
+    # Находим секцию "Popular Articles" и заменяем её
+    pattern = r'(<h3>🔥 Popular Articles</h3>\s*<ul>\s*)(.*?)(\s*</ul>)'
+    
+    new_popular_section = f'\\g<1>{popular_html.rstrip()}\\g<3>'
+    
+    new_footer_content = re.sub(pattern, new_popular_section, footer_content, flags=re.DOTALL)
+    
+    # Проверяем, что замена произошла
+    if new_footer_content == footer_content:
+        print("⚠️ Секция Popular Articles не найдена или не изменилась")
+        return False
+    
+    # Сохраняем обновленный файл
+    with open(footer_file, 'w', encoding='utf-8') as f:
+        f.write(new_footer_content)
+    
+    print(f"✅ Footer обновлен! Добавлено {len(popular_articles)} популярных статей")
+    
+    # Выводим список обновленных статей
+    print("📋 Обновленный список популярных статей:")
+    for i, page in enumerate(popular_articles, 1):
+        print(f"   {i}. {page['title']} → {page['url']}")
+    
+    return True
 
 def generate_sitemap():
     today = datetime.date.today().strftime('%Y-%m-%d')
@@ -28,34 +164,6 @@ def generate_sitemap():
         {'url': '/anti-aging-hacks/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/brain-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
         {'url': '/weight-loss-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
-        
-        # Content Articles
-        {'url': '/mitochondrial-energy-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/why-always-tired-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/afternoon-energy-crash-solutions/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/brain-fog-after-40-causes/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/chronic-fatigue-not-aging/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/low-energy-warning-signs/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/nad-decline-after-40-effects/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/mitochondrial-dysfunction-aging-process/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/cellular-energy-production-slowdown/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/mitochondrial-supplements-research/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/best-energy-supplements-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/nad-boosting-supplements-comparison/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/natural-energy-restoration-methods/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/mens-fatigue-solutions-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/womens-energy-decline-menopause/', 'priority': '0.8', 'changefreq': 'monthly'},
-        {'url': '/low-energy-warning-signs-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
-        
-        # КРИТИЧЕСКИ ВАЖНЫЕ ТЕХНИЧЕСКИЕ СТРАНИЦЫ для YMYL-сайтов
-        {'url': '/about-us/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/contact-us/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/disclaimer/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/privacy-policy/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/terms-of-use/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/editorial-policy/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/affiliate-disclosure/', 'priority': '0.7', 'changefreq': 'monthly'},
-        {'url': '/sitemap/', 'priority': '0.6', 'changefreq': 'weekly'},
     ]
     
     # AUTO-DETECTION для новых страниц
@@ -252,10 +360,23 @@ def add_footer_to_content_pages():
 
 def main():
     print("🚀 Starting site update...")
+    print("=" * 50)
+    
+    print("\n1️⃣ Обновление футера...")
+    update_footer_component()
+    
+    print("\n2️⃣ Генерация sitemap...")
     generate_sitemap()
+    
+    print("\n3️⃣ Проверка favicon...")
     check_and_add_favicon()
+    
+    print("\n4️⃣ Добавление футера на страницы...")
     add_footer_to_content_pages()
-    print("✅ Update completed!")
+    
+    print("\n" + "=" * 50)
+    print("✅ Обновление сайта завершено!")
+    print("🎯 Футер автоматически обновлен с актуальными статьями")
 
 if __name__ == "__main__":
     main()
