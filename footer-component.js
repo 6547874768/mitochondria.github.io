@@ -35,11 +35,16 @@ function getFooterHTML() {
             <div class="footer-section">
                 <h3>🔥 Popular Articles</h3>
                 <ul>
-                    <li><a href="/why-always-tired-after-40/">Why Am I Always Tired After 40?</a></li>
-                    <li><a href="/brain-fog-after-40-causes/">Brain Fog After 40: Causes</a></li>
-                    <li><a href="/nad-decline-after-40-effects/">NAD Decline After 40 Effects</a></li>
-                    <li><a href="/mitochondrial-energy-guide/">Mitochondrial Energy Guide</a></li>
-                    <li><a href="/advanced-mitochondrial-formula/">🚀 Advanced Mitochondrial Formula</a></li>
+                                        <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
+                    <li><a href="/why-always-tired-after-40/">⚡ Research on Energy Changes After 40: Understanding Cellular </a></li>
+                    <li><a href="/natural-energy-restoration-methods/">⚡ Natural Energy Support Methods: Research-Based Approaches Be</a></li>
+                    <li><a href="/the-essential-keto-cookbook/">The Essential Keto Cookbook: Complete Recipe Collection for </a></li>
+                    <li><a href="/mitochondrial-supplements-research/">Research on Mitochondrial Support: Dr. Shallenberger's Appro</a></li>
+                    <li><a href="/low-energy-warning-signs/">⚡ Research on Energy Pattern Changes: 7 Key Observations</a></li>
+                    <li><a href="/mitochondrial-dysfunction-aging-process/">Mitochondrial Function Research: Understanding Cellular Chan</a></li>
+                    <li><a href="/mitochondrial-energy-guide/">⚡ Understanding Mitochondrial Energy: Research on Cellular Fun</a></li>
+                    <li><a href="/nad-decline-after-40-effects/">🔬 Research on NAD Changes by Age 60: Understanding Cellular Bi</a></li>
+                    <li><a href="/mens-fatigue-solutions-over-40/">⚡ Research on Men's Energy Changes Over 40: Understanding Supp</a></li>
                 </ul>
             </div>
             
