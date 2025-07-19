@@ -35,15 +35,15 @@ function getFooterHTML() {
             <div class="footer-section">
                 <h3>🔥 Popular Articles</h3>
                 <ul>
-                                                                                                                                                                                                                                                <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
                     <li><a href="/why-always-tired-after-40/">⚡ Research on Energy Changes After 40: Understanding Cellular </a></li>
                     <li><a href="/the-keto-snacks-cookbook/">The Keto Snacks Cookbook: Your Ultimate Guide to Low-Carb Sn</a></li>
+                    <li><a href="/mitochondrial-supplements-research/">Research on Mitochondrial Support: Dr. Shallenberger's Appro</a></li>
                     <li><a href="/natural-energy-restoration-methods/">⚡ Natural Energy Support Methods: Research-Based Approaches Be</a></li>
                     <li><a href="/nad-decline-after-40-effects/">🔬 Research on NAD Changes by Age 60: Understanding Cellular Bi</a></li>
                     <li><a href="/the-essential-keto-cookbook/">The Essential Keto Cookbook: Complete Recipe Collection for </a></li>
                     <li><a href="/nad-boosting-supplements-comparison/">⚡ Energy Support Options for People Over 40: Research-Based Gu</a></li>
                     <li><a href="/reducing-inflammation-with-keto/">Reducing Inflammation with Keto: Evidence-Based Anti-Inflamm</a></li>
-                    <li><a href="/mitochondrial-supplements-research/">Research on Mitochondrial Support: Dr. Shallenberger's Appro</a></li>
                     <li><a href="/low-energy-warning-signs/">⚡ Research on Energy Pattern Changes: 7 Key Observations</a></li>
                 </ul>
             </div>
