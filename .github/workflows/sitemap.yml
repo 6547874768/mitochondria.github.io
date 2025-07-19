@@ -1,0 +1,224 @@
+name: Auto-generate Sitemap Only
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Generate sitemap.xml only
+      run: |
+        python3 -c "
+        import os
+        import datetime
+
+        SITE_URL = 'https://www.danilichev.info'
+
+        def generate_sitemap():
+            today = datetime.date.today().strftime('%Y-%m-%d')
+            pages = []
+
+            # Добавим главную страницу
+            pages.append({
+                'url': '/',
+                'priority': '1.0',
+                'changefreq': 'weekly'
+            })
+
+            # Принудительно добавляем все известные страницы
+            known_pages = [
+                # Категории (приоритет 0.9)
+                {'url': '/health-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/health-products/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/anti-aging-hacks/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/brain-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                {'url': '/weight-loss-supplements/', 'priority': '0.9', 'changefreq': 'weekly'},
+                
+                # Лендинг и контентные страницы (приоритет 0.8)
+                {'url': '/advanced-mitochondrial-formula/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mitochondrial-energy-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/why-always-tired-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/afternoon-energy-crash-solutions/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/brain-fog-after-40-causes/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/chronic-fatigue-not-aging/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/low-energy-warning-signs/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/nad-decline-after-40-effects/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mitochondrial-dysfunction-aging-process/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/cellular-energy-production-slowdown/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mitochondrial-supplements-research/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/best-energy-supplements-after-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/nad-boosting-supplements-comparison/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/natural-energy-restoration-methods/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mens-fatigue-solutions-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/womens-energy-decline-menopause/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/low-energy-warning-signs-over-40/', 'priority': '0.8', 'changefreq': 'monthly'},
+                
+                # Дополнительные контентные страницы (если есть)
+                {'url': '/energy-boosting-foods/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/sleep-optimization-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/stress-management-techniques/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/exercise-for-energy/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/vitamin-deficiency-fatigue/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/hormone-balance-energy/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/metabolism-boost-guide/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/anti-inflammatory-diet/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/detox-for-energy/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/mindfulness-for-fatigue/', 'priority': '0.8', 'changefreq': 'monthly'},
+                {'url': '/circadian-rhythm-optimization/', 'priority': '0.8', 'changefreq': 'monthly'},
+                
+                # Технические страницы (приоритет 0.7)
+                {'url': '/about-us.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/contact-us.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/privacy-policy.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/terms-of-use.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/disclaimer.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/affiliate-disclosure.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/editorial-policy.html', 'priority': '0.7', 'changefreq': 'monthly'},
+                {'url': '/sitemap.html', 'priority': '0.7', 'changefreq': 'monthly'}
+            ]
+            
+            pages.extend(known_pages)
+
+            # Дополнительно сканируем файловую систему для новых страниц
+            for root, dirs, files in os.walk('.'):
+                dirs[:] = [d for d in dirs if not d.startswith('.')]
+                
+                # Сканируем index.html в папках
+                if 'index.html' in files and root != '.':
+                    rel_path = os.path.relpath(root, '.')
+                    url_path = '/' + rel_path.replace('\\\\', '/') + '/'
+                    
+                    # Проверяем, есть ли уже такая страница
+                    if not any(p['url'] == url_path for p in pages):
+                        category_folders = ['health-supplements', 'health-products', 'anti-aging-hacks', 'brain-supplements', 'weight-loss-supplements']
+                        priority = '0.9' if any(cat in rel_path for cat in category_folders) else '0.8'
+                        
+                        pages.append({
+                            'url': url_path,
+                            'priority': priority,
+                            'changefreq': 'weekly' if priority == '0.9' else 'monthly'
+                        })
+
+                # Сканируем отдельные .html файлы
+                for file in files:
+                    if file.endswith('.html') and file not in ['index.html', '404.html']:
+                        rel_path = os.path.relpath(os.path.join(root, file), '.')
+                        url_path = '/' + rel_path.replace('\\\\', '/')
+                        
+                        # Проверяем, есть ли уже такая страница
+                        if not any(p['url'] == url_path for p in pages):
+                            is_technical = any(kw in file for kw in [
+                                'affiliate-disclosure', 'contact-us', 'disclaimer',
+                                'editorial-policy', 'privacy-policy', 'terms-of-use',
+                                'sitemap', 'about-us'
+                            ])
+                            
+                            if is_technical:
+                                priority = '0.7'
+                                url_final = url_path
+                            else:
+                                priority = '0.8'
+                                url_final = url_path[:-5] + '/' if url_path.endswith('.html') else url_path
+                            
+                            pages.append({
+                                'url': url_final,
+                                'priority': priority,
+                                'changefreq': 'monthly'
+                            })
+
+            # Удалим дубликаты по URL
+            seen = set()
+            unique_pages = []
+            for p in pages:
+                if p['url'] not in seen:
+                    unique_pages.append(p)
+                    seen.add(p['url'])
+            
+            # Сортируем по приоритету
+            pages = sorted(unique_pages, key=lambda x: float(x['priority']), reverse=True)
+
+            # Сборка XML с правильной структурой (БЕЗ script тегов)
+            xml_lines = []
+            xml_lines.append('<?xml version=\"1.0\" encoding=\"UTF-8\"?>')
+            xml_lines.append('<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"')
+            xml_lines.append('        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"')
+            xml_lines.append('        xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9')
+            xml_lines.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">')
+            
+            for page in pages:
+                # Убираем двойные слеши в URL
+                clean_url = page['url'].lstrip('/')
+                full_url = f'{SITE_URL}/{clean_url}' if clean_url else SITE_URL
+                
+                xml_lines.append('  <url>')
+                xml_lines.append(f'    <loc>{full_url}</loc>')
+                xml_lines.append(f'    <lastmod>{today}</lastmod>')
+                xml_lines.append(f'    <changefreq>{page[\"changefreq\"]}</changefreq>')
+                xml_lines.append(f'    <priority>{page[\"priority\"]}</priority>')
+                xml_lines.append('  </url>')
+            
+            xml_lines.append('</urlset>')
+            
+            with open('sitemap.xml', 'w', encoding='utf-8') as f:
+                f.write('\\n'.join(xml_lines))
+            print(f'✅ sitemap.xml создан: {len(pages)} страниц')
+
+            # ROBOTS.TXT УДАЛЕН - больше не генерируется автоматически
+            print('🚫 robots.txt не изменяется - управляется вручную')
+
+        def main():
+            print('🚀 Генерация sitemap.xml...')
+            generate_sitemap()
+            print('✅ Генерация завершена!')
+
+        if __name__ == '__main__':
+            main()
+
+        main()
+        "
+
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet sitemap.xml; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "No changes detected in sitemap.xml"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Changes detected in sitemap.xml"
+        fi
+
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "GitHub Actions"
+        git add sitemap.xml
+        git commit -m "🔄 Auto-regenerated sitemap.xml only
+
+        📊 Complete sitemap with all pages
+        🔧 Fixed XML structure with proper <urlset> tags
+        ✅ Technical pages priority 0.7, content pages 0.8
+        🚫 robots.txt not touched - manual control"
+        git push
+
+    - name: No changes
+      if: steps.check_changes.outputs.changed == 'false'
+      run: echo "🟢 Sitemap актуальный. Обновления не нужны."

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Health Supplements Hub | Get in Touch</title>
+    <meta name="description" content="Contact Health Supplements Hub for questions, feedback, or support. Multiple ways to reach our team including email, content inquiries, and technical support.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #ff6b35;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            font-style: italic;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-left: 4px solid #ff6b35;
+            padding-left: 20px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #fff3cd 0%, #fff3cd 100%);
+            padding: 25px;
+            border-left: 5px solid #ff6b35;
+            margin: 30px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #f1f3f4;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .contact-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-email {
+            color: #ff6b35;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+        
+        .response-times {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .response-times ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .response-times li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.1em;
+        }
+        
+        .response-times li:before {
+            content: "⏰";
+            position: absolute;
+            left: 0;
+        }
+        
+        .support-categories {
+            background: #e8f5e8;
+            border: 2px solid #c3e6c3;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .category-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .category-emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .office-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .office-info h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .business-hours {
+            background: #fff5f5;
+            border: 2px solid #fed7d7;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .hours-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .day {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .time {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .internal-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dotted #ff6b35;
+        }
+        
+        .internal-link:hover {
+            color: #e55a2b;
+            border-bottom: 1px solid #e55a2b;
+        }
+        
+        .contact-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .form-note {
+            background: #e8f4fd;
+            border: 2px solid #bee5eb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .policies-links {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .policies-links h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        
+        .policies-links ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .policies-links li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .emergency-notice {
+            background: #fee;
+            border: 2px solid #fcc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .emergency-notice h3 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+        
+        .feedback-cta {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .feedback-cta h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Health Supplements Hub" />
+<link rel="manifest" href="/site.webmanifest" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HMDTQL1LWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HMDTQL1LWD');
+</script>
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://www.digistore24.com;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "YOUR_PROJECT_ID");
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contact Us</h1>
+            <p class="subtitle">We're Here to Help with Your Health Questions</p>
+        </div>
+
+        <div class="highlight">
+            <h3>💬 Get in Touch</h3>
+            <p>Have questions about health supplements, need clarification on our content, or want to share feedback? We're here to help and would love to hear from you!</p>
+        </div>
+
+        <div class="emergency-notice">
+            <h3>🚨 Important Notice</h3>
+            <p><strong>For Medical Emergencies:</strong> Please contact emergency services immediately. Our content is for informational purposes only and should not be used for medical emergencies or urgent health concerns.</p>
+        </div>
+
+        <h2>How to Reach Us</h2>
+        
+        <div class="contact-methods">
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
+                <div class="contact-title">General Inquiries</div>
+                <p>Questions about our content, suggestions, or general feedback</p>
+                <a href="mailto:info@danilichev.info" class="contact-email">info@danilichev.info</a>
+            </div>
+            
+            <div class="contact-card">
+                <span class="contact-icon">📝</span>
+                <div class="contact-title">Editorial Team</div>
+                <p>Content accuracy, source questions, or fact-checking concerns</p>
+                <a href="mailto:editorial@danilichev.info" class="contact-email">editorial@danilichev.info</a>
+            </div>
+            
+            <div class="contact-card">
+                <span class="contact-icon">🔧</span>
+                <div class="contact-title">Technical Support</div>
+                <p>Website issues, broken links, or technical problems</p>
+                <a href="mailto:support@danilichev.info" class="contact-email">support@danilichev.info</a>
+            </div>
+            
+            <div class="contact-card">
+                <span class="contact-icon">🤝</span>
+                <div class="contact-title">Business Inquiries</div>
+                <p>Partnership opportunities, media requests, or business matters</p>
+                <a href="mailto:business@danilichev.info" class="contact-email">business@danilichev.info</a>
+            </div>
+        </div>
+
+        <h2>What We Can Help With</h2>
+        
+        <div class="support-categories">
+            <h3>🎯 Common Inquiry Categories:</h3>
+            <div class="category-grid">
+                <div class="category-item">
+                    <span class="category-emoji">💊</span>
+                    <h4>Supplement Questions</h4>
+                    <p>Information about health supplements and their benefits</p>
+                </div>
+                
+                <div class="category-item">
+                    <span class="category-emoji">🧠</span>
+                    <h4>Brain Health</h4>
+                    <p>Questions about cognitive health and mental clarity</p>
+                </div>
+                
+                <div class="category-item">
+                    <span class="category-emoji">⚡</span>
+                    <h4>Energy & Anti-Aging</h4>
+                    <p>Inquiries about anti-aging strategies and vitality</p>
+                </div>
+                
+                <div class="category-item">
+                    <span class="category-emoji">⚖️</span>
+                    <h4>Weight Management</h4>
+                    <p>Questions about weight loss supplements and approaches</p>
+                </div>
+                
+                <div class="category-item">
+                    <span class="category-emoji">🏥</span>
+                    <h4>Health Products</h4>
+                    <p>Information about health products and reviews</p>
+                </div>
+                
+                <div class="category-item">
+                    <span class="category-emoji">📚</span>
+                    <h4>Research Sources</h4>
+                    <p>Questions about our sources and research methodology</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Response Times</h2>
+        
+        <div class="response-times">
+            <h3>⏰ When to Expect a Response:</h3>
+            <ul>
+                <li><strong>General Inquiries:</strong> 24-48 hours during business days</li>
+                <li><strong>Editorial Questions:</strong> 1-2 business days (may require research)</li>
+                <li><strong>Technical Support:</strong> 12-24 hours during business days</li>
+                <li><strong>Business Inquiries:</strong> 2-3 business days</li>
+                <li><strong>Complex Research Questions:</strong> 3-5 business days</li>
+            </ul>
+        </div>
+
+        <div class="business-hours">
+            <h3>🕐 Business Hours</h3>
+            <p>Our team is available during these hours (EST):</p>
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <div class="day">Monday - Friday</div>
+                    <div class="time">9:00 AM - 6:00 PM</div>
+                </div>
+                <div class="hours-item">
+                    <div class="day">Saturday</div>
+                    <div class="time">10:00 AM - 4:00 PM</div>
+                </div>
+                <div class="hours-item">
+                    <div class="day">Sunday</div>
+                    <div class="time">Closed</div>
+                </div>
+            </div>
+            <p style="margin-top: 20px; text-align: center; font-style: italic;">Emails received outside business hours will be responded to on the next business day.</p>
+        </div>
+
+        <h2>Before You Contact Us</h2>
+        
+        <p>To help us provide the most helpful response, please consider checking these resources first:</p>
+
+        <div class="policies-links">
+            <h3>📖 Helpful Resources:</h3>
+            <ul>
+                <li><a href="/editorial-policy.html" class="internal-link">Editorial Policy</a> - Our content standards and fact-checking process</li>
+                <li><a href="/about-us.html" class="internal-link">About Us</a> - Learn more about our mission and team</li>
+                <li><a href="/privacy-policy.html" class="internal-link">Privacy Policy</a> - How we handle your personal information</li>
+                <li><a href="/disclaimer.html" class="internal-link">Medical Disclaimer</a> - Important limitations about our health information</li>
+                <li><a href="/affiliate-disclosure.html" class="internal-link">Affiliate Disclosure</a> - Our business relationships and transparency</li>
+                <li><a href="/terms-of-use.html" class="internal-link">Terms of Use</a> - Legal terms for using our website</li>
+            </ul>
+        </div>
+
+        <div class="contact-form">
+            <h3>✉️ Email Contact Form</h3>
+            <div class="form-note">
+                <p><strong>Direct Email Preferred:</strong> For the fastest response, please email us directly using the addresses above. This ensures your message reaches the right team member immediately.</p>
+            </div>
+            <p>When contacting us, please include:</p>
+            <ul>
+                <li><strong>Specific Topic:</strong> What health topic or article you're asking about</li>
+                <li><strong>Clear Question:</strong> Be specific about what information you need</li>
+                <li><strong>Relevant Context:</strong> Any relevant health background (if comfortable sharing)</li>
+                <li><strong>Preferred Response Method:</strong> Email reply is standard</li>
+            </ul>
+        </div>
+
+        <div class="office-info">
+            <h3>🏢 Office Information</h3>
+            <p><strong>Health Supplements Hub</strong><br>
+            Digital Health Information Services<br>
+            United States</p>
+            <p style="margin-top: 20px;">
+                <strong>Primary Contact:</strong> info@danilichev.info<br>
+                <strong>Editorial Team:</strong> editorial@danilichev.info
+            </p>
+        </div>
+
+        <h2>What We Don't Do</h2>
+        
+        <div class="response-times">
+            <h3>⚠️ Important Limitations:</h3>
+            <ul>
+                <li><strong>Medical Advice:</strong> We cannot provide personalized medical advice or diagnosis</li>
+                <li><strong>Emergency Support:</strong> We are not equipped to handle medical emergencies</li>
+                <li><strong>Prescription Guidance:</strong> We cannot advise on prescription medications</li>
+                <li><strong>Individual Health Plans:</strong> We cannot create personalized health or supplement plans</li>
+                <li><strong>Medical Referrals:</strong> We cannot recommend specific healthcare providers</li>
+            </ul>
+        </div>
+
+        <div class="feedback-cta">
+            <h3>🌟 We Value Your Feedback</h3>
+            <p>Your input helps us improve our content and better serve the health information needs of people over 40. Whether you have suggestions, corrections, or just want to share your experience, we'd love to hear from you!</p>
+        </div>
+
+        <h2>Professional Inquiries</h2>
+        
+        <div class="support-categories">
+            <h3>💼 Media & Professional Contact:</h3>
+            <p><strong>Healthcare Professionals:</strong> We welcome feedback and collaboration from qualified healthcare providers.</p>
+            <p><strong>Media Requests:</strong> For interviews, quotes, or media inquiries, please contact our business team.</p>
+            <p><strong>Research Collaboration:</strong> We're interested in collaborating with researchers studying health, nutrition, and aging.</p>
+            <p><strong>Content Partnerships:</strong> For editorial partnerships or guest content opportunities, please reach out to our editorial team.</p>
+        </div>
+
+        <div class="highlight">
+            <h3>🤝 Thank You</h3>
+            <p>We appreciate your interest in Health Supplements Hub and look forward to helping you with your health information needs. Your questions and feedback help us create better, more useful content for everyone.</p>
+        </div>
+    </div>
+
+    <script>
+        // Track email link clicks
+        document.querySelectorAll('.contact-email').forEach(link => {
+            link.addEventListener('click', function(e) {
+                gtag('event', 'contact_email_click', {
+                    'event_category': 'contact',
+                    'event_label': this.textContent,
+                    'value': 1
+                });
+            });
+        });
+
+        // Track internal link clicks
+        document.querySelectorAll('.internal-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                gtag('event', 'internal_link_click', {
+                    'event_category': 'navigation',
+                    'event_label': this.getAttribute('href'),
+                    'value': 1
+                });
+            });
+        });
+
+        // Track contact card interactions
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const title = this.querySelector('.contact-title').textContent;
+                gtag('event', 'contact_card_click', {
+                    'event_category': 'contact',
+                    'event_label': title,
+                    'value': 1
+                });
+            });
+        });
+
+        // Track scroll depth
+        let scrollDepthTracked = {
+            25: false,
+            50: false,
+            75: false,
+            90: false
+        };
+
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            
+            Object.keys(scrollDepthTracked).forEach(depth => {
+                if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
+                    scrollDepthTracked[depth] = true;
+                    gtag('event', 'scroll_depth', {
+                        'event_category': 'engagement',
+                        'event_label': `contact_us_${depth}_percent`,
+                        'value': parseInt(depth)
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="/affiliate-tracking.js"></script>
+<script src="/footer-component.js"></script>
+</body>
+</html>
