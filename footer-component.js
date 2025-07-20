@@ -35,7 +35,7 @@ function getFooterHTML() {
             <div class="footer-section">
                 <h3>🔥 Popular Articles</h3>
                 <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
                     <li><a href="/why-always-tired-after-40/">⚡ Why Am I Always Tired After 40? The Real Reasons & Solutions</a></li>
                     <li><a href="/natural-energy-restoration-methods/">⚡ Natural Energy Restoration Methods: The Complete Guide to Re</a></li>
                     <li><a href="/nad-decline-after-40-effects/">🔬 NAD Decline After 40: Effects on Health and Aging</a></li>
