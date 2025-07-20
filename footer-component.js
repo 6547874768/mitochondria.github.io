@@ -35,16 +35,16 @@ function getFooterHTML() {
             <div class="footer-section">
                 <h3>🔥 Popular Articles</h3>
                 <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li><a href="/womens-energy-decline-menopause/">⚡ Research on Women's Energy Changes During Menopause: Underst</a></li>
                     <li><a href="/why-always-tired-after-40/">⚡ Why Am I Always Tired After 40? The Real Reasons & Solutions</a></li>
-                    <li><a href="/natural-energy-restoration-methods/">⚡ Natural Energy Support Methods: Research-Based Approaches Be</a></li>
-                    <li><a href="/nad-decline-after-40-effects/">🔬 NAD Decline After 40: Effects on Health and Aging</a></li>
                     <li><a href="/the-essential-keto-cookbook/">The Essential Keto Cookbook: Complete Recipe Collection for </a></li>
                     <li><a href="/the-keto-snacks-cookbook/">The Keto Snacks Cookbook: Your Ultimate Guide to Low-Carb Sn</a></li>
+                    <li><a href="/mitochondrial-supplements-research/">Mitochondrial Supplements Research: The Science-Backed Guide</a></li>
+                    <li><a href="/natural-energy-restoration-methods/">⚡ Natural Energy Support Methods: Research-Based Approaches Be</a></li>
+                    <li><a href="/mitochondrial-energy-guide/">⚡ Mitochondrial Energy Guide: Master Your Cellular Powerhouse</a></li>
+                    <li><a href="/nad-decline-after-40-effects/">🔬 NAD Decline After 40: Effects on Health and Aging</a></li>
+                    <li><a href="/nad-boosting-supplements-comparison/">⚡ Energy Support Options for People Over 40: Research-Based Gu</a></li>
                     <li><a href="/reducing-inflammation-with-keto/">Reducing Inflammation with Keto: Evidence-Based Anti-Inflamm</a></li>
-                    <li><a href="/mitochondrial-supplements-research/">Research on Mitochondrial Support: Dr. Shallenberger's Appro</a></li>
-                    <li><a href="/low-energy-warning-signs/">⚡ Low Energy Warning Signs: When to Take Action</a></li>
-                    <li><a href="/mitochondrial-dysfunction-aging-process/">Mitochondrial Dysfunction and the Aging Process</a></li>
                 </ul>
             </div>
             
