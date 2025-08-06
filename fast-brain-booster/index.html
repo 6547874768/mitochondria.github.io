@@ -1240,7 +1240,7 @@
 
     <!-- ANALYTICS AND TRACKING SCRIPTS -->
     <script>
-        // Production-ready tracking functions
+        // Production-ready tracking functions - check for gtag before use
         function trackConversion() {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'fast_brain_booster_conversion', {
@@ -1260,6 +1260,23 @@
                 });
             }
         }
+        
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track affiliate clicks on all affiliate links
+            const affiliateLinks = document.querySelectorAll('.affiliate-link');
+            affiliateLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'affiliate_click', {
+                            'event_category': 'affiliate',
+                            'event_label': 'fast_brain_booster',
+                            'value': 1
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
