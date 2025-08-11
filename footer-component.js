@@ -15,18 +15,18 @@ function shouldShowFooter() {
 function getFooterHTML() {
     return `
     <footer class="site-footer">
-        <!-- ПОИСКОВЫЙ БЛОК -->
+        <!-- SEARCH BLOCK -->
         <div class="footer-search-section">
             <div class="footer-search-container">
-                <h3>🔍 Поиск по сайту</h3>
+                <h3>🔍 Search This Site</h3>
                 <div class="search-box">
                     <form action="https://www.google.com/search" method="get" target="_blank" class="search-form">
                         <input type="hidden" name="sitesearch" value="danilichev.info">
-                        <input type="text" name="q" placeholder="Найдётся всё... Например: testosterone, keto recipes, brain supplements" class="search-input" required>
-                        <button type="submit" class="search-button">🔍 Найти</button>
+                        <input type="text" name="q" placeholder="Search... e.g., testosterone, keto recipes, brain supplements" class="search-input" required>
+                        <button type="submit" class="search-button">🔍 Search</button>
                     </form>
                 </div>
-                <p class="search-hint">Поиск через Google по всему сайту danilichev.info</p>
+                <p class="search-hint">Search powered by Google across all danilichev.info content</p>
             </div>
         </div>
         
@@ -122,7 +122,7 @@ function getFooterHTML() {
         box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
     
-    /* ПОИСКОВЫЙ БЛОК */
+    /* SEARCH BLOCK */
     .footer-search-section {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         padding: 30px 0;
@@ -196,7 +196,7 @@ function getFooterHTML() {
         font-style: italic;
     }
     
-    /* ОСТАЛЬНОЙ ФУТЕР */
+    /* FOOTER MAIN */
     .footer-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -246,7 +246,7 @@ function getFooterHTML() {
         text-decoration: underline;
     }
     
-    /* Стиль для соцсетей */
+    /* Social links style */
     .social-links a {
         display: flex;
         align-items: center;
