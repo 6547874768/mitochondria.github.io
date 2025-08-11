@@ -106,7 +106,7 @@ function getFooterHTML() {
             <div class="footer-container">
                 <p>This website is for informational purposes only. Statements have not been evaluated by the FDA. Individual results may vary.</p>
                 <p style="margin-top: 10px; font-size: 11px; opacity: 0.7;">
-                    © 2025 Danilichev.info | All Rights Reserved | Powered by GitHub Pages | 180+ Articles | 47 Affiliate Partners
+                    © 2025 Danilichev.info | All Rights Reserved | Powered by Cloudflare | 180+ Articles | 47 Affiliate Partners
                 </p>
             </div>
         </div>
