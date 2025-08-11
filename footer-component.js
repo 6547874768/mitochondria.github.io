@@ -2,14 +2,10 @@
 function shouldShowFooter() {
     const currentPath = window.location.pathname;
     
-    // Pages WITHOUT footer (main + 5 categories)
+    // Футер НЕ показываем только на этих страницах
     const excludedPages = [
-        '/',
-        '/health-supplements/',
-        '/health-products/', 
-        '/anti-aging-hacks/',
-        '/brain-supplements/',
-        '/weight-loss-supplements/'
+        '/404.html',
+        '/sitemap.html'
     ];
     
     return !excludedPages.includes(currentPath);
@@ -29,41 +25,60 @@ function getFooterHTML() {
                     <li><a href="/anti-aging-hacks/">⚡ Anti-Aging Hacks</a></li>
                     <li><a href="/weight-loss-supplements/">🏃 Weight Loss Supplements</a></li>
                     <li><a href="/health-products/">🛡️ Health Products</a></li>
+                    <li><a href="/keto-recipes/">🥑 Keto Recipes</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h3>🔥 Popular Articles</h3>
                 <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <li><a href="/womens-energy-decline-menopause/">⚡ Women's Energy Decline in Menopause: Why 95% Feel Exhausted </a></li>
-                    <li><a href="/why-always-tired-after-40/">⚡ Why Always Tired After 40: Uncover Hidden Energy Thieves</a></li>
-                    <li><a href="/whats-a-good-recipe-for-keto-popcorn-shrimp/">What's a Good Recipe for Keto Popcorn Shrimp? Complete Guide</a></li>
-                    <li><a href="/whats-an-easy-coconut-chicken-curry-recipe-for-keto-diet/">What's an Easy Coconut Chicken Curry Recipe for Keto Diet: 3</a></li>
-                    <li><a href="/whats-an-easy-recipe-for-crunchy-kale-chips-on-keto/">What's an Easy Recipe for Crunchy Kale Chips on Keto: Comple</a></li>
-                    <li><a href="/whats-a-good-recipe-for-keto-friendly-pretzel-bites/">What's a Good Recipe for Keto-Friendly Pretzel Bites: Fathea</a></li>
-                    <li><a href="/what-are-some-keto-friendly-breakfast-porridge-options/">What Are Some Keto-Friendly Breakfast Porridge Options: Omeg</a></li>
-                    <li><a href="/whats-a-good-recipe-for-guacamole-burgers-on-keto/">What's a Good Recipe for Guacamole Burgers on Keto: Science-</a></li>
-                    <li><a href="/what-are-some-crunchy-and-salty-keto-snack-ideas/">What Are Some Crunchy and Salty Keto Snack Ideas: Ultimate G</a></li>
-                    <li><a href="/whats-a-good-keto-jalapeno-cornbread-recipe/">What's a Good Keto Jalapeño Cornbread Recipe: Spicy Low-Carb</a></li>
+                    <li><a href="/womens-energy-decline-menopause/">⚡ Women's Energy Decline in Menopause</a></li>
+                    <li><a href="/why-always-tired-after-40/">⚡ Why Always Tired After 40</a></li>
+                    <li><a href="/alpha-strength/">💪 Alpha Strength Testosterone Stack</a></li>
+                    <li><a href="/best-brain-supplements/">🧠 Best Brain Supplements</a></li>
+                    <li><a href="/whats-a-good-recipe-for-keto-popcorn-shrimp/">🍤 Keto Popcorn Shrimp Recipe</a></li>
+                    <li><a href="/whats-an-easy-coconut-chicken-curry-recipe-for-keto-diet/">🍛 Coconut Chicken Curry Keto</a></li>
+                    <li><a href="/mitochondrial-supplements-research/">🔬 Mitochondrial Supplements</a></li>
+                    <li><a href="/nad-decline-after-40-effects/">⚡ NAD+ Decline After 40</a></li>
+                    <li><a href="/keto-for-weight-loss-over-40/">🏃 Keto Weight Loss Over 40</a></li>
+                    <li><a href="/mens-fatigue-solutions-over-40/">💊 Men's Fatigue Solutions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>📚 Legal & Policies</h3>
+                <ul>
+                    <li><a href="/privacy-policy.html">🔒 Privacy Policy</a></li>
+                    <li><a href="/terms-of-use.html">📜 Terms of Use</a></li>
+                    <li><a href="/disclaimer.html">⚠️ Medical Disclaimer</a></li>
+                    <li><a href="/affiliate-disclosure.html">🤝 Affiliate Disclosure</a></li>
+                    <li><a href="/editorial-policy.html">✍️ Editorial Policy</a></li>
+                    <li><a href="/about-us.html">👥 About Us</a></li>
+                    <li><a href="/contact-us.html">📧 Contact Us</a></li>
+                    <li><a href="/sitemap.html">🗺️ Sitemap</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h3>ℹ️ Information</h3>
                 <div class="footer-info">
-                    <p><strong>© 2025 Health Supplements Hub</strong></p>
+                    <p><strong>© 2025 Danilichev.info</strong></p>
                     <p>🎯 Science-backed health solutions for life after 40</p>
                     <p>⚠️ Information does not replace medical consultation</p>
-                    <p>🤝 Affiliate links: DigitalStore24</p>
+                    <p>🤝 Affiliate partners: 47+ programs tracked</p>
                     <p>📊 Analytics: Google Analytics + Microsoft Clarity</p>
-                    <p class="footer-note">Always consult your healthcare provider before starting any supplement regimen</p>
+                    <p>✅ SSL Secured | GDPR Compliant</p>
+                    <p class="footer-note">Always consult your healthcare provider before starting any supplement regimen. Results may vary. Not intended to diagnose, treat, cure, or prevent any disease.</p>
                 </div>
             </div>
         </div>
         
         <div class="footer-bottom">
             <div class="footer-container">
-                <p>This website is for informational purposes only. Individual results may vary. Consult your doctor before use.</p>
+                <p>This website is for informational purposes only. Statements have not been evaluated by the FDA. Individual results may vary.</p>
+                <p style="margin-top: 10px; font-size: 11px; opacity: 0.7;">
+                    © 2025 Danilichev.info | All Rights Reserved | Powered by GitHub Pages
+                </p>
             </div>
         </div>
     </footer>
@@ -71,7 +86,7 @@ function getFooterHTML() {
     <style>
     .site-footer {
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-top: 3px solid #007bff;
+        border-top: 3px solid #10b981;
         margin-top: 60px;
         padding: 40px 0 0;
         color: #495057;
@@ -83,7 +98,7 @@ function getFooterHTML() {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 40px;
         padding: 0 20px;
     }
@@ -93,7 +108,7 @@ function getFooterHTML() {
         margin-bottom: 20px;
         font-size: 18px;
         font-weight: 600;
-        border-bottom: 2px solid #007bff;
+        border-bottom: 2px solid #10b981;
         padding-bottom: 8px;
         display: flex;
         align-items: center;
@@ -106,7 +121,7 @@ function getFooterHTML() {
     }
     
     .footer-section li {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         transition: transform 0.2s ease;
     }
     
@@ -119,33 +134,32 @@ function getFooterHTML() {
         text-decoration: none;
         transition: all 0.3s ease;
         display: inline-block;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.4;
     }
     
     .footer-section a:hover {
-        color: #007bff;
+        color: #10b981;
         text-decoration: underline;
-        transform: scale(1.02);
     }
     
     .footer-info p {
-        margin: 10px 0;
+        margin: 8px 0;
         line-height: 1.6;
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .footer-info .footer-note {
         font-style: italic;
         color: #6c757d;
-        font-size: 13px;
+        font-size: 12px;
         margin-top: 15px;
         padding-top: 10px;
         border-top: 1px solid #dee2e6;
     }
     
     .footer-bottom {
-        background: rgba(0,123,255,0.1);
+        background: rgba(16, 185, 129, 0.1);
         margin-top: 30px;
         padding: 15px 0;
         text-align: center;
@@ -155,7 +169,7 @@ function getFooterHTML() {
     .footer-bottom p {
         margin: 0;
         color: #6c757d;
-        font-size: 13px;
+        font-size: 12px;
     }
     
     @media (max-width: 768px) {
@@ -175,7 +189,7 @@ function getFooterHTML() {
         }
         
         .footer-section a {
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     
