@@ -122,11 +122,38 @@ function getFooterHTML() {
         box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
     
-    /* SEARCH BLOCK */
+    /* GLASS EFFECT SEARCH BLOCK */
     .footer-search-section {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding: 30px 0;
-        border-bottom: 2px solid #047857;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-bottom: 2px solid rgba(16, 185, 129, 0.3);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    
+    /* Water droplets effect */
+    .footer-search-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 20% 80%, transparent 0%, transparent 50%, rgba(16, 185, 129, 0.05) 50%, rgba(16, 185, 129, 0.05) 52%, transparent 52%, transparent 100%),
+                    radial-gradient(circle at 80% 20%, transparent 0%, transparent 50%, rgba(16, 185, 129, 0.05) 50%, rgba(16, 185, 129, 0.05) 52%, transparent 52%, transparent 100%),
+                    radial-gradient(circle at 40% 40%, transparent 0%, transparent 50%, rgba(16, 185, 129, 0.05) 50%, rgba(16, 185, 129, 0.05) 52%, transparent 52%, transparent 100%);
+        background-size: 100px 100px, 150px 150px, 200px 200px;
+        animation: droplets 25s linear infinite;
+        opacity: 0.4;
+    }
+    
+    @keyframes droplets {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        100% { transform: translate(30px, 30px) rotate(360deg); }
     }
     
     .footer-search-container {
@@ -134,10 +161,13 @@ function getFooterHTML() {
         margin: 0 auto;
         padding: 0 20px;
         text-align: center;
+        position: relative;
+        z-index: 1;
     }
     
     .footer-search-section h3 {
-        color: #ffffff;
+        color: #047857;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         margin-bottom: 20px;
         font-size: 24px;
         font-weight: 600;
@@ -158,16 +188,18 @@ function getFooterHTML() {
         flex: 1;
         padding: 12px 20px;
         font-size: 16px;
-        border: none;
+        border: 1px solid rgba(16, 185, 129, 0.3);
         border-radius: 50px;
-        background: white;
+        background: rgba(255, 255, 255, 0.9);
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: box-shadow 0.3s ease;
+        transition: all 0.3s ease;
     }
     
     .search-input:focus {
         outline: none;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        border-color: #10b981;
+        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        background: rgba(255, 255, 255, 1);
     }
     
     .search-button {
@@ -176,32 +208,32 @@ function getFooterHTML() {
         font-weight: 600;
         border: none;
         border-radius: 50px;
-        background: #fbbf24;
-        color: #1f2937;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #ffffff;
         cursor: pointer;
         transition: all 0.3s ease;
         white-space: nowrap;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
     }
     
     .search-button:hover {
-        background: #f59e0b;
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
     }
     
     .search-hint {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(4, 120, 87, 0.8);
         font-size: 14px;
         margin-top: 15px;
         font-style: italic;
     }
     
-    /* FOOTER MAIN */
+    /* FOOTER MAIN - 5 COLUMNS */
     .footer-container {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(5, 1fr);
         gap: 30px;
         padding: 40px 20px;
     }
@@ -287,9 +319,10 @@ function getFooterHTML() {
         font-size: 12px;
     }
     
-    @media (max-width: 1024px) {
+    /* RESPONSIVE */
+    @media (max-width: 1200px) {
         .footer-container {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
         }
     }
     
