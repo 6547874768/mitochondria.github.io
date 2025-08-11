@@ -1,0 +1,90 @@
+name: 🚀 Full Site Automation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.html'
+      - 'update_site.py'
+      - 'affiliate-tracking.js'
+      - 'footer-component.js'
+  
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Принудительно обновить все страницы'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  update-everything:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: 🔧 Run complete automation
+      run: |
+        echo "🚀 Запуск полной автоматизации..."
+        python update_site.py
+    
+    - name: 🔍 Check for changes
+      id: check-changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "📝 Найдены изменения:"
+          git status --porcelain
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "✅ Изменений не найдено"
+        fi
+    
+    - name: 📤 Commit and push changes
+      if: steps.check-changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Добавляем все изменения
+        git add .
+        
+        # Создаем детальное сообщение коммита
+        git commit -m "🤖 Auto-update: Complete site automation
+        
+        ✅ Components checked:
+        - Favicon
+        - Footer
+        - Sitemap
+        - Google Analytics 4
+        - Microsoft Clarity
+        - Affiliate Tracking
+        
+        🔄 Updated by automated workflow"
+        
+        git push
+    
+    - name: 📊 Summary
+      if: always()
+      run: |
+        echo "## 📊 Результаты автоматизации" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.check-changes.outputs.changed }}" == "true" ]; then
+          echo "✅ **Страницы обновлены успешно**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "ℹ️ **Все страницы уже содержат необходимые компоненты**" >> $GITHUB_STEP_SUMMARY
+        fi
