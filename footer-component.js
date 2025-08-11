@@ -22,10 +22,9 @@ function getFooterHTML() {
                     <li><a href="/">🏠 Home</a></li>
                     <li><a href="/health-supplements/">💊 Health Supplements</a></li>
                     <li><a href="/brain-supplements/">🧠 Brain Supplements</a></li>
-                    <li><a href="/anti-aging-hacks/">⚡ Anti-Aging Hacks</a></li>
-                    <li><a href="/weight-loss-supplements/">🏃 Weight Loss Supplements</a></li>
-                    <li><a href="/health-products/">🛡️ Health Products</a></li>
-                    <li><a href="/keto-recipes/">🥑 Keto Recipes</a></li>
+                    <li><a href="/anti-aging-hacks/">✨ Anti-Aging Hacks</a></li>
+                    <li><a href="/weight-loss-supplements/">⚖️ Weight Loss Supplements</a></li>
+                    <li><a href="/health-products/">🧪 Health Products</a></li>                    
                 </ul>
             </div>
             
