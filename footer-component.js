@@ -58,19 +58,28 @@ function getFooterHTML() {
             </div>
             
             <div class="footer-section">
-                <h3>🌐 Follow Us</h3>
+                <h3>📤 Share & Connect</h3>
                 <ul class="social-links">
-                    <li><a href="https://www.facebook.com" rel="nofollow noopener" target="_blank">📘 Facebook</a></li>
-                    <li><a href="https://www.twitter.com" rel="nofollow noopener" target="_blank">🐦 Twitter (X)</a></li>
-                    <li><a href="https://www.instagram.com" rel="nofollow noopener" target="_blank">📷 Instagram</a></li>
-                    <li><a href="https://www.youtube.com" rel="nofollow noopener" target="_blank">📺 YouTube</a></li>
-                    <li><a href="https://www.pinterest.com" rel="nofollow noopener" target="_blank">📌 Pinterest</a></li>
-                    <li><a href="https://www.linkedin.com" rel="nofollow noopener" target="_blank">💼 LinkedIn</a></li>
-                    <li><a href="https://www.reddit.com/r/supplements" rel="nofollow noopener" target="_blank">🤖 Reddit</a></li>
-                    <li><a href="https://www.tiktok.com" rel="nofollow noopener" target="_blank">🎵 TikTok</a></li>
+                    <!-- Share buttons for current page -->
+                    <li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'fb-share','width=550,height=450');return false;">📘 Share on Facebook</a></li>
+                    <li><a href="#" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title)+' - Great health info!','tw-share','width=550,height=450');return false;">🐦 Tweet This Page</a></li>
+                    <li><a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href),'li-share','width=550,height=450');return false;">💼 Share on LinkedIn</a></li>
+                    <li><a href="#" onclick="window.open('https://pinterest.com/pin/create/button/?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(document.title),'pin-share','width=750,height=550');return false;">📌 Pin This</a></li>
+                    <li><a href="javascript:window.print()">🖨️ Print/Save as PDF</a></li>
+                    
+                    <!-- Separator -->
+                    <li style="border-top: 1px solid #dee2e6; padding-top: 10px; margin-top: 10px; font-weight: 600; color: #047857;">
+                        Join Health Communities:
+                    </li>
+                    
+                    <!-- Real communities relevant to your content -->
+                    <li><a href="https://www.reddit.com/r/keto/" rel="nofollow noopener" target="_blank">🥑 r/Keto (2.9M members)</a></li>
+                    <li><a href="https://www.reddit.com/r/Supplements/" rel="nofollow noopener" target="_blank">💊 r/Supplements (400k)</a></li>
+                    <li><a href="https://www.reddit.com/r/fitness30plus/" rel="nofollow noopener" target="_blank">💪 r/Fitness30Plus</a></li>
+                    <li><a href="https://www.reddit.com/r/Biohackers/" rel="nofollow noopener" target="_blank">🧬 r/Biohackers (450k)</a></li>
                 </ul>
                 <p style="font-size: 12px; color: #6c757d; margin-top: 15px; font-style: italic;">
-                    Social profiles coming soon! Follow for health tips & updates.
+                    Share our content & join 5M+ health enthusiasts
                 </p>
             </div>
             
@@ -106,7 +115,7 @@ function getFooterHTML() {
             <div class="footer-container">
                 <p>This website is for informational purposes only. Statements have not been evaluated by the FDA. Individual results may vary.</p>
                 <p style="margin-top: 10px; font-size: 11px; opacity: 0.7;">
-                    © 2025 Danilichev.info | All Rights Reserved | Powered by Cloudflare | 180+ Articles | 47 Affiliate Partners
+                    © 2025 Danilichev.info | All Rights Reserved | Powered by GitHub Pages & Cloudflare | 170+ Articles | 47 Affiliate Partners
                 </p>
             </div>
         </div>
