@@ -64,7 +64,16 @@ function getFooterHTML() {
                     <li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'fb-share','width=550,height=450');return false;">📘 Share on Facebook</a></li>
                     <li><a href="#" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title)+' - Great health info!','tw-share','width=550,height=450');return false;">🐦 Tweet This Page</a></li>
                     <li><a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href),'li-share','width=550,height=450');return false;">💼 Share on LinkedIn</a></li>
-                    <li><a href="#" onclick="window.open('https://pinterest.com/pin/create/button/?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(document.title),'pin-share','width=750,height=550');return false;">📌 Pin This</a></li>
+                    
+                    <!-- Pinterest with tracking -->
+                    <li><a href="#" 
+                           onclick="if(typeof gtag !== 'undefined'){gtag('event', 'social_click', {'platform': 'pinterest', 'location': 'footer', 'page': window.location.pathname, 'timestamp': new Date().toISOString()});}
+                                    window.open('https://pinterest.com/pin/create/button/?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(document.title),'pin-share','width=750,height=550');
+                                    return false;"
+                           data-track-click="pinterest_footer">
+                           📌 Pin This
+                    </a></li>
+                    
                     <li><a href="javascript:window.print()">🖨️ Print/Save as PDF</a></li>
                     
                     <!-- Separator -->
