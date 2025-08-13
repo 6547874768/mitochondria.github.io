@@ -1,0 +1,52 @@
+name: 📡 RSS Feed Generation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.html'
+      - 'create_rss.py'
+  
+  workflow_dispatch:
+    inputs:
+      manual_run:
+        description: 'Ручной запуск генерации RSS'
+        required: false
+        default: 'true'
+
+jobs:
+  generate-rss:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: 📡 Generate RSS feed
+      run: |
+        echo "📡 Генерация RSS feed..."
+        python create_rss.py
+    
+    - name: 📤 Commit RSS feed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        if [ -n "$(git status --porcelain feed.xml)" ]; then
+          git add feed.xml
+          git commit -m "📡 Update RSS feed"
+          git push
+          echo "✅ RSS feed обновлён"
+        else
+          echo "ℹ️ RSS feed не изменился"
+        fi
